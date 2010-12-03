@@ -1,0 +1,3 @@
+glob:PAM/bin/Debug/*
+glob:PAM/obj/*
+glob:_ReSharper.*

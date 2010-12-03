@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM", "PAM\PAM.csproj", "{78A971F0-9183-4E3E-94DC-F737B58FA377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM.Core", "PAM.Core\PAM.Core.csproj", "{451A3C83-76A2-44DD-8F02-09735C7BB5D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM.Tests", "PAM.Tests\PAM.Tests.csproj", "{3FB63C08-8D04-45E6-813C-CBE67F132ACC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78A971F0-9183-4E3E-94DC-F737B58FA377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A971F0-9183-4E3E-94DC-F737B58FA377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A971F0-9183-4E3E-94DC-F737B58FA377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A971F0-9183-4E3E-94DC-F737B58FA377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{451A3C83-76A2-44DD-8F02-09735C7BB5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451A3C83-76A2-44DD-8F02-09735C7BB5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451A3C83-76A2-44DD-8F02-09735C7BB5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451A3C83-76A2-44DD-8F02-09735C7BB5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
