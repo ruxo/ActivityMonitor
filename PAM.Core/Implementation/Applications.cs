@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace PAM.Core
 {
-    public class Applications : List<IApplication>
+    public class Applications : List<Application>
     {
 
         public bool Contains(string application)
@@ -19,6 +19,7 @@ namespace PAM.Core
                     where app.Name == application && app.Path == path
                     select app).FirstOrDefault() != null;
         }
+
 
 
 

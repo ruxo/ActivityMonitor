@@ -1,4 +1,5 @@
 ﻿using System;
+using PAM.Core.Implementation;
 
 namespace PAM.Core
 {

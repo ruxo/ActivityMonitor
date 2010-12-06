@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PAM.Core
+namespace PAM.Core.Implementation
 {
-    public class ApplicationUsages : List<IApplicationUsage>
+    public class ApplicationUsages : List<ApplicationUsage>
     {
 
 
-        
+
         public TimeSpan TotalUsageTime()
         {
 

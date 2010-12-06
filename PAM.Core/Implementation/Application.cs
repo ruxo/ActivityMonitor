@@ -1,44 +1,54 @@
 ﻿
 using System;
+using System.Xml.Serialization;
+using PAM.Core.Implementation;
 
 namespace PAM.Core
 {
+
     public class Application : IApplication
     {
-        private readonly string _applicationName;
-        private readonly string _applicationPath;
         private readonly ApplicationUsages _usage;
 
-        public Application(string applicationName,
-                           string applicationPath,
+        public Application(
                            ApplicationUsages usage = null)
         {
-            _applicationName = applicationName;
-            _applicationPath = applicationPath;
+
             _usage = usage ?? new ApplicationUsages();
 
         }
 
-        public string Path
+        public Application()
         {
-            get { return _applicationPath; }
         }
 
-        public string Name
+        public Application(string path,
+                           string name)
         {
-            get { return _applicationName; }
+            Path = path;
+            Name = name;
         }
+
+        [XmlAttribute]
+        public string Path
+        {
+            get;
+            set;
+        }
+
+        [XmlAttribute]
+        public string Name { get; set; }
 
         public TimeSpan TotalUsageTime
         {
             get { return _usage.TotalUsageTime(); }
         }
 
+
         public ApplicationUsages Usage
         {
-            get { return _usage; }
+            get;
+            set;
         }
-
-
     }
 }
