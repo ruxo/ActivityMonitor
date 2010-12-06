@@ -8,7 +8,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using PAM.Core;
-using Application = PAM.Core.Application;
+using Application = PAM.Core.Implementation.Application;
 
 namespace PAM
 {
@@ -83,6 +83,7 @@ namespace PAM
 
         void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            _timer.Enabled = false;
             var chars = 256;
             var buff = new StringBuilder(chars);
 
@@ -117,7 +118,7 @@ namespace PAM
 
                     var usage = new ApplicationUsage();
                     usage.Start();
-                    _applications[_previousApplicationName].Usage.Add(usage);
+                    _applications[process.MainModule.FileVersionInfo.FileDescription].Usage.Add(usage);
 
                 }
 
@@ -127,6 +128,8 @@ namespace PAM
                 this.InvokeIfRequired((value) => appNameLabel.Content = value, process.MainModule.FileVersionInfo.FileDescription);
                 this.InvokeIfRequired((value) => appPathLabel.Content = value, process.MainModule.FileVersionInfo.FileName);
                 this.InvokeIfRequired((value) => appManufacturer.Content = value, process.MainModule.FileVersionInfo.CompanyName);
+                this.InvokeIfRequired((value) => appUsage.Content = value, _applications[process.MainModule.FileVersionInfo.FileDescription].TotalUsageTime);
+
                 var icon = ShellIcon.GetLargeIcon(process.MainModule.FileVersionInfo.FileName);
 
 
@@ -143,6 +146,9 @@ namespace PAM
             catch
             {
 
+            }
+            finally {
+                _timer.Enabled = true;
             }
         }
 

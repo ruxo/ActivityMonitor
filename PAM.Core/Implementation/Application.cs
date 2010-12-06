@@ -1,32 +1,29 @@
-﻿
-using System;
+﻿using System;
 using System.Xml.Serialization;
-using PAM.Core.Implementation;
 
-namespace PAM.Core
+namespace PAM.Core.Implementation
 {
 
     public class Application : IApplication
     {
-        private readonly ApplicationUsages _usage;
-
         public Application(
                            ApplicationUsages usage = null)
         {
 
-            _usage = usage ?? new ApplicationUsages();
+            Usage = usage ?? new ApplicationUsages();
 
         }
 
         public Application()
         {
+            Usage = new ApplicationUsages();
         }
 
-        public Application(string path,
-                           string name)
+        public Application(string name, string path)
         {
             Path = path;
             Name = name;
+            Usage = new ApplicationUsages();
         }
 
         [XmlAttribute]
@@ -41,7 +38,7 @@ namespace PAM.Core
 
         public TimeSpan TotalUsageTime
         {
-            get { return _usage.TotalUsageTime(); }
+            get { return Usage.TotalUsageTime(); }
         }
 
 

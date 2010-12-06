@@ -1,6 +1,7 @@
 using System;
 using MbUnit.Framework;
 using PAM.Core;
+using PAM.Core.Implementation;
 using PAM.Tests.Core;
 
 namespace PAM.Tests.Core

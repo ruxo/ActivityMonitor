@@ -32,6 +32,10 @@
                         <Label>Producent :</Label>
                         <Label Name="appManufacturer"/>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Czas użycia :</Label>
+                        <Label Name="appUsage"/>
+                    </StackPanel>
                     
                 </StackPanel>
             </StackPanel>
