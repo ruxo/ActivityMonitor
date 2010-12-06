@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM.Core", "PAM.Core\PAM.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM.Tests", "PAM.Tests\PAM.Tests.csproj", "{3FB63C08-8D04-45E6-813C-CBE67F132ACC}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,8 @@ Global
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Debug|Any CPU.ActiveCfg = Debug
+		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
