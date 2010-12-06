@@ -43,8 +43,8 @@
     <Compile Include="Application.cs" />
     <Compile Include="Applications.cs" />
     <Compile Include="ApplicationUsages.cs" />
-    <Compile Include="IApplicationUsage.cs" />
-    <Compile Include="IApplication.cs" />
+    <Compile Include="Abstract\IApplicationUsage.cs" />
+    <Compile Include="Abstract\IApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
