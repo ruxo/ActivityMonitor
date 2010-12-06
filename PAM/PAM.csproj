@@ -77,7 +77,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ShellIcon.cs" />
-    <Compile Include="ControlsExtension.cs" />
+    <Compile Include="Extensions\ControlsExtension.cs" />
     <Compile Include="MainGraphWindow.xaml.cs">
       <DependentUpon>MainGraphWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
