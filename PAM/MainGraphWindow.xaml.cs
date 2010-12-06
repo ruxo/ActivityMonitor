@@ -130,7 +130,7 @@ namespace PAM
                 var icon = ShellIcon.GetLargeIcon(process.MainModule.FileVersionInfo.FileName);
 
 
-                using (MemoryStream iconStream = new MemoryStream())
+                using (var iconStream = new MemoryStream())
                 {
                     icon.Save(iconStream);
                     iconStream.Seek(0, SeekOrigin.Begin);
