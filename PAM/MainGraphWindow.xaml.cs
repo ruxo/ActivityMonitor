@@ -7,6 +7,8 @@ using System.Text;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
+using PAM.Core;
+using Application = PAM.Core.Application;
 
 namespace PAM
 {
@@ -65,11 +67,17 @@ namespace PAM
 
 
         private Timer _timer;
+        private Applications _applications;
+        private string _previousApplicationName;
+
         private void FormLoaded(object sender, RoutedEventArgs e)
         {
 
             _timer = new Timer(1000);
             _timer.Elapsed += _timer_Elapsed;
+            _applications = new Applications();
+
+
             _timer.Enabled = true;
         }
 
@@ -86,6 +94,34 @@ namespace PAM
             try
             {
                 var process = Process.GetProcessById(processId);
+
+                if (_previousApplicationName != process.MainModule.FileVersionInfo.FileDescription)
+                {
+                    if (_applications[_previousApplicationName] != null &&
+                        _applications[_previousApplicationName].Usage.FindLast((u) => !u.IsClosed) != null)
+                    {
+                        _applications[_previousApplicationName].Usage.FindLast((u) => !u.IsClosed).End();
+                    }
+
+                    _previousApplicationName = process.MainModule.FileVersionInfo.FileDescription;
+
+                    if (
+                        !_applications.Contains(process.MainModule.FileVersionInfo.FileDescription,
+                                                process.MainModule.FileVersionInfo.FileName))
+                    {
+
+                        _applications.Add(new Application(process.MainModule.FileVersionInfo.FileDescription,
+                                                            process.MainModule.FileVersionInfo.FileName));
+
+                    }
+
+                    var usage = new ApplicationUsage();
+                    usage.Start();
+                    _applications[_previousApplicationName].Usage.Add(usage);
+
+                }
+
+
 
 
                 this.InvokeIfRequired((value) => appNameLabel.Content = value, process.MainModule.FileVersionInfo.FileDescription);
