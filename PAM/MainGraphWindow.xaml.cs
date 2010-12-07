@@ -142,12 +142,29 @@ namespace PAM
 
                     this.InvokeIfRequired((value) => appIcon.Source = value, iconSource);
                 }
+
+
+                this.InvokeIfRequired(() =>
+                                          {
+                                              apps.Children.Clear();
+                                              foreach (var app in _applications)
+                                              {
+                                                  var appStat = new AppStat
+                                                                    {
+                                                                        AppName = app.Name,
+                                                                        Progress = app.TotalUsageTime.Seconds
+                                                                    };
+                                                  apps.Children.Add(appStat);
+                                              }
+
+                                          });
             }
             catch
             {
 
             }
-            finally {
+            finally
+            {
                 _timer.Enabled = true;
             }
         }
