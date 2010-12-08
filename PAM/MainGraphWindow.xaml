@@ -23,19 +23,19 @@
 					<Image Name="appIcon" Stretch="None" StretchDirection="DownOnly"></Image>
 					<StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<Label>Nazwa aplikacji :</Label>
+							<Label>Application name :</Label>
 							<Label Name="appNameLabel"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<Label>Ścieżka :</Label>
+							<Label>Path :</Label>
 							<Label Name="appPathLabel"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<Label>Producent :</Label>
+							<Label>Manufacturer :</Label>
 							<Label Name="appManufacturer"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<Label>Czas użycia :</Label>
+							<Label>Usage time :</Label>
 							<Label Name="appUsage"/>
 						</StackPanel>
 

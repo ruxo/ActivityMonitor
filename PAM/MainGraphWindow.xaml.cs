@@ -165,7 +165,7 @@ namespace PAM
                                                                             maxWidthAvaliable / longestBarWidth *
                                                                             app.TotalUsageTime.TotalMinutes,
                                                                         TimeSpent =
-                                                                            app.TotalUsageTime.TotalMinutes + " minutes"
+                                                                            app.TotalUsageTime.TotalMinutes.ToString("0 minutes")
                                                                     };
                                                   apps.Children.Add(appStat);
                                               }
