@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_59FF873B2DC336103FE58C5E98EBDBCD"
+        "MsmKey" = "8:_DBBB8A61C2E752CF5E7822C72DE30C6A"
         "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -34,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_59FF873B2DC336103FE58C5E98EBDBCD"
+        "OwnerKey" = "8:_DBBB8A61C2E752CF5E7822C72DE30C6A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -62,6 +62,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -86,6 +99,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -108,7 +134,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
                 }
@@ -116,14 +142,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_59FF873B2DC336103FE58C5E98EBDBCD"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DBBB8A61C2E752CF5E7822C72DE30C6A"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:PAM.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_59FF873B2DC336103FE58C5E98EBDBCD"
+                    "_DBBB8A61C2E752CF5E7822C72DE30C6A"
                     {
                     "Name" = "8:PAM.Core.dll"
                     "Attributes" = "3:512"
@@ -203,19 +229,19 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Persona Activity Monitor"
-        "ProductCode" = "8:{915E504C-4D26-456D-A115-7D9B3B3D092E}"
-        "PackageCode" = "8:{D56CE8C7-ADE3-49E7-88B9-44992FBF68C2}"
+        "ProductCode" = "8:{A9032171-0CA5-4D9D-A533-164F2CC21D59}"
+        "PackageCode" = "8:{72B6B591-01FB-4CCB-992F-154417368497}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.1"
+        "ProductVersion" = "8:0.0.3"
         "Manufacturer" = "8:Arkadiusz Benedykt"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup"
+        "ARPHELPLINK" = "8:http://activitymonitor.codeplex.com/"
+        "Title" = "8:Personal Activity Monitor"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Arkadiusz Benedykt"
         "Keywords" = "8:productivity monitor applications time waste "
@@ -739,7 +765,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E49C0C19AE254C4794498F1EC66CD152"
             {
-            "SourcePath" = "8:..\\PAM\\obj\\Debug\\PAM.exe"
+            "SourcePath" = "8:..\\PAM\\obj\\Release\\PAM.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
