@@ -157,8 +157,15 @@ namespace PAM
                                               {
                                                   var appStat = new AppStat
                                                                     {
-                                                                        AppName = app.Name + " ("+ app.TotalUsageTime.TotalMinutes.ToString("0") +")",
-                                                                        Progress = maxWidthAvaliable / longestBarWidth * app.TotalUsageTime.TotalMinutes
+                                                                        AppName =
+                                                                            app.Name + " (" +
+                                                                            app.TotalUsageTime.TotalMinutes.ToString("0") +
+                                                                            ")",
+                                                                        Progress =
+                                                                            maxWidthAvaliable / longestBarWidth *
+                                                                            app.TotalUsageTime.TotalMinutes,
+                                                                        TimeSpent =
+                                                                            app.TotalUsageTime.TotalMinutes + " minutes"
                                                                     };
                                                   apps.Children.Add(appStat);
                                               }
