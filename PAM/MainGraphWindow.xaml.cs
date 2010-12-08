@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Timers;
@@ -146,13 +147,18 @@ namespace PAM
 
                 this.InvokeIfRequired(() =>
                                           {
+                                              var maxWidthAvaliable = 400;
+                                              var longestBarWidth = (from app in _applications
+                                                                     select app.TotalUsageTime.TotalMinutes).Max();
+
+
                                               apps.Children.Clear();
                                               foreach (var app in _applications)
                                               {
                                                   var appStat = new AppStat
                                                                     {
-                                                                        AppName = app.Name,
-                                                                        Progress = app.TotalUsageTime.Seconds
+                                                                        AppName = app.Name + " ("+ app.TotalUsageTime.TotalMinutes.ToString("0") +")",
+                                                                        Progress = maxWidthAvaliable / longestBarWidth * app.TotalUsageTime.TotalMinutes
                                                                     };
                                                   apps.Children.Add(appStat);
                                               }
