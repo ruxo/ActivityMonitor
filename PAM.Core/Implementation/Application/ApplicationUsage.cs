@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
+using PAM.Core.Abstract;
 
 namespace PAM.Core
 {
@@ -10,11 +11,16 @@ namespace PAM.Core
         }
 
         public ApplicationUsage(DateTime beginTime,
-                                DateTime endTime)
+                                DateTime endTime,
+                                string detailedName)
         {
             BeginTime = beginTime;
             EndTime = endTime;
+            DetailedName = detailedName;
         }
+
+        [XmlAttribute]
+        public string DetailedName { get; set; }
 
 
         [XmlAttribute]
@@ -22,6 +28,10 @@ namespace PAM.Core
 
         [XmlAttribute]
         public DateTime EndTime { get; set; }
+
+
+        [XmlAttribute]
+        public bool IsClosed { get; set; }
 
         public void Start()
         {
@@ -43,8 +53,7 @@ namespace PAM.Core
             }
         }
 
-        [XmlAttribute]
-        public bool IsClosed { get; set; }
+
 
     }
 }

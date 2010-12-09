@@ -1,6 +1,6 @@
 using System;
 
-namespace PAM.Core
+namespace PAM.Core.Abstract
 {
     public interface IApplicationUsage
     {

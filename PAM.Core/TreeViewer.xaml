@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="PAM.Core.TreeViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <StackPanel>
+            <StackPanel.Resources>
+                <HierarchicalDataTemplate x:Key="ChildTemplate" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/TimeLine;component/Images/iconModel.png" Margin="0,0,5,0" />
+                        <TextBlock FontStyle="Italic" Text="{Binding Path=Name}" />
+                        <TextBlock FontStyle="Italic" Text="{Binding Path=Surname}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate x:Key="NameTemplate" ItemsSource="{Binding Path=Children}" 
+                    ItemTemplate="{StaticResource ChildTemplate}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/TimeLine;component/Images/iconModel.png" Margin="0,0,5,0" />
+                        <TextBlock Text="{Binding Path=Name}" />
+                        <TextBlock Text="{Binding Path=Surname}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </StackPanel.Resources>
+
+            <Border VerticalAlignment="Stretch" >
+
+                <TreeView Name="treeView1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource NameTemplate}"/>
+
+            </Border>
+            <Slider  VerticalAlignment="Bottom" />
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

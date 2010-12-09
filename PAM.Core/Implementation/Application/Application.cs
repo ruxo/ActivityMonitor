@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using PAM.Core.Abstract;
 
-namespace PAM.Core.Implementation
+namespace PAM.Core.Implementation.Application
 {
 
     public class Application : IApplication
     {
-        public Application(
-                           ApplicationUsages usage = null)
+        public Application(ApplicationUsages usage = null)
         {
 
             Usage = usage ?? new ApplicationUsages();
@@ -51,5 +51,9 @@ namespace PAM.Core.Implementation
         }
 
         public ImageSource Icon { get; set; }
+
+        public ApplicationDetails Details { get; set; }
+        
+        
     }
 }

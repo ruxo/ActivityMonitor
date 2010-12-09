@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using PAM.Core;
-using Application = PAM.Core.Implementation.Application;
+using PAM.Core.Implementation.Monitor;
+using Application = PAM.Core.Implementation.Application.Application;
 
 namespace PAM
 {
@@ -70,27 +70,30 @@ namespace PAM
         private Timer _timer;
         private Applications _applications;
         private string _previousApplicationName;
+        private AppMonitor _monitor; 
 
         private void FormLoaded(object sender, RoutedEventArgs e)
         {
 
-            _timer = new Timer(1000);
-            _timer.Elapsed += _timer_Elapsed;
-            _applications = new Applications();
+            //_timer = new Timer(1000);
+            //_timer.Elapsed += _timer_Elapsed;
+            //_applications = new Applications();
 
 
-            _timer.Enabled = true;
+            //_timer.Enabled = true;
+
+            _monitor = new AppMonitor();
+
         }
 
         void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _timer.Enabled = false;
-            var chars = 256;
-            var buff = new StringBuilder(chars);
 
             var handle = GetForegroundWindow();
 
             int processId;
+
             var result = GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
 
             try
@@ -113,18 +116,19 @@ namespace PAM
                     {
 
 
-                          using (var iconStream = new MemoryStream()){
-                                var icon2 = ShellIcon.GetSmallIcon(process.MainModule.FileVersionInfo.FileName);
+                        using (var iconStream = new MemoryStream())
+                        {
+                            var icon2 = ShellIcon.GetSmallIcon(process.MainModule.FileVersionInfo.FileName);
 
-                                icon2.Save(iconStream);
-                                iconStream.Seek(0, SeekOrigin.Begin);
+                            icon2.Save(iconStream);
+                            iconStream.Seek(0, SeekOrigin.Begin);
 
-                                var iconSource = System.Windows.Media.Imaging.BitmapFrame.Create(iconStream);
+                            var iconSource = System.Windows.Media.Imaging.BitmapFrame.Create(iconStream);
 
-                                
-                        _applications.Add(new Application(process.MainModule.FileVersionInfo.FileDescription,
-                                                            process.MainModule.FileVersionInfo.FileName){Icon =  iconSource });
-                              }
+
+                            _applications.Add(new Application(process.MainModule.FileVersionInfo.FileDescription,
+                                                                process.MainModule.FileVersionInfo.FileName) { Icon = iconSource });
+                        }
                     }
 
                     var usage = new ApplicationUsage();
@@ -163,7 +167,8 @@ namespace PAM
 
 
                                               apps.Children.Clear();
-                                              foreach (var app in _applications) {
+                                              foreach (var app in _applications)
+                                              {
                                                   var appStat = new AppStat
                                                                     {
                                                                         AppName =
@@ -171,7 +176,7 @@ namespace PAM
                                                                             app.TotalUsageTime.TotalMinutes.ToString("0") +
                                                                             ")",
                                                                         Progress =
-                                                                            maxWidthAvaliable/longestBarWidth*
+                                                                            maxWidthAvaliable / longestBarWidth *
                                                                             app.TotalUsageTime.TotalMinutes,
                                                                         TimeSpent =
                                                                             app.TotalUsageTime.TotalMinutes.ToString(

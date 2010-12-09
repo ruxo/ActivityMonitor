@@ -1,10 +1,12 @@
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using PAM.Core.Abstract;
 using PAM.Core.Implementation;
+using PAM.Core.Implementation.Application;
 
 namespace PAM.Core
 {
-    public class Applications : List<Application>
+    public class Applications : ObservableCollection<Application>
     {
 
         public bool Contains(string application)

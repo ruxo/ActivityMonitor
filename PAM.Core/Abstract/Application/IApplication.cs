@@ -1,7 +1,7 @@
 ﻿using System;
 using PAM.Core.Implementation;
 
-namespace PAM.Core
+namespace PAM.Core.Abstract
 {
     public interface IApplication
     {
@@ -9,6 +9,7 @@ namespace PAM.Core
         string Name { get; }
         TimeSpan TotalUsageTime { get; }
         ApplicationUsages Usage { get; }
+        ApplicationDetails Details { get; }
 
     }
 }
