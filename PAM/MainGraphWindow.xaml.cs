@@ -112,9 +112,19 @@ namespace PAM
                                                 process.MainModule.FileVersionInfo.FileName))
                     {
 
-                        _applications.Add(new Application(process.MainModule.FileVersionInfo.FileDescription,
-                                                            process.MainModule.FileVersionInfo.FileName));
 
+                          using (var iconStream = new MemoryStream()){
+                                var icon2 = ShellIcon.GetSmallIcon(process.MainModule.FileVersionInfo.FileName);
+
+                                icon2.Save(iconStream);
+                                iconStream.Seek(0, SeekOrigin.Begin);
+
+                                var iconSource = System.Windows.Media.Imaging.BitmapFrame.Create(iconStream);
+
+                                
+                        _applications.Add(new Application(process.MainModule.FileVersionInfo.FileDescription,
+                                                            process.MainModule.FileVersionInfo.FileName){Icon =  iconSource });
+                              }
                     }
 
                     var usage = new ApplicationUsage();
@@ -147,14 +157,13 @@ namespace PAM
 
                 this.InvokeIfRequired(() =>
                                           {
-                                              var maxWidthAvaliable = 400;
+                                              const int maxWidthAvaliable = 400;
                                               var longestBarWidth = (from app in _applications
                                                                      select app.TotalUsageTime.TotalMinutes).Max();
 
 
                                               apps.Children.Clear();
-                                              foreach (var app in _applications)
-                                              {
+                                              foreach (var app in _applications) {
                                                   var appStat = new AppStat
                                                                     {
                                                                         AppName =
@@ -162,10 +171,12 @@ namespace PAM
                                                                             app.TotalUsageTime.TotalMinutes.ToString("0") +
                                                                             ")",
                                                                         Progress =
-                                                                            maxWidthAvaliable / longestBarWidth *
+                                                                            maxWidthAvaliable/longestBarWidth*
                                                                             app.TotalUsageTime.TotalMinutes,
                                                                         TimeSpent =
-                                                                            app.TotalUsageTime.TotalMinutes.ToString("0 minutes")
+                                                                            app.TotalUsageTime.TotalMinutes.ToString(
+                                                                                "0 minutes"),
+                                                                        Icon = app.Icon
                                                                     };
                                                   apps.Children.Add(appStat);
                                               }

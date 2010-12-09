@@ -18,6 +18,7 @@
 		</l:NotificationAreaIcon>
 		<Border Margin="10" CornerRadius="15">
 			<StackPanel Orientation="Vertical">
+				<Border CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">
 				<!--aktualna aplikacja-->
 				<StackPanel Orientation="Horizontal">
 					<Image Name="appIcon" Stretch="None" StretchDirection="DownOnly"></Image>
@@ -41,12 +42,15 @@
 
 					</StackPanel>
 				</StackPanel>
+				</Border>
 				<!--koniec aktualnej aplikacji-->
+				<Border CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">
 				<StackPanel Orientation="Vertical" Name="apps"> 
 					<!--lista wszystkich aplikacji--> 
 				
 					<!--koniec listy wszystkich aplikacji--> 
 				</StackPanel>
+				</Border>
 			</StackPanel>
 
 		</Border>

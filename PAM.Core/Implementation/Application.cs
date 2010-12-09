@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace PAM.Core.Implementation
@@ -26,6 +27,7 @@ namespace PAM.Core.Implementation
             Usage = new ApplicationUsages();
         }
 
+        
         [XmlAttribute]
         public string Path
         {
@@ -47,5 +49,7 @@ namespace PAM.Core.Implementation
             get;
             set;
         }
+
+        public ImageSource Icon { get; set; }
     }
 }
