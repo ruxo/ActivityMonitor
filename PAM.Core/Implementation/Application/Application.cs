@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using PAM.Core.Abstract;
@@ -6,8 +7,23 @@ using PAM.Core.Abstract;
 namespace PAM.Core.Implementation.Application
 {
 
-    public class Application : IApplication
+    public class Application : IApplication, INotifyPropertyChanged, IObservable<Application>
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
+
+        public void Refresh()
+        {
+            NotifyPropertyChanged("TotalTimeInMunites");
+        }
+
+
         public Application(ApplicationUsages usage = null)
         {
 
@@ -27,7 +43,7 @@ namespace PAM.Core.Implementation.Application
             Usage = new ApplicationUsages();
         }
 
-        
+
         [XmlAttribute]
         public string Path
         {
@@ -43,17 +59,28 @@ namespace PAM.Core.Implementation.Application
             get { return Usage.TotalUsageTime(); }
         }
 
+        public double TotalTimeInMunites { get { return TotalUsageTime.TotalMinutes; } }
+
+        private ApplicationUsages _usage;
 
         public ApplicationUsages Usage
         {
-            get;
-            set;
+            get { return _usage; }
+            set
+            {
+                _usage = value;
+                NotifyPropertyChanged("Usage");
+            }
         }
 
         public ImageSource Icon { get; set; }
 
         public ApplicationDetails Details { get; set; }
-        
-        
+
+
+        public IDisposable Subscribe(IObserver<Application> observer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

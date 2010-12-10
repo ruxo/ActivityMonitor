@@ -33,8 +33,17 @@ namespace PAM.Core
                 return (from app in this
                         where app.Name == applicationName
                         select app).FirstOrDefault();
+
+                
             }
 
+        }
+
+        public void Refresh()
+        {
+            foreach (var application in this) {
+                application.Refresh();
+            }
         }
     }
 }

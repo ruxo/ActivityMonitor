@@ -70,7 +70,7 @@ namespace PAM
         private Timer _timer;
         private Applications _applications;
         private string _previousApplicationName;
-        private AppMonitor _monitor; 
+        private AppMonitor _monitor;
 
         private void FormLoaded(object sender, RoutedEventArgs e)
         {
@@ -82,7 +82,8 @@ namespace PAM
 
             //_timer.Enabled = true;
 
-            _monitor = new AppMonitor();
+            _monitor = new AppMonitor(this.Dispatcher);
+            appsTree.Applications = _monitor.Data;
 
         }
 

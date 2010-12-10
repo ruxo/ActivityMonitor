@@ -10,28 +10,36 @@
             <StackPanel.Resources>
                 <HierarchicalDataTemplate x:Key="ChildTemplate" >
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/TimeLine;component/Images/iconModel.png" Margin="0,0,5,0" />
+                        <Image Source="{Binding Path=Icon}" Margin="0,0,5,0" />
                         <TextBlock FontStyle="Italic" Text="{Binding Path=Name}" />
-                        <TextBlock FontStyle="Italic" Text="{Binding Path=Surname}" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
-                <HierarchicalDataTemplate x:Key="NameTemplate" ItemsSource="{Binding Path=Children}" 
+                <HierarchicalDataTemplate x:Key="ApplicationTemplate" ItemsSource="{Binding Path=Details}" 
                     ItemTemplate="{StaticResource ChildTemplate}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/TimeLine;component/Images/iconModel.png" Margin="0,0,5,0" />
-                        <TextBlock Text="{Binding Path=Name}" />
-                        <TextBlock Text="{Binding Path=Surname}" />
+                        <Image Source="{Binding Path=Icon}" Margin="0,0,5,0" />
+                        <TextBlock Text="{Binding Path=Name}" Width="200"/>
+                        <Border Width="200" CornerRadius="5" Height="20px" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Label Content="{Binding Path=TotalTimeInMunites}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" Margin="0" Padding="0" />
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStopCollection>
+                                        <GradientStop Color="#2D00A500" Offset="0" />
+                                        <GradientStop Color="#5B00A500" Offset="1" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </StackPanel.Resources>
 
             <Border VerticalAlignment="Stretch" >
 
-                <TreeView Name="treeView1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource NameTemplate}"/>
+                <TreeView Name="treeView1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource ApplicationTemplate}"/>
 
             </Border>
-            <Slider  VerticalAlignment="Bottom" />
-
+            
         </StackPanel>
 
     </Grid>

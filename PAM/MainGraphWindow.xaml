@@ -1,4 +1,4 @@
-﻿<Window x:Class="PAM.MainGraphWindow"
+﻿<Window xmlns:my="clr-namespace:PAM.Core;assembly=PAM.Core"  x:Class="PAM.MainGraphWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:l="clr-namespace:PAM"
@@ -45,16 +45,20 @@
 				</Border>
 				<!--koniec aktualnej aplikacji-->
 				<Border CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">
-				<StackPanel Orientation="Vertical" Name="apps"> 
+                    <StackPanel>
+                        <my:TreeViewer Name="appsTree"/>   
+                    
+				<StackPanel Orientation="Vertical" Name="apps" Visibility="Collapsed"> 
 					<!--lista wszystkich aplikacji--> 
 				
-					<!--koniec listy wszystkich aplikacji--> 
-				</StackPanel>
+					<!--koniec listy wszystkich aplikacji-->
+                        </StackPanel>
+                    </StackPanel>
 				</Border>
 			</StackPanel>
 
 		</Border>
-    </Grid>
+	</Grid>
 </Window>
 
 

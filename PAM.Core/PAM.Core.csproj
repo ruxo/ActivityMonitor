@@ -45,6 +45,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ControlsExtension.cs" />
     <Compile Include="Implementation\Application\ApplicationDetail.cs" />
     <Compile Include="Implementation\Application\ApplicationDetails.cs" />
     <Compile Include="Implementation\Application\ApplicationUsage.cs" />

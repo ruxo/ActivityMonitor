@@ -12,7 +12,7 @@ namespace PAM.Core
 
         public ApplicationUsage(DateTime beginTime,
                                 DateTime endTime,
-                                string detailedName)
+                                string detailedName = "")
         {
             BeginTime = beginTime;
             EndTime = endTime;

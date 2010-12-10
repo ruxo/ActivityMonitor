@@ -1,8 +1,8 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace PAM.Core.Implementation.Monitor
 {
@@ -11,14 +11,14 @@ namespace PAM.Core.Implementation.Monitor
         private Timer _timer;
         private AppUpdater _appUpdater;
 
-        public AppMonitor()
+        public AppMonitor(Dispatcher dispatcher)
         {
 
             _timer = new Timer();
-            _timer.Interval = 1; // todo extract to user settings
+            _timer.Interval = 1000; // todo extract to user settings
             _timer.Elapsed += new ElapsedEventHandler(TimerElapsed);
             Data = new Applications();
-            _appUpdater = new AppUpdater(Data);
+            _appUpdater = new AppUpdater(Data, dispatcher);
 
             _timer.Start();
         }
@@ -32,7 +32,7 @@ namespace PAM.Core.Implementation.Monitor
             //todo write result to trace and add try catch
             var result = GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
             var process = Process.GetProcessById(processId);
-            
+
             _appUpdater.Update(process);
 
             _timer.Start();
