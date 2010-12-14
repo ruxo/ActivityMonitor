@@ -4,9 +4,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using MbUnit.Framework;
-using PAM.Core;
-using PAM.Core.Implementation;
-using PAM.Core.Implementation.Application;
+using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Tests.SomeGeneralTestings
 {

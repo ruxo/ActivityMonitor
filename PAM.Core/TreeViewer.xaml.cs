@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Windows.Controls;
+﻿using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Core
 {
@@ -8,16 +7,23 @@ namespace PAM.Core
     /// </summary>
     public partial class TreeViewer
     {
+
+        private Applications _applications;
         public TreeViewer()
         {
             InitializeComponent();
         }
 
-        public IEnumerable Applications
+        public Applications Applications
         {
-            get { return treeView1.ItemsSource; }
-            set { treeView1.ItemsSource = value; }
+            set
+            {
+                _applications = value;
+                tree.ItemsSource = _applications;
+               
+            }
         }
+
 
     }
 }

@@ -1,18 +1,11 @@
 using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using Drawing = System.Drawing;
 using Forms = System.Windows.Forms;
-using System.Threading;
-using System.Diagnostics;
-using System.Windows.Threading;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace PAM

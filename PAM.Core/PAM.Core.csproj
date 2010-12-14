@@ -46,21 +46,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ControlsExtension.cs" />
-    <Compile Include="Implementation\Application\ApplicationDetail.cs" />
-    <Compile Include="Implementation\Application\ApplicationDetails.cs" />
-    <Compile Include="Implementation\Application\ApplicationUsage.cs" />
-    <Compile Include="Implementation\Application\Application.cs" />
-    <Compile Include="Implementation\Application\Applications.cs" />
-    <Compile Include="Implementation\Application\ApplicationUsages.cs" />
-    <Compile Include="Abstract\Application\IApplicationUsage.cs" />
-    <Compile Include="Abstract\Application\IApplication.cs" />
+    <Compile Include="Implementation\ApplicationImp\ApplicationDetail.cs" />
+    <Compile Include="Implementation\ApplicationImp\ApplicationDetails.cs" />
+    <Compile Include="Implementation\ApplicationImp\ApplicationUsage.cs" />
+    <Compile Include="Implementation\ApplicationImp\Application.cs" />
+    <Compile Include="Implementation\ApplicationImp\Applications.cs" />
+    <Compile Include="Implementation\ApplicationImp\ApplicationUsages.cs" />
+    <Compile Include="Abstract\IApplicationUsage.cs" />
+    <Compile Include="Abstract\IApplication.cs" />
     <Compile Include="Implementation\Monitor\AppMonitor.cs" />
     <Compile Include="Implementation\Monitor\AppUpdater.cs" />
     <Compile Include="Implementation\Monitor\ShellIcon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeConverter.cs" />
     <Compile Include="TreeViewer.xaml.cs">
       <DependentUpon>TreeViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WidthConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="TreeViewer.xaml">

@@ -1,9 +1,6 @@
 using System;
 using MbUnit.Framework;
-using PAM.Core;
-using PAM.Core.Implementation;
-using PAM.Core.Implementation.Application;
-using PAM.Tests.Core;
+using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Tests.Core
 {

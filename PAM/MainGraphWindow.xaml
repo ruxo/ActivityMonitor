@@ -18,42 +18,33 @@
 		</l:NotificationAreaIcon>
 		<Border Margin="10" CornerRadius="15">
 			<StackPanel Orientation="Vertical">
-				<Border CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">
-				<!--aktualna aplikacja-->
-				<StackPanel Orientation="Horizontal">
-					<Image Name="appIcon" Stretch="None" StretchDirection="DownOnly"></Image>
-					<StackPanel>
-						<StackPanel Orientation="Horizontal">
-							<Label>Application name :</Label>
-							<Label Name="appNameLabel"/>
+				<Border    CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1" >
+                    <StackPanel Orientation="Horizontal" Name="CurrentApp">
+						<Image Name="appIcon" Stretch="None" StretchDirection="DownOnly"  Source="{Binding Path=Icon}"/>
+						<StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Label>Application name :</Label>
+								<Label Name="appNameLabel" Content="{Binding Path=Name}"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Label>Path :</Label>
+								<Label Name="appPathLabel" Content="{Binding Path=Path}"/>
+							</StackPanel>
+							<!--<StackPanel Orientation="Horizontal">
+								<Label>Manufacturer :</Label>
+								<Label Name="appManufacturer" Content="{Binding Name}"/>
+							</StackPanel>-->
+							<StackPanel Orientation="Horizontal">
+								<Label>Usage time :</Label> 
+								<Label Name="appUsage" Content="{Binding TotalTimeInMunites}"/>
+							</StackPanel>
 						</StackPanel>
-						<StackPanel Orientation="Horizontal">
-							<Label>Path :</Label>
-							<Label Name="appPathLabel"/>
-						</StackPanel>
-						<StackPanel Orientation="Horizontal">
-							<Label>Manufacturer :</Label>
-							<Label Name="appManufacturer"/>
-						</StackPanel>
-						<StackPanel Orientation="Horizontal">
-							<Label>Usage time :</Label>
-							<Label Name="appUsage"/>
-						</StackPanel>
-
 					</StackPanel>
-				</StackPanel>
 				</Border>
-				<!--koniec aktualnej aplikacji-->
 				<Border CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">
-                    <StackPanel>
-                        <my:TreeViewer Name="appsTree"/>   
-                    
-				<StackPanel Orientation="Vertical" Name="apps" Visibility="Collapsed"> 
-					<!--lista wszystkich aplikacji--> 
-				
-					<!--koniec listy wszystkich aplikacji-->
-                        </StackPanel>
-                    </StackPanel>
+					<StackPanel>
+						<my:TreeViewer Name="appsTree"/>   
+					</StackPanel>
 				</Border>
 			</StackPanel>
 
