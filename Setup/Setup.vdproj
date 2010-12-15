@@ -149,6 +149,11 @@
             "AssemblyAsmDisplayName" = "8:PAM.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_DBBB8A61C2E752CF5E7822C72DE30C6A"
+                    {
+                    "Name" = "8:PAM.Core.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:PAM.Core.dll"
             "TargetName" = "8:"
@@ -224,15 +229,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Persona Activity Monitor"
-        "ProductCode" = "8:{910E3040-0755-404F-99BD-E8AA43F47ABE}"
-        "PackageCode" = "8:{D23DBA01-8B5D-4733-A1D4-22D8A381BC2F}"
+        "ProductCode" = "8:{47618CB6-B4A7-4B3A-96E1-60E15C460509}"
+        "PackageCode" = "8:{FFA82260-67E4-47A5-A34F-5BD002EF7C14}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.5"
+        "ProductVersion" = "8:0.0.6"
         "Manufacturer" = "8:Arkadiusz Benedykt"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://activitymonitor.codeplex.com/"
@@ -760,7 +765,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E49C0C19AE254C4794498F1EC66CD152"
             {
-            "SourcePath" = "8:..\\PAM\\obj\\Debug\\PAM.exe"
+            "SourcePath" = "8:..\\PAM\\obj\\Release\\PAM.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
