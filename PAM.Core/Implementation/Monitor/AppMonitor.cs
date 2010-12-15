@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Timers;
+using System.Windows.Media;
 using System.Windows.Threading;
 using PAM.Core.Implementation.ApplicationImp;
 
@@ -12,6 +13,10 @@ namespace PAM.Core.Implementation.Monitor
     {
         private readonly Timer _timer;
         private readonly AppUpdater _appUpdater;
+        private string _currentApplicationName;
+        private TimeSpan _currentApplicationTotalUsageTime;
+        private string _currentApplicationPath;
+        private ImageSource _currentApplicationIcon;
 
         public AppMonitor(Dispatcher dispatcher)
         {
@@ -42,7 +47,11 @@ namespace PAM.Core.Implementation.Monitor
             GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
             var process = Process.GetProcessById(processId);
 
-            CurrentApplication = (Application)_appUpdater.Update(process);
+            var currentApplication = _appUpdater.Update(process);
+            CurrentApplicationName = currentApplication.Name;
+            CurrentApplicationTotalUsageTime = currentApplication.TotalUsageTime;
+            CurrentApplicationPath = currentApplication.Path;
+            CurrentApplicationIcon = currentApplication.Icon;
             _timer.Start();
         }
 
@@ -54,19 +63,51 @@ namespace PAM.Core.Implementation.Monitor
 
         public Applications Data { get; private set; }
 
-        private Application _currentApplication;
-        public Application CurrentApplication
+
+        public string CurrentApplicationName
         {
-            get
-            {
-                return _currentApplication;
-            }
+            get { return _currentApplicationName; }
             private set
             {
-                if (value == null || value == _currentApplication) return;
-                _currentApplication = value;
-                NotifyPropertyChanged("CurrentApplication");
-                Debug.WriteLine("CurrentApplicationChanged");
+                if (value == null || value == _currentApplicationName) return;
+                _currentApplicationName = value;
+                NotifyPropertyChanged("CurrentApplicationName");
+            }
+        }
+
+
+        public TimeSpan CurrentApplicationTotalUsageTime
+        {
+            get { return _currentApplicationTotalUsageTime; }
+            private set
+            {
+                if (value == _currentApplicationTotalUsageTime) return;
+                _currentApplicationTotalUsageTime = value;
+                NotifyPropertyChanged("CurrentApplicationTotalUsageTime");
+            }
+        }
+
+        public string CurrentApplicationPath
+        {
+            get { return _currentApplicationPath; }
+            private set
+            {
+                if (value == _currentApplicationPath) return;
+                _currentApplicationPath = value;
+                NotifyPropertyChanged("CurrentApplicationPath");
+            }
+        }
+
+
+
+        public ImageSource CurrentApplicationIcon
+        {
+            get { return _currentApplicationIcon; }
+            private set
+            {
+                if (value == _currentApplicationIcon) return;
+                _currentApplicationIcon = value;
+                NotifyPropertyChanged("CurrentApplicationIcon");
             }
         }
     }

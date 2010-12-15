@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PAM.Core.Implementation
+namespace PAM.Core.Implementation.ApplicationImp
 {
     public class ApplicationUsages : List<ApplicationUsage>
     {

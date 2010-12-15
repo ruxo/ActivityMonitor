@@ -1,5 +1,6 @@
 ﻿using System;
-using PAM.Core.Implementation;
+using System.Windows.Media;
+using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Core.Abstract
 {
@@ -10,6 +11,7 @@ namespace PAM.Core.Abstract
         TimeSpan TotalUsageTime { get; }
         ApplicationUsages Usage { get; }
         ApplicationDetails Details { get; }
+        ImageSource Icon { get; set; }
 
     }
 }

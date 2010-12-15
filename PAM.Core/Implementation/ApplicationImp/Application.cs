@@ -4,10 +4,11 @@ using System.Windows.Media;
 using System.Xml.Serialization;
 using PAM.Core.Abstract;
 
-namespace PAM.Core.Implementation.Application
+namespace PAM.Core.Implementation.ApplicationImp
 {
+   
 
-    public class Application : IApplication, INotifyPropertyChanged, IObservable<Application>
+    public class Application : IApplication, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String info)
@@ -20,7 +21,7 @@ namespace PAM.Core.Implementation.Application
 
         public void Refresh()
         {
-            NotifyPropertyChanged("TotalTimeInMunites");
+            NotifyPropertyChanged("TotalUsageTime");
         }
 
 
@@ -78,9 +79,6 @@ namespace PAM.Core.Implementation.Application
         public ApplicationDetails Details { get; set; }
 
 
-        public IDisposable Subscribe(IObserver<Application> observer)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

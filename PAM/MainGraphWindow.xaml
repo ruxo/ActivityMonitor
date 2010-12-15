@@ -20,23 +20,23 @@
 			<StackPanel Orientation="Vertical">
 				<Border    CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1" >
                     <StackPanel Orientation="Horizontal" Name="CurrentApp">
-						<Image Name="appIcon" Stretch="None" StretchDirection="DownOnly"  Source="{Binding Path=Icon}"/>
+						<Image Name="appIcon" Stretch="None" StretchDirection="DownOnly"  Source="{Binding Path=CurrentApplicationIcon}"/>
 						<StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<Label>Application name :</Label>
-								<Label Name="appNameLabel" Content="{Binding Path=Name}"/>
+                                <Label Name="appNameLabel" Content="{Binding Path=CurrentApplicationName}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<Label>Path :</Label>
-								<Label Name="appPathLabel" Content="{Binding Path=Path}"/>
+                                <Label Name="appPathLabel" Content="{Binding Path=CurrentApplicationPath}"/>
 							</StackPanel>
 							<!--<StackPanel Orientation="Horizontal">
 								<Label>Manufacturer :</Label>
-								<Label Name="appManufacturer" Content="{Binding Name}"/>
+								<Label Name="appManufacturer" Content="{Binding CurrentApplicationTotalUsageTime}"/>
 							</StackPanel>-->
 							<StackPanel Orientation="Horizontal">
-								<Label>Usage time :</Label> 
-								<Label Name="appUsage" Content="{Binding TotalTimeInMunites}"/>
+								<Label>Usage time :</Label>
+                                <Label Name="appUsage" Content="{Binding CurrentApplicationTotalUsageTime}"/>
 							</StackPanel>
 						</StackPanel>
 					</StackPanel>

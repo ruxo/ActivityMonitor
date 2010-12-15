@@ -1,4 +1,4 @@
-﻿namespace PAM.Core.Implementation
+﻿namespace PAM.Core.Implementation.ApplicationImp
 {
     public class ApplicationDetail
     {

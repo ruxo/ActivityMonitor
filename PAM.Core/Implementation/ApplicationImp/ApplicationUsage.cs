@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 using PAM.Core.Abstract;
 
-namespace PAM.Core
+namespace PAM.Core.Implementation.ApplicationImp
 {
     public class ApplicationUsage : IApplicationUsage
     {
