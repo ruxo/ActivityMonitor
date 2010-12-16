@@ -17,6 +17,13 @@ namespace PAM.Core.Implementation.Monitor
         private TimeSpan _currentApplicationTotalUsageTime;
         private string _currentApplicationPath;
         private ImageSource _currentApplicationIcon;
+        public Applications Applications
+        {
+            get { return Data; }
+            set { Data = value;
+                AppUpdater.Applications = value;
+            }
+        }
 
         public AppMonitor(Dispatcher dispatcher)
         {

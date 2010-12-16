@@ -74,6 +74,7 @@ namespace PAM.Core.Implementation.ApplicationImp
             }
         }
 
+        [XmlIgnore]
         public ImageSource Icon { get; set; }
 
         public ApplicationDetails Details { get; set; }

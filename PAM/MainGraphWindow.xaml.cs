@@ -66,6 +66,23 @@ namespace PAM
             CurrentApp.DataContext = _monitor;
         }
 
+        private void SaveButtonClick(object sender, RoutedEventArgs e)
+        {
+            var persister = new AppMonitorPersister(_monitor.Applications);
+            persister.Save();
+        }
+
+        private void ReadButtonClick(object sender, RoutedEventArgs e)
+        {
+            var persister = new AppMonitorPersister(_monitor.Applications);
+            _monitor.Applications = persister.Restore();
+
+            appsTree.Applications = _monitor.Data;
+
+        }
+
+        
+
 
     }
 }

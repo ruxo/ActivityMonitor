@@ -55,6 +55,7 @@
     <Compile Include="Abstract\IApplicationUsage.cs" />
     <Compile Include="Abstract\IApplication.cs" />
     <Compile Include="Implementation\Monitor\AppMonitor.cs" />
+    <Compile Include="Implementation\Monitor\AppMonitorPersister.cs" />
     <Compile Include="Implementation\Monitor\AppUpdater.cs" />
     <Compile Include="Implementation\Monitor\ShellIcon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

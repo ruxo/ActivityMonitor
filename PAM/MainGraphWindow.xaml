@@ -46,10 +46,12 @@
 						<my:TreeViewer Name="appsTree"/>   
 					</StackPanel>
 				</Border>
-			</StackPanel>
+                <Button Content="Save" Height="23" Name="SaveButton" Width="75" Click="SaveButtonClick" />
+                <Button Content="Read" Height="23" Name="ReadButton" Width="75" Click="ReadButtonClick" />
+            </StackPanel>
 
 		</Border>
-	</Grid>
+    </Grid>
 </Window>
 
 
