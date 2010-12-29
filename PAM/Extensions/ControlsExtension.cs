@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace PAM
+namespace PAM.Extensions
 {
     public static class ControlExtensions
     {

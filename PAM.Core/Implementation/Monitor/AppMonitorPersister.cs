@@ -1,7 +1,5 @@
 ﻿using System.IO;
 using System.IO.IsolatedStorage;
-using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 using PAM.Core.Implementation.ApplicationImp;
 

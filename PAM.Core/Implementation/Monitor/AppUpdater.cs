@@ -42,9 +42,9 @@ namespace PAM.Core.Implementation.Monitor
                 {
 
                     if (_applications[_previousApplicationName] != null &&
-                        _applications[_previousApplicationName].Usage.FindLast((u) => !u.IsClosed) != null)
+                        _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed) != null)
                     {
-                        _applications[_previousApplicationName].Usage.FindLast((u) => !u.IsClosed).End();
+                        _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed).End();
                     }
 
                     _previousApplicationName = process.MainModule.FileVersionInfo.FileDescription;

@@ -11,22 +11,14 @@ namespace PAM.Tests.SomeGeneralTestings
     [TestFixture]
     public class ReadingProcessesTests
     {
-        [Test]
-        public void FirstTest()
-        {
-
-            // reading computer name
-            var computerName = Environment.MachineName;
-            // reading user name
-            var userName = Environment.UserName;
-        }
+        
 
         [Test]
         public void ReadingProcesses()
         {
             for (var i = 0; i > -1; i++)
             {
-                var chars = 256;
+                const int chars = 256;
                 var buff = new StringBuilder(chars);
 
                 // Obtain the handle of the active window.
@@ -38,17 +30,17 @@ namespace PAM.Tests.SomeGeneralTestings
                 //Debug.WriteLine(handle.ToString());
 
                 int processId;
-                var result = GetWindowThreadProcessId(new HandleRef(null,handle) , out processId);
+                GetWindowThreadProcessId(new HandleRef(null,handle) , out processId);
 
-                try
-                {
+                try {
                     var process = Process.GetProcessById(processId);
                     //Debug.WriteLine(process.ProcessName);
-                    Debug.WriteLine(process.MainModule.FileVersionInfo.FileDescription + " [" + process.MainModule.FileVersionInfo.FileName+"]");
+                    if (process.MainModule != null)
+                        Debug.WriteLine(process.MainModule.FileVersionInfo.FileDescription + " [" + process.MainModule.FileVersionInfo.FileName+"]");
                 }
-                catch
-                {
+                catch (Exception ex) {
 
+                    Debug.WriteLine(ex.Message);
                 }
 
                 
