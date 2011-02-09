@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_DBBB8A61C2E752CF5E7822C72DE30C6A"
+        "MsmKey" = "8:_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
         "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -34,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DBBB8A61C2E752CF5E7822C72DE30C6A"
+        "OwnerKey" = "8:_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -101,10 +101,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.0"
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
                     {
@@ -134,7 +134,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.0"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
                 }
@@ -142,14 +142,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DBBB8A61C2E752CF5E7822C72DE30C6A"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:PAM.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_DBBB8A61C2E752CF5E7822C72DE30C6A"
+                    "_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
                     {
                     "Name" = "8:PAM.Core.dll"
                     "Attributes" = "3:512"
@@ -229,15 +229,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Persona Activity Monitor"
-        "ProductCode" = "8:{47618CB6-B4A7-4B3A-96E1-60E15C460509}"
-        "PackageCode" = "8:{FFA82260-67E4-47A5-A34F-5BD002EF7C14}"
+        "ProductCode" = "8:{A1669E63-C53F-4C76-BF23-23A1FDED7F38}"
+        "PackageCode" = "8:{6A8764FE-025B-4950-A4FB-4C1993E9CF73}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.6"
+        "ProductVersion" = "8:0.0.7"
         "Manufacturer" = "8:Arkadiusz Benedykt"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://activitymonitor.codeplex.com/"
