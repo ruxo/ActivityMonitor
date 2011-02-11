@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using PAM.Core.Implementation.Monitor;
+using PAM.Utils;
 
 namespace PAM
 {
@@ -19,6 +20,8 @@ namespace PAM
         public MainGraphWindow()
         {
             InitializeComponent();
+
+            AutostartMenuItem.Checked = AutoStarter.IsAutoStartEnabled;
         }
 
         protected override void OnStateChanged(EventArgs e)
@@ -94,7 +97,24 @@ namespace PAM
             appsTree.Applications = result;
         }
 
-        
+        private void OnMenuItemAutostartClick(object sender, EventArgs e)
+        {
+            AutostartMenuItem.Checked = !AutostartMenuItem.Checked;
+
+            if (AutostartMenuItem.Checked)
+            {
+                AutoStarter.SetAutoStart();
+            }
+            else
+            {
+                AutoStarter.UnSetAutoStart();
+            }
+
+
+
+        }
+
+
 
 
     }
