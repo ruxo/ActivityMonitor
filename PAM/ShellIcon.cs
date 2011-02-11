@@ -54,10 +54,10 @@ namespace PAM
 
         private static Icon GetIcon(string fileName, uint flags)
         {
-            SHFILEINFO shinfo = new SHFILEINFO();
-            IntPtr hImgSmall = Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | flags);
+            var shinfo = new SHFILEINFO();
+            var hImgSmall = Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | flags);
 
-            Icon icon = (Icon)System.Drawing.Icon.FromHandle(shinfo.hIcon).Clone();
+            var icon = (Icon)System.Drawing.Icon.FromHandle(shinfo.hIcon).Clone();
             Win32.DestroyIcon(shinfo.hIcon);
             return icon;
         }

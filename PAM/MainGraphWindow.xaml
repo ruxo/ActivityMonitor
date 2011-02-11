@@ -46,8 +46,9 @@
 						<my:TreeViewer Name="appsTree"/>   
 					</StackPanel>
 				</Border>
-                <!--<Button Content="Save" Height="23" Name="SaveButton" Width="75" Click="SaveButtonClick" />
-                <Button Content="Read" Height="23" Name="ReadButton" Width="75" Click="ReadButtonClick" />-->
+                <Button Content="Save" Height="23" Name="SaveButton" Width="75" Click="SaveButtonClick" Visibility="Collapsed"/>
+                <Button Content="Read" Height="23" Name="ReadButton" Width="75" Click="ReadButtonClick" Visibility="Collapsed"/>
+                <Button Content="Read" Height="23" Name="FilterButton" Width="75" Click="FilterButtonClick" Visibility="Collapsed"/>
             </StackPanel>
 
 		</Border>

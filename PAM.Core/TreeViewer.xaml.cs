@@ -1,4 +1,5 @@
-﻿using PAM.Core.Implementation.ApplicationImp;
+﻿using System.Collections.Generic;
+using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Core
 {
@@ -8,13 +9,13 @@ namespace PAM.Core
     public partial class TreeViewer
     {
 
-        private Applications _applications;
+        private IEnumerable<Application> _applications;
         public TreeViewer()
         {
             InitializeComponent();
         }
 
-        public Applications Applications
+        public IEnumerable<Application> Applications
         {
             set
             {

@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using PAM.Core.Implementation.Monitor;
@@ -58,7 +59,8 @@ namespace PAM
         }
 
 
-
+        [PreEmptive.Attributes.Setup(CustomEndpoint = "so-s.info/PreEmptive.Web.Services.Messaging/MessagingServiceV2.asmx")]
+        [PreEmptive.Attributes.Teardown()]
         private void FormLoaded(object sender, RoutedEventArgs e)
         {
             _monitor = new AppMonitor(this.Dispatcher);
@@ -79,6 +81,17 @@ namespace PAM
 
             appsTree.Applications = _monitor.Data;
 
+        }
+
+        private void FilterButtonClick(object sender, RoutedEventArgs e)
+        {
+            var result = from data in _monitor.Data
+                         where (from details in data.Details
+                                where details.Usages.Count > 10
+                                select details) != null
+                         select data;
+
+            appsTree.Applications = result;
         }
 
         
