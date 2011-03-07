@@ -20,7 +20,9 @@ namespace PAM.Core.Implementation.Monitor
         public Applications Applications
         {
             get { return Data; }
-            set { Data = value;
+            set
+            {
+                Data = value;
                 AppUpdater.Applications = value;
             }
         }
@@ -54,13 +56,45 @@ namespace PAM.Core.Implementation.Monitor
             GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
             var process = Process.GetProcessById(processId);
 
-            var currentApplication = _appUpdater.Update(process);
-            CurrentApplicationName = currentApplication.Name;
-            CurrentApplicationTotalUsageTime = currentApplication.TotalUsageTime;
-            CurrentApplicationPath = currentApplication.Path;
-            CurrentApplicationIcon = currentApplication.Icon;
+            // checking if the user is in iddle mode - if so, dont updat process
+            var inputInfo = new LASTINPUTINFO();
+            inputInfo.cbSize = (uint)Marshal.SizeOf(inputInfo);
+            GetLastInputInfo(ref inputInfo);
+            var iddleTime = (Environment.TickCount - inputInfo.dwTime) / 1000;
+            if (iddleTime < 5)
+            { // iddle time is less 30 sec then update process
+                
+                var currentApplication = _appUpdater.Update(process);
+                if (currentApplication != null)
+                {
+                    CurrentApplicationName = currentApplication.Name;
+                    CurrentApplicationTotalUsageTime = currentApplication.TotalUsageTime;
+                    CurrentApplicationPath = currentApplication.Path;
+                    CurrentApplicationIcon = currentApplication.Icon;
+                }
+
+
+            }
+            else
+            {
+                //_appUpdater.Stop();
+            }
+
             _timer.Start();
         }
+
+
+
+        [DllImport("User32.dll")]
+        private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct LASTINPUTINFO
+        {
+            public uint cbSize;
+            public uint dwTime;
+        }
+
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();

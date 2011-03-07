@@ -35,11 +35,11 @@ namespace PAM.Core.Implementation.Monitor
             _dispatcher = dispatcher;
         }
 
+       
         public IApplication Update(Process process)
         {
             try
             {
-
                 if (_previousApplicationName != process.MainModule.FileVersionInfo.FileDescription)
                 {
 
@@ -96,7 +96,6 @@ namespace PAM.Core.Implementation.Monitor
                     var usage = new ApplicationUsage { DetailedName = process.MainWindowTitle };
                     usage.Start();
                     _applications[process.MainModule.FileVersionInfo.FileDescription].Usage.Add(usage);
-
 
                 }
 
