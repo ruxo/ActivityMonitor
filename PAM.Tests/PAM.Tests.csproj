@@ -50,11 +50,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ApplicationCollectionTests.cs" />
+    <Compile Include="Core\ApplicationTests.cs" />
+    <Compile Include="Core\ApplicationUsageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SomeGeneralTestings\ReadingProcessesTest.cs" />
+    <Compile Include="SomeGeneralTestings\TestingXMLSerialization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
+    <ProjectReference Include="..\PAM.Core\PAM.Core.csproj">
+      <Project>{451A3C83-76A2-44DD-8F02-09735C7BB5D2}</Project>
+      <Name>PAM.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

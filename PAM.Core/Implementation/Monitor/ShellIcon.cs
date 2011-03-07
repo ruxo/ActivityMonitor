@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace PAM
+namespace PAM.Core.Implementation.Monitor
 {
     /// <summary>
     /// Summary description for ShellIcon.  Get a small or large Icon with an easy C# function call
@@ -54,10 +54,10 @@ namespace PAM
 
         private static Icon GetIcon(string fileName, uint flags)
         {
-            var shinfo = new SHFILEINFO();
-            var hImgSmall = Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | flags);
+            SHFILEINFO shinfo = new SHFILEINFO();
+            IntPtr hImgSmall = Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | flags);
 
-            var icon = (Icon)System.Drawing.Icon.FromHandle(shinfo.hIcon).Clone();
+            Icon icon = (Icon)System.Drawing.Icon.FromHandle(shinfo.hIcon).Clone();
             Win32.DestroyIcon(shinfo.hIcon);
             return icon;
         }

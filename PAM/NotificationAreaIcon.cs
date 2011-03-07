@@ -1,18 +1,11 @@
 using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using Drawing = System.Drawing;
 using Forms = System.Windows.Forms;
-using System.Threading;
-using System.Diagnostics;
-using System.Windows.Threading;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace PAM
@@ -24,7 +17,7 @@ namespace PAM
     [DefaultEvent("MouseDoubleClick")]
     public class NotificationAreaIcon : FrameworkElement
     {
-        Forms.NotifyIcon notifyIcon;
+        Forms.NotifyIcon _notifyIcon;
 
         public static readonly RoutedEvent MouseClickEvent = EventManager.RegisterRoutedEvent(
             "MouseClick", RoutingStrategy.Bubble, typeof(MouseButtonEventHandler), typeof(NotificationAreaIcon));
@@ -47,30 +40,29 @@ namespace PAM
 
 
             // Create and initialize the window forms notify icon based
-            notifyIcon = new Forms.NotifyIcon();
-            notifyIcon.Text = Text;
+            _notifyIcon = new Forms.NotifyIcon {Text = Text};
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
-                notifyIcon.Icon = FromImageSource(Icon);
+                _notifyIcon.Icon = FromImageSource(Icon);
             }
-            notifyIcon.Visible = FromVisibility(Visibility);
+            _notifyIcon.Visible = FromVisibility(Visibility);
 
-            if (this.MenuItems != null && this.MenuItems.Count > 0)
+            if (MenuItems != null && MenuItems.Count > 0)
             {
-                notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(this.MenuItems.ToArray());
+                _notifyIcon.ContextMenu = new Forms.ContextMenu(MenuItems.ToArray());
             }
 
-            notifyIcon.MouseDown += OnMouseDown;
-            notifyIcon.MouseUp += OnMouseUp;
-            notifyIcon.MouseClick += OnMouseClick;
-            notifyIcon.MouseDoubleClick += OnMouseDoubleClick;
+            _notifyIcon.MouseDown += OnMouseDown;
+            _notifyIcon.MouseUp += OnMouseUp;
+            _notifyIcon.MouseClick += OnMouseClick;
+            _notifyIcon.MouseDoubleClick += OnMouseDoubleClick;
 
             Dispatcher.ShutdownStarted += OnDispatcherShutdownStarted;
         }
 
         private void OnDispatcherShutdownStarted(object sender, EventArgs e)
         {
-            notifyIcon.Dispose();
+            _notifyIcon.Dispose();
         }
 
         private void OnMouseDown(object sender, Forms.MouseEventArgs e)
@@ -141,7 +133,7 @@ namespace PAM
             {
                 return null;
             }
-            Uri iconUri = new Uri(icon.ToString());
+            var iconUri = new Uri(icon.ToString());
             return new Drawing.Icon(Application.GetResourceStream(iconUri).Stream);
         }
 
@@ -150,7 +142,7 @@ namespace PAM
             return visibility == Visibility.Visible;
         }
 
-        private MouseButton ToMouseButton(Forms.MouseButtons button)
+        private static MouseButton ToMouseButton(Forms.MouseButtons button)
         {
             switch (button)
             {

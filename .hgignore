@@ -1,3 +1,9 @@
 glob:PAM/bin/Debug/*
 glob:PAM/obj/*
 glob:_ReSharper.*
+glob:PAM.Core/bin/
+glob:PAM.Core/obj/
+glob:PAM.Tests/bin/
+glob:PAM.Tests/obj/
+glob:PAM/bin/
+glob:Personal Activity Monitor.5.1.ReSharper.user

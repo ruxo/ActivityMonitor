@@ -1,41 +1,39 @@
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Timers;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using PAM.Core.Implementation.Monitor;
+using PAM.Utils;
 
 namespace PAM
 {
     /// <summary>
     /// Interaction logic for MainGraphWindow.xaml
     /// </summary>
-    public partial class MainGraphWindow : Window
+    public partial class MainGraphWindow
     {
-        WindowState lastWindowState;
-        bool shouldClose;
+        WindowState _lastWindowState;
+        bool _shouldClose;
+        private AppMonitor _monitor;
 
         public MainGraphWindow()
         {
             InitializeComponent();
 
+            AutostartMenuItem.Checked = AutoStarter.IsAutoStartEnabled;
         }
 
         protected override void OnStateChanged(EventArgs e)
         {
-            lastWindowState = WindowState;
+            _lastWindowState = WindowState;
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (!shouldClose)
-            {
-                e.Cancel = true;
-                Hide();
-            }
+            if (_shouldClose) return;
+            e.Cancel = true;
+            Hide();
         }
 
         private void OnNotificationAreaIconDoubleClick(object sender, MouseButtonEventArgs e)
@@ -54,71 +52,70 @@ namespace PAM
         private void Open()
         {
             Show();
-            WindowState = lastWindowState;
+            WindowState = _lastWindowState;
         }
 
         private void OnMenuItemExitClick(object sender, EventArgs e)
         {
-            shouldClose = true;
+            _shouldClose = true;
             Close();
         }
 
 
-        private Timer _timer;
+        [PreEmptive.Attributes.Setup(CustomEndpoint = "so-s.info/PreEmptive.Web.Services.Messaging/MessagingServiceV2.asmx")]
+        [PreEmptive.Attributes.Teardown()]
         private void FormLoaded(object sender, RoutedEventArgs e)
         {
-
-            _timer = new Timer(1000);
-            _timer.Elapsed += _timer_Elapsed;
-            _timer.Enabled = true;
+            _monitor = new AppMonitor(this.Dispatcher);
+            appsTree.Applications = _monitor.Data;
+            CurrentApp.DataContext = _monitor;
         }
 
-        void _timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
-            var chars = 256;
-            var buff = new StringBuilder(chars);
+            var persister = new AppMonitorPersister(_monitor.Applications);
+            persister.Save();
+        }
 
-            var handle = GetForegroundWindow();
+        private void ReadButtonClick(object sender, RoutedEventArgs e)
+        {
+            var persister = new AppMonitorPersister(_monitor.Applications);
+            _monitor.Applications = persister.Restore();
 
-            int processId;
-            var result = GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
+            appsTree.Applications = _monitor.Data;
 
-            try
+        }
+
+        private void FilterButtonClick(object sender, RoutedEventArgs e)
+        {
+            var result = from data in _monitor.Data
+                         where (from details in data.Details
+                                where details.Usages.Count > 10
+                                select details) != null
+                         select data;
+
+            appsTree.Applications = result;
+        }
+
+        private void OnMenuItemAutostartClick(object sender, EventArgs e)
+        {
+            AutostartMenuItem.Checked = !AutostartMenuItem.Checked;
+
+            if (AutostartMenuItem.Checked)
             {
-                var process = Process.GetProcessById(processId);
-
-
-                this.InvokeIfRequired((value) => appNameLabel.Content = value, process.MainModule.FileVersionInfo.FileDescription);
-                this.InvokeIfRequired((value) => appPathLabel.Content = value, process.MainModule.FileVersionInfo.FileName);
-                this.InvokeIfRequired((value) => appManufacturer.Content = value, process.MainModule.FileVersionInfo.CompanyName);
-                var icon = ShellIcon.GetLargeIcon(process.MainModule.FileVersionInfo.FileName);
-
-
-                using (MemoryStream iconStream = new MemoryStream())
-                {
-                    icon.Save(iconStream);
-                    iconStream.Seek(0, SeekOrigin.Begin);
-
-                    var iconSource = System.Windows.Media.Imaging.BitmapFrame.Create(iconStream);
-
-                    this.InvokeIfRequired((value) => appIcon.Source = value, iconSource);
-                }
+                AutoStarter.SetAutoStart();
             }
-            catch
+            else
             {
-
+                AutoStarter.UnSetAutoStart();
             }
+
+
+
         }
 
 
 
-
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern int GetWindowThreadProcessId(HandleRef handle, out int processId);
 
     }
 }
