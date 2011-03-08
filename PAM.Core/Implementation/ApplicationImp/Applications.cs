@@ -4,7 +4,7 @@ using PAM.Core.Abstract;
 
 namespace PAM.Core.Implementation.ApplicationImp
 {
-    public class Applications : ObservableCollection<ApplicationImp.Application>
+    public class Applications : ObservableCollection<Application>
     {
 
         public bool Contains(string application)
@@ -43,5 +43,6 @@ namespace PAM.Core.Implementation.ApplicationImp
                 application.Refresh();
             }
         }
+
     }
 }

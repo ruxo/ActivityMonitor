@@ -35,7 +35,32 @@ namespace PAM.Core.Implementation.Monitor
             _dispatcher = dispatcher;
         }
 
-       
+
+        public void Stop(Process process)
+        {
+            try {
+
+                if (_applications[_previousApplicationName] != null &&
+                        _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed) != null)
+                {
+                    _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed).End();
+                }
+
+                var currentProcess = process.MainModule.FileVersionInfo.FileDescription;
+                if (_applications[currentProcess] != null &&
+                            _applications[currentProcess].Usage.FindLast(u => !u.IsClosed) != null)
+                {
+                    _applications[currentProcess].Usage.FindLast(u => !u.IsClosed).End();
+                }
+            }
+            catch (Exception) {
+                
+                throw;
+            }
+            
+            
+        }
+
         public IApplication Update(Process process)
         {
             try
@@ -93,11 +118,30 @@ namespace PAM.Core.Implementation.Monitor
                         }
                     }
 
+
+                   
+            
+
+
+
                     var usage = new ApplicationUsage { DetailedName = process.MainWindowTitle };
                     usage.Start();
                     _applications[process.MainModule.FileVersionInfo.FileDescription].Usage.Add(usage);
 
                 }
+
+                // if reasume - no usages are present
+                var currentProcess = process.MainModule.FileVersionInfo.FileDescription;
+                if (_applications[_previousApplicationName] != null &&
+                    _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed) == null &&
+                    _applications[currentProcess] != null &&
+                    _applications[currentProcess].Usage.FindLast(u => !u.IsClosed) == null)
+                {
+                    var usage = new ApplicationUsage { DetailedName = process.MainWindowTitle };
+                    usage.Start();
+                    _applications[process.MainModule.FileVersionInfo.FileDescription].Usage.Add(usage);
+                }
+                
 
                 //update collection
                 _dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() => _applications.Refresh()));
@@ -119,5 +163,6 @@ namespace PAM.Core.Implementation.Monitor
             get;
             private set;
         }
+
     }
 }

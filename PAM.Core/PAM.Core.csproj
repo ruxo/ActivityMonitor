@@ -49,6 +49,7 @@
     <Compile Include="Extensions\ControlsExtension.cs" />
     <Compile Include="Implementation\ApplicationImp\ApplicationDetail.cs" />
     <Compile Include="Implementation\ApplicationImp\ApplicationDetails.cs" />
+    <Compile Include="Implementation\ApplicationImp\ApplicationsState.cs" />
     <Compile Include="Implementation\ApplicationImp\ApplicationUsage.cs" />
     <Compile Include="Implementation\ApplicationImp\Application.cs" />
     <Compile Include="Implementation\ApplicationImp\Applications.cs" />
