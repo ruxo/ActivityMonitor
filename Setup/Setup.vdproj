@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_80E397043B73461BB692A130E574F36A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
         "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
         "MsmSig" = "8:_UNDEFINED"
@@ -185,6 +191,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80E397043B73461BB692A130E574F36A"
+            {
+            "SourcePath" = "8:..\\PAM\\Resources\\App.ico"
+            "TargetName" = "8:App.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
             {
             "AssemblyRegister" = "3:1"
@@ -231,6 +257,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_82BB8D15FC4F4C9FB2E8278039199EB8"
+                    {
+                    "Name" = "8:Personal Activity Monitor"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_CE5BF2A50DDA4A5B8B51DE832820067D"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_318AC047E6784276BED080388E313BF6"
@@ -246,7 +283,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_8C1AE13B526F4888A5FE2CACFC15E9A9"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder][ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -271,16 +308,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Persona Activity Monitor"
-        "ProductCode" = "8:{17AE57D4-2FDF-495F-AC9A-64C23DCD4BBC}"
-        "PackageCode" = "8:{22822D3A-1600-4BA4-99FD-B92AE6ABA17F}"
+        "ProductName" = "8:Personal Activity Monitor"
+        "ProductCode" = "8:{9ABA1847-449C-4430-990F-3645838AF62D}"
+        "PackageCode" = "8:{6454E245-9503-483F-9670-A56A114E82EA}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.9"
+        "ProductVersion" = "8:0.1.0"
         "Manufacturer" = "8:Arkadiusz Benedykt"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://activitymonitor.codeplex.com/"
@@ -290,7 +327,7 @@
         "Keywords" = "8:productivity monitor applications time waste "
         "ARPCOMMENTS" = "8:Personal Activity Monitor - for finding your time wasters"
         "ARPURLINFOABOUT" = "8:http://activitymonitor.codeplex.com/"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_80E397043B73461BB692A130E574F36A"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -393,6 +430,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_634CACD1ABD540C8A2AF6A1229538F7D"
+            {
+            "Name" = "8:Personal Activity Monitor"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_E49C0C19AE254C4794498F1EC66CD152"
+            "Folder" = "8:_82BB8D15FC4F4C9FB2E8278039199EB8"
+            "WorkingFolder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
+            "Icon" = "8:_80E397043B73461BB692A130E574F36A"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8E3F0F474A9B4FF097DEDD1959B9E520"
             {
             "Name" = "8:Personal Activity Monitor"
@@ -404,7 +455,7 @@
             "Target" = "8:_E49C0C19AE254C4794498F1EC66CD152"
             "Folder" = "8:_318AC047E6784276BED080388E313BF6"
             "WorkingFolder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
-            "Icon" = "8:"
+            "Icon" = "8:_80E397043B73461BB692A130E574F36A"
             "Feature" = "8:"
             }
         }
