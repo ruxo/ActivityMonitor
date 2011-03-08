@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Timers;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Microsoft.Win32;
 using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Core.Implementation.Monitor
@@ -35,6 +36,18 @@ namespace PAM.Core.Implementation.Monitor
             _appUpdater = new AppUpdater(Data, dispatcher);
 
             _timer.Start();
+            Microsoft.Win32.SystemEvents.SessionSwitch += SystemEventsSessionSwitch;
+        }
+
+        private bool _sessionStopped;
+        public void SystemEventsSessionSwitch(object sender, Microsoft.Win32.SessionSwitchEventArgs e)
+        {
+            if (e.Reason == SessionSwitchReason.SessionLock) {
+                _sessionStopped = true;
+            }
+            else if (e.Reason == SessionSwitchReason.SessionUnlock) {
+                _sessionStopped = false;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -49,37 +62,45 @@ namespace PAM.Core.Implementation.Monitor
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             _timer.Stop();
-            // turn the timer off while processing elapsed because we want to avoid problems with threads - which are not needed here
-            var handle = GetForegroundWindow();
-            int processId;
-            //todo write result to trace and add try catch
-            GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
-            var process = Process.GetProcessById(processId);
 
-            // checking if the user is in iddle mode - if so, dont updat process
-            // todo refactor
-            var inputInfo = new LASTINPUTINFO();
-            inputInfo.cbSize = (uint)Marshal.SizeOf(inputInfo);
-            GetLastInputInfo(ref inputInfo);
-            var iddleTime = (Environment.TickCount - inputInfo.dwTime) / 1000;
-            if (iddleTime < 30)
-            { // iddle time is less 30 sec then update process
-                
-                var currentApplication = _appUpdater.Update(process);
-                if (currentApplication != null)
-                {
-                    CurrentApplicationName = currentApplication.Name;
-                    CurrentApplicationTotalUsageTime = currentApplication.TotalUsageTime;
-                    CurrentApplicationPath = currentApplication.Path;
-                    CurrentApplicationIcon = currentApplication.Icon;
+            try {
+                // turn the timer off while processing elapsed because we want to avoid problems with threads - which are not needed here
+                var handle = GetForegroundWindow();
+                int processId;
+                //todo write result to trace and add try catch
+                GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
+                var process = Process.GetProcessById(processId);
+
+                // checking if the user is in iddle mode - if so, dont updat process
+                // todo refactor
+                var inputInfo = new LASTINPUTINFO();
+                inputInfo.cbSize = (uint)Marshal.SizeOf(inputInfo);
+                GetLastInputInfo(ref inputInfo);
+                var iddleTime = (Environment.TickCount - inputInfo.dwTime) / 1000;
+                if (iddleTime < 5 && _sessionStopped==false)
+                { // iddle time is less 30 sec then update process
+
+                    var currentApplication = _appUpdater.Update(process);
+                    if (currentApplication != null)
+                    {
+                        CurrentApplicationName = currentApplication.Name;
+                        CurrentApplicationTotalUsageTime = currentApplication.TotalUsageTime;
+                        CurrentApplicationPath = currentApplication.Path;
+                        CurrentApplicationIcon = currentApplication.Icon;
+                    }
+
+
                 }
-
-
+                else
+                {
+                    _appUpdater.Stop(process);
+                }
             }
-            else
-            {
-                _appUpdater.Stop(process);
+            catch (Exception) {
+                
+             
             }
+            
 
             _timer.Start();
         }

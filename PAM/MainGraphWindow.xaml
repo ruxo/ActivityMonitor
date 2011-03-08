@@ -12,7 +12,7 @@
 					  MouseDoubleClick="OnNotificationAreaIconDoubleClick">
 			<l:NotificationAreaIcon.MenuItems>
 				<forms:MenuItem Text="Open" Click="OnMenuItemOpenClick" DefaultItem="True" />
-                <forms:MenuItem Text="Autostart" Click="OnMenuItemAutostartClick" Checked="False" x:Name="AutostartMenuItem"/>
+				<forms:MenuItem Text="Autostart" Click="OnMenuItemAutostartClick" Checked="False" x:Name="AutostartMenuItem"/>
 				<forms:MenuItem Text="-" />
 				<forms:MenuItem Text="Exit" Click="OnMenuItemExitClick" />
 			</l:NotificationAreaIcon.MenuItems>
@@ -20,16 +20,16 @@
 		<Border Margin="10" CornerRadius="15">
 			<StackPanel Orientation="Vertical">
 				<Border    CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1" >
-                    <StackPanel Orientation="Horizontal" Name="CurrentApp">
+					<StackPanel Orientation="Horizontal" Name="CurrentApp">
 						<Image Name="appIcon" Stretch="None" StretchDirection="DownOnly"  Source="{Binding Path=CurrentApplicationIcon}"/>
 						<StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<Label>Application name :</Label>
-                                <Label Name="appNameLabel" Content="{Binding Path=CurrentApplicationName}"/>
+								<Label Name="appNameLabel" Content="{Binding Path=CurrentApplicationName}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<Label>Path :</Label>
-                                <Label Name="appPathLabel" Content="{Binding Path=CurrentApplicationPath}"/>
+								<Label Name="appPathLabel" Content="{Binding Path=CurrentApplicationPath}"/>
 							</StackPanel>
 							<!--<StackPanel Orientation="Horizontal">
 								<Label>Manufacturer :</Label>
@@ -37,7 +37,7 @@
 							</StackPanel>-->
 							<StackPanel Orientation="Horizontal">
 								<Label>Usage time :</Label>
-                                <Label Name="appUsage" Content="{Binding CurrentApplicationTotalUsageTime}"/>
+								<Label Name="appUsage" Content="{Binding CurrentApplicationTotalUsageTime}"/>
 							</StackPanel>
 						</StackPanel>
 					</StackPanel>
@@ -47,13 +47,13 @@
 						<my:TreeViewer Name="appsTree"/>   
 					</StackPanel>
 				</Border>
-                <Button Content="Save" Height="23" Name="SaveButton" Width="75" Click="SaveButtonClick" Visibility="Collapsed"/>
-                <Button Content="Read" Height="23" Name="ReadButton" Width="75" Click="ReadButtonClick" Visibility="Collapsed"/>
-                <Button Content="Read" Height="23" Name="FilterButton" Width="75" Click="FilterButtonClick" Visibility="Collapsed"/>
-            </StackPanel>
+				<Button Content="Save" Height="23" Name="SaveButton" Width="75" Click="SaveButtonClick" Visibility="Collapsed"/>
+				<Button Content="Read" Height="23" Name="ReadButton" Width="75" Click="ReadButtonClick" Visibility="Collapsed"/>
+				<Button Content="Read" Height="23" Name="FilterButton" Width="75" Click="FilterButtonClick" Visibility="Collapsed"/>
+			</StackPanel>
 
 		</Border>
-    </Grid>
+	</Grid>
 </Window>
 
 
