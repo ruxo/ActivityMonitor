@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using PAM.Core.Implementation.Monitor;
 
-namespace PAM.Core
+namespace PAM.Core.Converters
 {
     [ValueConversion(typeof(TimeSpan), typeof(double))]
     public class WidthConverter : IValueConverter
@@ -13,11 +12,9 @@ namespace PAM.Core
                               object parameter,
                               CultureInfo culture)
         {
-            const int controlWidth = 300;
-            var maxInSeconds = AppUpdater.GetMaxValue;
-            var newValue = (int) (((TimeSpan) value).TotalSeconds);
 
-            return (newValue/maxInSeconds)*controlWidth;
+
+            return WidthCalculator.Calculate((TimeSpan)value);
 
         }
 

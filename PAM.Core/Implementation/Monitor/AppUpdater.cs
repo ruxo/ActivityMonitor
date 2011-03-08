@@ -38,7 +38,8 @@ namespace PAM.Core.Implementation.Monitor
 
         public void Stop(Process process)
         {
-            try {
+            try
+            {
 
                 if (_applications[_previousApplicationName] != null &&
                         _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed) != null)
@@ -53,12 +54,13 @@ namespace PAM.Core.Implementation.Monitor
                     _applications[currentProcess].Usage.FindLast(u => !u.IsClosed).End();
                 }
             }
-            catch (Exception) {
-                
+            catch (Exception)
+            {
+
                 throw;
             }
-            
-            
+
+
         }
 
         public IApplication Update(Process process)
@@ -118,12 +120,6 @@ namespace PAM.Core.Implementation.Monitor
                         }
                     }
 
-
-                   
-            
-
-
-
                     var usage = new ApplicationUsage { DetailedName = process.MainWindowTitle };
                     usage.Start();
                     _applications[process.MainModule.FileVersionInfo.FileDescription].Usage.Add(usage);
@@ -141,7 +137,7 @@ namespace PAM.Core.Implementation.Monitor
                     usage.Start();
                     _applications[process.MainModule.FileVersionInfo.FileDescription].Usage.Add(usage);
                 }
-                
+
 
                 //update collection
                 _dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() => _applications.Refresh()));

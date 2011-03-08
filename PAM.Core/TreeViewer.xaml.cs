@@ -21,10 +21,8 @@ namespace PAM.Core
             {
                 _applications = value;
                 tree.ItemsSource = _applications;
-               
             }
         }
-
 
     }
 }
