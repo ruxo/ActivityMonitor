@@ -76,6 +76,25 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Utils\Util.cs" />
+    <Compile Include="ViewModels\AlertsViewModel.cs" />
+    <Compile Include="ViewModels\ApplicationsHistoryViewModel.cs" />
+    <Compile Include="ViewModels\ApplicationsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Views\AlertsView.xaml.cs">
+      <DependentUpon>AlertsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationsHistoryView.xaml.cs">
+      <DependentUpon>ApplicationsHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationsView.xaml.cs">
+      <DependentUpon>ApplicationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrentApplicationView.xaml.cs">
+      <DependentUpon>CurrentApplicationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainGraphWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,6 +110,26 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="NotificationAreaIcon.cs" />
+    <Page Include="Views\AlertsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationsHistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CurrentApplicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Resource Include="Resources\NotificationAreaIcon.ico" />
     <Resource Include="Resources\App.ico" />
   </ItemGroup>
