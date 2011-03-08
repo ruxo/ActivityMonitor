@@ -57,7 +57,7 @@ namespace PAM.Core.Implementation.Monitor
             catch (Exception)
             {
 
-                throw;
+                // todo logging
             }
 
 
@@ -115,8 +115,7 @@ namespace PAM.Core.Implementation.Monitor
                         }
                         catch (Exception ex)
                         {
-                            Debug.WriteLine(ex.Source);
-                            Debug.WriteLine(ex.Message);
+                            //todo logging
                         }
                     }
 
@@ -146,8 +145,8 @@ namespace PAM.Core.Implementation.Monitor
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Source);
-                Debug.WriteLine(ex.Message);
+                //todo logging
+
             }
 
 
