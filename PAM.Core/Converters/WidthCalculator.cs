@@ -5,12 +5,12 @@ namespace PAM.Core.Converters
 {
     public static class WidthCalculator
     {
-        public const int MaxControlWidth = 300;
-        public const int MinControlWidthSwitch = 100;
+        public static double MaxControlWidth = 300;
+        public const int MinControlWidthSwitch = 80;
 
         public static double Calculate(TimeSpan value)
         {
-            const int controlWidth = MaxControlWidth;
+            var controlWidth = MaxControlWidth - 280;
             var maxInSeconds = AppUpdater.GetMaxValue;
             var newValue = (int)(value.TotalSeconds);
             return (newValue / maxInSeconds) * controlWidth;

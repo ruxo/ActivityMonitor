@@ -5,8 +5,9 @@
 		xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
 		Title="PAM" Height="598" Width="694" Icon="/PAM;component/Resources/App.ico"
 		Loaded="FormLoaded">
-	<Grid>
-		<l:NotificationAreaIcon 
+    <DockPanel>
+    
+        <l:NotificationAreaIcon  DockPanel.Dock="Top"
 					  Text="PAM" 
 					  Icon="Resources\NotificationAreaIcon.ico"
 					  MouseDoubleClick="OnNotificationAreaIconDoubleClick">
@@ -17,10 +18,13 @@
 				<forms:MenuItem Text="Exit" Click="OnMenuItemExitClick" />
 			</l:NotificationAreaIcon.MenuItems>
 		</l:NotificationAreaIcon>
-		<Border Margin="10" CornerRadius="15">
-			<StackPanel Orientation="Vertical">
-				<Border    CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1" >
-					<StackPanel Orientation="Horizontal" Name="CurrentApp">
+		<!--<Border Margin="10" CornerRadius="15">
+			<StackPanel Orientation="Vertical">-->
+			   
+				<Border  DockPanel.Dock="Top"  CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1" >
+					
+					<Expander Header="Currently running application" IsExpanded="True" >
+						<StackPanel Orientation="Horizontal" Name="CurrentApp" Margin="0,10,0,0">
 						<Image Name="appIcon" Stretch="None" StretchDirection="DownOnly"  Source="{Binding Path=CurrentApplicationIcon}"/>
 						<StackPanel>
 							<StackPanel Orientation="Horizontal">
@@ -41,19 +45,21 @@
 							</StackPanel>
 						</StackPanel>
 					</StackPanel>
+					</Expander>
 				</Border>
-				<Border CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">
-					<StackPanel>
-						<my:TreeViewer Name="appsTree"/>   
-					</StackPanel>
+				
+				<Border  DockPanel.Dock="Top" CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">
+					<Expander Header="Applications history" IsExpanded="True" IsHitTestVisible="False">
+					    <my:TreeViewer Name="appsTree" Margin="0,10,0,0"/>
+					</Expander>
 				</Border>
-				<Button Content="Save" Height="23" Name="SaveButton" Width="75" Click="SaveButtonClick" Visibility="Collapsed"/>
+				<!--<Button Content="Save" Height="23" Name="SaveButton" Width="75" Click="SaveButtonClick" Visibility="Collapsed"/>
 				<Button Content="Read" Height="23" Name="ReadButton" Width="75" Click="ReadButtonClick" Visibility="Collapsed"/>
-				<Button Content="Read" Height="23" Name="FilterButton" Width="75" Click="FilterButtonClick" Visibility="Collapsed"/>
-			</StackPanel>
+				<Button Content="Read" Height="23" Name="FilterButton" Width="75" Click="FilterButtonClick" Visibility="Collapsed"/>-->
+			<!--</StackPanel>
 
-		</Border>
-	</Grid>
+		</Border>-->
+    </DockPanel>
 </Window>
 
 

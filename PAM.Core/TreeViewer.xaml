@@ -11,8 +11,7 @@
         <Converters:OuterTextVisibilityConverter x:Key="OuterTextVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
-        <StackPanel>
-            <StackPanel.Resources>
+        <Grid.Resources>
                 <HierarchicalDataTemplate x:Key="ChildTemplate" >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{Binding Path=Icon}" Margin="0,0,5,0" />
@@ -20,10 +19,11 @@
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate x:Key="ApplicationTemplate" ItemsSource="{Binding Path=Details}" ItemTemplate="{StaticResource ChildTemplate}">
-                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <DockPanel Margin="0,5,0,5">
+                    <!--<StackPanel Orientation="Horizontal" Margin="0,5,0,5">-->
                     	<Image Source="{Binding Path=Icon}" Margin="0,0,5,0" />
-                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center" Width="200"/>
-                        <Border Width="{Binding Path=TotalUsageTime, Converter={StaticResource WidthConverter}}" CornerRadius="5" Height="20px" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center" Width="180"/>
+                    <Border Name="ItemBar" Width="{Binding Path=TotalUsageTime, Converter={StaticResource WidthConverter}}" CornerRadius="5" Height="20px" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Label Content="{Binding Path=TotalUsageTime, Converter={StaticResource TimeConverter}}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" Margin="0" Padding="0" Visibility="{Binding Path=TotalUsageTime, Converter={StaticResource InnerTextVisibilityConverter}}"  />
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -35,17 +35,14 @@
                             </Border.Background>
                         </Border>
                         <Label Content="{Binding Path=TotalUsageTime, Converter={StaticResource TimeConverter}}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" Margin="0" Padding="0" Visibility="{Binding Path=TotalUsageTime, Converter={StaticResource OuterTextVisibilityConverter}}"  />
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-            </StackPanel.Resources>
-
+                    <!--</StackPanel>-->
+                </DockPanel>
+            </HierarchicalDataTemplate>
+        </Grid.Resources>
             <Border VerticalAlignment="Stretch" >
 
-                <TreeView Name="tree" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource ApplicationTemplate}"/>
+                <TreeView Name="tree" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemTemplate="{StaticResource ApplicationTemplate}" SizeChanged="TreeSizeChanged" />
 
             </Border>
-            
-        </StackPanel>
-
     </Grid>
 </UserControl>

@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using PAM.Core.Converters;
 using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Core
@@ -24,5 +27,12 @@ namespace PAM.Core
             }
         }
 
+        private void TreeSizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
+        {
+            WidthCalculator.MaxControlWidth = tree.ActualWidth;
+        }
+
+
+       
     }
 }
