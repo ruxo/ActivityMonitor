@@ -63,6 +63,7 @@
     <Compile Include="Implementation\Monitor\AppMonitorPersister.cs" />
     <Compile Include="Implementation\Monitor\AppUpdater.cs" />
     <Compile Include="Implementation\Monitor\ShellIcon.cs" />
+    <Compile Include="Implementation\Monitor\WinApi.cs" />
     <Compile Include="MvvmFramework\CommandBase.cs" />
     <Compile Include="MvvmFramework\MvvmBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -42,10 +42,12 @@ namespace PAM.Core.Implementation.Monitor
         private bool _sessionStopped;
         public void SystemEventsSessionSwitch(object sender, Microsoft.Win32.SessionSwitchEventArgs e)
         {
-            if (e.Reason == SessionSwitchReason.SessionLock) {
+            if (e.Reason == SessionSwitchReason.SessionLock)
+            {
                 _sessionStopped = true;
             }
-            else if (e.Reason == SessionSwitchReason.SessionUnlock) {
+            else if (e.Reason == SessionSwitchReason.SessionUnlock)
+            {
                 _sessionStopped = false;
             }
         }
@@ -63,21 +65,22 @@ namespace PAM.Core.Implementation.Monitor
         {
             _timer.Stop();
 
-            try {
+            try
+            {
                 // turn the timer off while processing elapsed because we want to avoid problems with threads - which are not needed here
-                var handle = GetForegroundWindow();
+                var handle = WinApi.GetForegroundWindow();
                 int processId;
                 //todo write result to trace and add try catch
-                GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
+                WinApi.GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
                 var process = Process.GetProcessById(processId);
 
                 // checking if the user is in iddle mode - if so, dont updat process
                 // todo refactor
-                var inputInfo = new LASTINPUTINFO();
+                var inputInfo = new WinApi.LASTINPUTINFO();
                 inputInfo.cbSize = (uint)Marshal.SizeOf(inputInfo);
-                GetLastInputInfo(ref inputInfo);
+                WinApi.GetLastInputInfo(ref inputInfo);
                 var iddleTime = (Environment.TickCount - inputInfo.dwTime) / 1000;
-                if (iddleTime < 5 && _sessionStopped==false)
+                if (iddleTime < 30 && _sessionStopped == false)
                 { // iddle time is less 30 sec then update process
 
                     var currentApplication = _appUpdater.Update(process);
@@ -96,34 +99,18 @@ namespace PAM.Core.Implementation.Monitor
                     _appUpdater.Stop(process);
                 }
             }
-            catch (Exception) {
-                
-             
+            catch (Exception)
+            {
+
+
             }
-            
+
 
             _timer.Start();
         }
 
 
-
-        [DllImport("User32.dll")]
-        private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
-
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct LASTINPUTINFO
-        {
-            public uint cbSize;
-            public uint dwTime;
-        }
-
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern int GetWindowThreadProcessId(HandleRef handle, out int processId);
-
+      
         public Applications Data { get; private set; }
 
 
