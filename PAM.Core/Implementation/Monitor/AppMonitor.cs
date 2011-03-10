@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Timers;
 using System.Windows.Media;
@@ -28,6 +29,8 @@ namespace PAM.Core.Implementation.Monitor
             }
         }
 
+        private DateTime _startTime = DateTime.Now;
+
         public AppMonitor(Dispatcher dispatcher)
         {
             _timer = new Timer { Interval = 1000 };
@@ -36,7 +39,7 @@ namespace PAM.Core.Implementation.Monitor
             _appUpdater = new AppUpdater(Data, dispatcher);
 
             _timer.Start();
-            Microsoft.Win32.SystemEvents.SessionSwitch += SystemEventsSessionSwitch;
+            SystemEvents.SessionSwitch += SystemEventsSessionSwitch;
         }
 
         private bool _sessionStopped;
@@ -102,15 +105,17 @@ namespace PAM.Core.Implementation.Monitor
             catch (Exception)
             {
 
-
+                // todo logging
             }
 
+            NotifyPropertyChanged("TotalTimeRunning");
+            NotifyPropertyChanged("TotalTimeSpentInApplications");
 
             _timer.Start();
         }
 
 
-      
+
         public Applications Data { get; private set; }
 
 
@@ -160,5 +165,25 @@ namespace PAM.Core.Implementation.Monitor
                 NotifyPropertyChanged("CurrentApplicationIcon");
             }
         }
+
+
+        public TimeSpan TotalTimeSpentInApplications
+        {
+            get
+            {
+                var totalTime = Applications.Sum(s => s.TotalTimeInMunites);
+                return TimeSpan.FromMinutes(totalTime);
+            }
+
+          
+        }
+
+        public TimeSpan TotalTimeRunning
+        {
+            get { return DateTime.Now.Subtract(_startTime); }
+            
+        }
+
+
     }
 }
