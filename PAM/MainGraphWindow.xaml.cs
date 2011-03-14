@@ -61,9 +61,6 @@ namespace PAM
             Close();
         }
 
-
-        [PreEmptive.Attributes.Setup(CustomEndpoint = "so-s.info/PreEmptive.Web.Services.Messaging/MessagingServiceV2.asmx")]
-        [PreEmptive.Attributes.Teardown()]
         private void FormLoaded(object sender, RoutedEventArgs e)
         {
             _monitor = new AppMonitor(this.Dispatcher);

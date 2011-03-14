@@ -46,13 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
+        "OwnerKey" = "8:_549B10512935E842F075461132E163F7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_549B10512935E842F075461132E163F7"
+        "OwnerKey" = "8:_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -167,11 +167,6 @@
             "AssemblyAsmDisplayName" = "8:PreEmptive.Attributes, Version=1.4.0.0, Culture=neutral, PublicKeyToken=0a50e0ef4ca013fe, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_549B10512935E842F075461132E163F7"
-                    {
-                    "Name" = "8:PreEmptive.Attributes.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:PreEmptive.Attributes.dll"
             "TargetName" = "8:"
@@ -218,11 +213,6 @@
             "AssemblyAsmDisplayName" = "8:PAM.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
-                    {
-                    "Name" = "8:PAM.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:PAM.Core.dll"
             "TargetName" = "8:"
@@ -309,15 +299,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Personal Activity Monitor"
-        "ProductCode" = "8:{E16C0E35-58C1-4340-83DC-53B7CE31B0B5}"
-        "PackageCode" = "8:{2846FB32-C16B-434B-923A-B30BA8BB9E47}"
+        "ProductCode" = "8:{AAE85F6C-89DF-45FA-8EF6-A7F30002716C}"
+        "PackageCode" = "8:{BFBFFAD3-3736-4153-A63D-A0B886DEDF21}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.1.1"
+        "ProductVersion" = "8:0.1.2"
         "Manufacturer" = "8:Arkadiusz Benedykt"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://activitymonitor.codeplex.com/"
@@ -859,7 +849,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E49C0C19AE254C4794498F1EC66CD152"
             {
-            "SourcePath" = "8:..\\PAM\\obj\\Release\\PAM.exe"
+            "SourcePath" = "8:..\\PAM\\obj\\Debug\\PAM.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
