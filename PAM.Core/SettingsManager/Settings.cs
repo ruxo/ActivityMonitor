@@ -9,13 +9,33 @@ namespace PAM.Core.SettingsManager
 
         private const string RunRegistryKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
         private const string ValueName = "PAM - Personal Activity Monitor";
+        private static ISettingsProvider _settingsProvider;
+        private static int _idleTime;
 
         static Settings()
         {
             IdleTime = 30;
         }
 
-        public static int IdleTime { get; set; }
+        public static int IdleTime
+        {
+            get
+            {
+                return _settingsProvider == null ? _idleTime : _settingsProvider.IdleTime;
+            }
+            set
+            {
+                if (_settingsProvider == null)
+                {
+                    _idleTime = value;
+
+                }
+                else
+                {
+                    _settingsProvider.IdleTime = value;
+                }
+            }
+        }
 
         public static bool Autostart
         {
@@ -38,7 +58,7 @@ namespace PAM.Core.SettingsManager
 
                 if (value != true)
                 {
-                    if(key.GetValue(ValueName) != null)
+                    if (key.GetValue(ValueName) != null)
                         key.DeleteValue(ValueName);
                 }
                 else
@@ -49,5 +69,15 @@ namespace PAM.Core.SettingsManager
             }
         }
 
+        public static ISettingsProvider SettingsProvider
+        {
+            set { _settingsProvider = value; }
+        }
+
+    }
+
+    public interface ISettingsProvider
+    {
+        int IdleTime { get; set; }
     }
 }

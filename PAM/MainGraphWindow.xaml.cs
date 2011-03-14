@@ -24,6 +24,7 @@ namespace PAM
             InitializeComponent();
 
             AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
+            Core.SettingsManager.Settings.SettingsProvider = new SettingsProvider();
         }
 
         protected override void OnStateChanged(EventArgs e)
