@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using PAM.Core.Implementation.Monitor;
 using PAM.Utils;
@@ -21,7 +22,7 @@ namespace PAM
         {
             InitializeComponent();
 
-            AutostartMenuItem.Checked = AutoStarter.IsAutoStartEnabled;
+            AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
         }
 
         protected override void OnStateChanged(EventArgs e)
@@ -98,19 +99,28 @@ namespace PAM
         {
             AutostartMenuItem.Checked = !AutostartMenuItem.Checked;
 
-            if (AutostartMenuItem.Checked)
-            {
-                AutoStarter.SetAutoStart();
-            }
-            else
-            {
-                AutoStarter.UnSetAutoStart();
-            }
+            Core.SettingsManager.Settings.Autostart = AutostartMenuItem.Checked;
+
 
         }
 
+        private void OnMenuItemSettingsClick(object sender, EventArgs e)
+        {
+            var settingsWindow = new Settings();
+            settingsWindow.ShowDialog();
+        }
 
 
+        private void NotificationAreaIconContextMenuOpening(object sender,
+                                                            ContextMenuEventArgs e)
+        {
+            AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
+        }
+
+        private void NotificationAreaIconMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
+        }
 
     }
 }

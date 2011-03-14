@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Win32;
 using PAM.Core.Implementation.ApplicationImp;
+using PAM.Core.SettingsManager;
 
 namespace PAM.Core.Implementation.Monitor
 {
@@ -83,7 +84,7 @@ namespace PAM.Core.Implementation.Monitor
                 inputInfo.cbSize = (uint)Marshal.SizeOf(inputInfo);
                 WinApi.GetLastInputInfo(ref inputInfo);
                 var iddleTime = (Environment.TickCount - inputInfo.dwTime) / 1000;
-                if (iddleTime < 30 && _sessionStopped == false)
+                if (iddleTime < Settings.IdleTime && _sessionStopped == false)
                 { // iddle time is less 30 sec then update process
 
                     var currentApplication = _appUpdater.Update(process);

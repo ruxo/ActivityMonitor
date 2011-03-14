@@ -8,10 +8,15 @@
 		<l:NotificationAreaIcon  DockPanel.Dock="Top"
 					  Text="PAM" 
 					  Icon="Resources\NotificationAreaIcon.ico"
-					  MouseDoubleClick="OnNotificationAreaIconDoubleClick">
+					  MouseDoubleClick="OnNotificationAreaIconDoubleClick"
+                                 ContextMenuOpening="NotificationAreaIconContextMenuOpening"
+                                 MouseDown="NotificationAreaIconMouseDown">
+            
 			<l:NotificationAreaIcon.MenuItems>
 				<forms:MenuItem Text="Open" Click="OnMenuItemOpenClick" DefaultItem="True" />
-				<forms:MenuItem Text="Autostart" Click="OnMenuItemAutostartClick" Checked="False" x:Name="AutostartMenuItem"/>
+                <forms:MenuItem Text="-" />
+                <forms:MenuItem Text="Autostart" Click="OnMenuItemAutostartClick" Checked="False" x:Name="AutostartMenuItem"/>
+                <forms:MenuItem Text="Settings..." Click="OnMenuItemSettingsClick" DefaultItem="false" />
 				<forms:MenuItem Text="-" />
 				<forms:MenuItem Text="Exit" Click="OnMenuItemExitClick" />
 			</l:NotificationAreaIcon.MenuItems>

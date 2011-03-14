@@ -65,8 +65,9 @@
     <Compile Include="Implementation\Monitor\ShellIcon.cs" />
     <Compile Include="Implementation\Monitor\WinApi.cs" />
     <Compile Include="MvvmFramework\CommandBase.cs" />
-    <Compile Include="MvvmFramework\MvvmBase.cs" />
+    <Compile Include="MvvmFramework\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsManager\Settings.cs" />
     <Compile Include="TimeConverter.cs" />
     <Compile Include="TreeViewer.xaml.cs">
       <DependentUpon>TreeViewer.xaml</DependentUpon>

@@ -2,10 +2,29 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ViewModels="clr-namespace:PAM.ViewModels" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+<DockPanel d:DataContext="{d:DesignInstance {x:Type ViewModels:SettingsViewModel}}">
+    
+        <Border DockPanel.Dock="Top" Margin="10" CornerRadius="10" Background="#1300FF00">
+            <Expander Header="Auto idle" IsExpanded="True">
+                <StackPanel>
+                <TextBlock TextWrapping="Wrap" Margin="5">Set the idle time, after which the application suspends counting your activity.
+                    It is auto reasumed after any activity detected. Currently the idle time is set to <Label Content="{Binding AutoIdle}" VerticalAlignment="Center"/> seconds.
+                    </TextBlock>
+                <Slider Value="{Binding AutoIdle}" Minimum="1" Maximum="300" />
+                </StackPanel>
+            </Expander>
+        </Border>
+        <Border DockPanel.Dock="Top" Margin="10" CornerRadius="10" Background="#1300FF00">
+            <Expander Header="Auto start" IsExpanded="True">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" Margin="5">Do you want to start this application automaticly 
+                        during the startup of the system?
+                    </TextBlock>
+                        <CheckBox IsChecked="{Binding Autostart}">Start application automaticly</CheckBox>
+                    </StackPanel>
+            </Expander>
+        </Border>
+</DockPanel>
 </UserControl>
