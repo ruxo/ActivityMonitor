@@ -10,7 +10,7 @@
             <Expander Header="Auto idle" IsExpanded="True">
                 <StackPanel>
                 <TextBlock TextWrapping="Wrap" Margin="5">Set the idle time, after which the application suspends counting your activity.
-                    It is auto reasumed after any activity detected. Currently the idle time is set to <Label Content="{Binding AutoIdle}" VerticalAlignment="Center"/> seconds.
+                    It is auto reasumed after any activity detected. Currently the idle time is set to <TextBlock Text="{Binding AutoIdle}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Padding="0" /> seconds.
                     </TextBlock>
                 <Slider Value="{Binding AutoIdle}" Minimum="1" Maximum="300" />
                 </StackPanel>
