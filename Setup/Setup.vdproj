@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_549B10512935E842F075461132E163F7"
-        "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_80E397043B73461BB692A130E574F36A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -41,12 +35,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_549B10512935E842F075461132E163F7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -160,32 +148,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_549B10512935E842F075461132E163F7"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:PreEmptive.Attributes, Version=1.4.0.0, Culture=neutral, PublicKeyToken=0a50e0ef4ca013fe, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:PreEmptive.Attributes.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80E397043B73461BB692A130E574F36A"
             {
             "SourcePath" = "8:..\\PAM\\Resources\\App.ico"
@@ -213,6 +175,11 @@
             "AssemblyAsmDisplayName" = "8:PAM.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_BF61D9C8CBBD6F7E178B91DFCA70CF2C"
+                    {
+                    "Name" = "8:PAM.Core.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:PAM.Core.dll"
             "TargetName" = "8:"
@@ -299,15 +266,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Personal Activity Monitor"
-        "ProductCode" = "8:{AAE85F6C-89DF-45FA-8EF6-A7F30002716C}"
-        "PackageCode" = "8:{BFBFFAD3-3736-4153-A63D-A0B886DEDF21}"
+        "ProductCode" = "8:{725F5E5B-765D-47D6-AB55-3974B9F3D8E0}"
+        "PackageCode" = "8:{606A7A1C-1C63-40DE-BB5E-A525708B6866}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.1.2"
+        "ProductVersion" = "8:0.1.3"
         "Manufacturer" = "8:Arkadiusz Benedykt"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://activitymonitor.codeplex.com/"

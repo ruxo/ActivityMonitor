@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using PAM.Core.Implementation.Monitor;
 using PAM.Utils;
+using PAM.Windows;
 
 namespace PAM
 {
@@ -101,7 +102,6 @@ namespace PAM
 
             Core.SettingsManager.Settings.Autostart = AutostartMenuItem.Checked;
 
-
         }
 
         private void OnMenuItemSettingsClick(object sender, EventArgs e)
@@ -120,6 +120,12 @@ namespace PAM
         private void NotificationAreaIconMouseDown(object sender, MouseButtonEventArgs e)
         {
             AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
+        }
+
+        private void OnMenuItemAboutClick(object sender, EventArgs e)
+        {
+            var aboutWindow = new AboutBox(null);
+            aboutWindow.Show();
         }
 
     }

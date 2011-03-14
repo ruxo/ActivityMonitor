@@ -6,7 +6,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PAM - Personal Activity Monitor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Personal Activity Monitor is simple yet powerful application designed to help you increase your productivity. It monitors  the apps you run and count the time you spend with them. This data is not sent anywhere. It stays in your computer and its intended for your use only so you can be sure about your privacy. If you have any concerns about it, check out the sources, they’re clean :)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Arkadiusz Benedykt")]
 [assembly: AssemblyProduct("Personal Activity Monitor")]
@@ -49,5 +49,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.3.0")]
+[assembly: AssemblyFileVersion("0.1.3.0")]

@@ -17,7 +17,9 @@
                 <forms:MenuItem Text="-" />
                 <forms:MenuItem Text="Autostart" Click="OnMenuItemAutostartClick" Checked="False" x:Name="AutostartMenuItem"/>
                 <forms:MenuItem Text="Settings..." Click="OnMenuItemSettingsClick" DefaultItem="false" />
-				<forms:MenuItem Text="-" />
+                <forms:MenuItem Text="-" />
+                <forms:MenuItem Text="About" Click="OnMenuItemAboutClick" DefaultItem="False" />
+                <forms:MenuItem Text="-" />
 				<forms:MenuItem Text="Exit" Click="OnMenuItemExitClick" />
 			</l:NotificationAreaIcon.MenuItems>
 		</l:NotificationAreaIcon>
