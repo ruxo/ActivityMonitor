@@ -35,8 +35,7 @@ namespace PAM.Tests.SomeGeneralTestings
                 try {
                     var process = Process.GetProcessById(processId);
                     //Debug.WriteLine(process.ProcessName);
-                    if (process.MainModule != null)
-                        Debug.WriteLine(process.MainModule.FileVersionInfo.FileDescription + " [" + process.MainModule.FileVersionInfo.FileName+"]");
+                    Debug.WriteLine(process.MainModule.FileVersionInfo.FileDescription + " [" + process.MainModule.FileVersionInfo.FileName+"]");
                 }
                 catch (Exception ex) {
 

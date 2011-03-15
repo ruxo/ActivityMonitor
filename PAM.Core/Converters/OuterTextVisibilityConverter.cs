@@ -14,7 +14,7 @@ namespace PAM.Core.Converters
                               CultureInfo culture)
         {
             var controlWidth = WidthCalculator.Calculate((TimeSpan)value);
-            return controlWidth > WidthCalculator.MinControlWidthSwitch ? Visibility.Hidden : Visibility.Visible;
+            return controlWidth > WidthCalculator.MinControlWidthSwitch ? Visibility.Collapsed : Visibility.Visible;
 
 
         }

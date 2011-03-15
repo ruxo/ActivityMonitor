@@ -10,7 +10,7 @@ namespace PAM.Core.Converters
 
         public static double Calculate(TimeSpan value)
         {
-            var controlWidth = MaxControlWidth - 300;
+            var controlWidth = MaxControlWidth - 250;
             var maxInSeconds = AppUpdater.GetMaxValue;
             var newValue = (int)(value.TotalSeconds);
             return (newValue / maxInSeconds) * controlWidth;

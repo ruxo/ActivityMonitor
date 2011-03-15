@@ -89,7 +89,7 @@ namespace PAM
                 InputManager.Current.PrimaryMouseDevice, 0, ToMouseButton(e.Button)));
         }
 
-        private void OnRaiseEvent(RoutedEvent handler, MouseButtonEventArgs e)
+        private void OnRaiseEvent(RoutedEvent handler, RoutedEventArgs e)
         {
             e.RoutedEvent = handler;
             RaiseEvent(e);

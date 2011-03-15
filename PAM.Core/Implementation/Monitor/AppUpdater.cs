@@ -84,31 +84,31 @@ namespace PAM.Core.Implementation.Monitor
                     {
                         try
                         {
-                            using (var iconStream = new MemoryStream())
+                            using (new MemoryStream())
                             {
                                 _dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
-                                   {
-                                       var icon = Icon.ExtractAssociatedIcon(process.MainModule.FileVersionInfo.FileName);
-                                       BitmapImage bmpImage = null;
-                                       if (icon != null)
-                                       {
-                                           var bmp = icon.ToBitmap();
-                                           var strm = new MemoryStream();
-                                           bmp.Save(strm, System.Drawing.Imaging.ImageFormat.Png);
+                                                                                           {
+                                                                                               var icon = Icon.ExtractAssociatedIcon(process.MainModule.FileVersionInfo.FileName);
+                                                                                               BitmapImage bmpImage = null;
+                                                                                               if (icon != null)
+                                                                                               {
+                                                                                                   var bmp = icon.ToBitmap();
+                                                                                                   var strm = new MemoryStream();
+                                                                                                   bmp.Save(strm, System.Drawing.Imaging.ImageFormat.Png);
 
-                                           bmpImage = new BitmapImage();
+                                                                                                   bmpImage = new BitmapImage();
 
-                                           bmpImage.BeginInit();
-                                           strm.Seek(0, SeekOrigin.Begin);
-                                           bmpImage.StreamSource = strm;
-                                           bmpImage.EndInit();
+                                                                                                   bmpImage.BeginInit();
+                                                                                                   strm.Seek(0, SeekOrigin.Begin);
+                                                                                                   bmpImage.StreamSource = strm;
+                                                                                                   bmpImage.EndInit();
 
-                                       }
-                                       _applications.Add(
-                                           new Application(
-                                               process.MainModule.FileVersionInfo.FileDescription,
-                                               process.MainModule.FileVersionInfo.FileName) { Icon = bmpImage });
-                                   }));
+                                                                                               }
+                                                                                               _applications.Add(
+                                                                                                   new Application(
+                                                                                                       process.MainModule.FileVersionInfo.FileDescription,
+                                                                                                       process.MainModule.FileVersionInfo.FileName) { Icon = bmpImage });
+                                                                                           }));
 
                             }
 

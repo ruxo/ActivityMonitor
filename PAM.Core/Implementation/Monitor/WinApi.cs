@@ -12,10 +12,10 @@ namespace PAM.Core.Implementation.Monitor
         public static extern int GetWindowThreadProcessId(HandleRef handle, out int processId);
 
         [DllImport("User32.dll")]
-        public static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+        public static extern bool GetLastInputInfo(ref Lastinputinfo plii);
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct LASTINPUTINFO
+        public struct Lastinputinfo
         {
             public uint cbSize;
             public uint dwTime;

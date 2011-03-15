@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using PAM.Core.Converters;
 using PAM.Core.Implementation.ApplicationImp;
 
@@ -33,6 +31,6 @@ namespace PAM.Core
         }
 
 
-       
+
     }
 }

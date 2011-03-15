@@ -1,4 +1,4 @@
-﻿<Window x:Class="PAM.Settings"
+﻿<Window x:Class="PAM.Windows.Settings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Settings" Height="300" Width="300" xmlns:my="clr-namespace:PAM.Views"  xmlns:ViewModels="clr-namespace:PAM.ViewModels" Icon="/PAM;component/App.ico">

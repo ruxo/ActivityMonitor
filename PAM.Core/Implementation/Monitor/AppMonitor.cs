@@ -30,7 +30,7 @@ namespace PAM.Core.Implementation.Monitor
             }
         }
 
-        private DateTime _startTime = DateTime.Now;
+        private readonly DateTime _startTime = DateTime.Now;
 
         public AppMonitor(Dispatcher dispatcher)
         {
@@ -44,15 +44,15 @@ namespace PAM.Core.Implementation.Monitor
         }
 
         private bool _sessionStopped;
-        public void SystemEventsSessionSwitch(object sender, Microsoft.Win32.SessionSwitchEventArgs e)
+        public void SystemEventsSessionSwitch(object sender, SessionSwitchEventArgs e)
         {
-            if (e.Reason == SessionSwitchReason.SessionLock)
-            {
-                _sessionStopped = true;
-            }
-            else if (e.Reason == SessionSwitchReason.SessionUnlock)
-            {
-                _sessionStopped = false;
+            switch (e.Reason) {
+                case SessionSwitchReason.SessionLock:
+                    _sessionStopped = true;
+                    break;
+                case SessionSwitchReason.SessionUnlock:
+                    _sessionStopped = false;
+                    break;
             }
         }
 
@@ -80,7 +80,7 @@ namespace PAM.Core.Implementation.Monitor
 
                 // checking if the user is in iddle mode - if so, dont updat process
                 // todo refactor
-                var inputInfo = new WinApi.LASTINPUTINFO();
+                var inputInfo = new WinApi.Lastinputinfo();
                 inputInfo.cbSize = (uint)Marshal.SizeOf(inputInfo);
                 WinApi.GetLastInputInfo(ref inputInfo);
                 var iddleTime = (Environment.TickCount - inputInfo.dwTime) / 1000;
@@ -176,13 +176,13 @@ namespace PAM.Core.Implementation.Monitor
                 return TimeSpan.FromMinutes(totalTime);
             }
 
-          
+
         }
 
         public TimeSpan TotalTimeRunning
         {
             get { return DateTime.Now.Subtract(_startTime); }
-            
+
         }
 
 

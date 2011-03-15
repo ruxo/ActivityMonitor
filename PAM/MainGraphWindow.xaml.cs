@@ -1,11 +1,9 @@
 using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PAM.Core.Implementation.Monitor;
-using PAM.Utils;
 using PAM.Windows;
 
 namespace PAM
@@ -66,36 +64,36 @@ namespace PAM
 
         private void FormLoaded(object sender, RoutedEventArgs e)
         {
-            _monitor = new AppMonitor(this.Dispatcher);
+            _monitor = new AppMonitor(Dispatcher);
             appsTree.Applications = _monitor.Data;
             CurrentApp.DataContext = _monitor;
         }
 
-        private void SaveButtonClick(object sender, RoutedEventArgs e)
-        {
-            var persister = new AppMonitorPersister(_monitor.Applications);
-            persister.Save();
-        }
+        //private void SaveButtonClick(object sender, RoutedEventArgs e)
+        //{
+        //    var persister = new AppMonitorPersister(_monitor.Applications);
+        //    persister.Save();
+        //}
 
-        private void ReadButtonClick(object sender, RoutedEventArgs e)
-        {
-            var persister = new AppMonitorPersister(_monitor.Applications);
-            _monitor.Applications = persister.Restore();
+        //private void ReadButtonClick(object sender, RoutedEventArgs e)
+        //{
+        //    var persister = new AppMonitorPersister(_monitor.Applications);
+        //    _monitor.Applications = persister.Restore();
 
-            appsTree.Applications = _monitor.Data;
+        //    appsTree.Applications = _monitor.Data;
 
-        }
+        //}
 
-        private void FilterButtonClick(object sender, RoutedEventArgs e)
-        {
-            var result = from data in _monitor.Data
-                         where (from details in data.Details
-                                where details.Usages.Count > 10
-                                select details) != null
-                         select data;
+        //private void FilterButtonClick(object sender, RoutedEventArgs e)
+        //{
+        //    var result = from data in _monitor.Data
+        //                 where (from details in data.Details
+        //                        where details.Usages.Count > 10
+        //                        select details) != null
+        //                 select data;
 
-            appsTree.Applications = result;
-        }
+        //    appsTree.Applications = result;
+        //}
 
         private void OnMenuItemAutostartClick(object sender, EventArgs e)
         {
