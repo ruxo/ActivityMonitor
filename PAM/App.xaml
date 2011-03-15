@@ -1,6 +1,6 @@
 ﻿<Application x:Class="PAM.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    StartupUri="MainGraphWindow.xaml">
-    
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Core="clr-namespace:PAM.Core;assembly=PAM.Core" StartupUri="MainGraphWindow.xaml">
+
+	
 </Application>

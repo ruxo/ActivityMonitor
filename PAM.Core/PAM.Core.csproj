@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Converters\InnerTextVisibilityConverter.cs" />
     <Compile Include="Converters\OuterTextVisibilityConverter.cs" />
+    <Compile Include="Converters\SecondsToTimeConverter.cs" />
     <Compile Include="Converters\WidthCalculator.cs" />
     <Compile Include="Extensions\ControlsExtension.cs" />
     <Compile Include="Implementation\ApplicationImp\ApplicationDetail.cs" />
