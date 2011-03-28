@@ -7,6 +7,8 @@ namespace PAM.Core
     [ValueConversion(typeof(TimeSpan), typeof(string))]
     public class TimeConverter : IValueConverter
     {
+        public static TimeSpan AppsTotalTime;
+
         public object Convert(object value,
                               Type targetType,
                               object parameter,
@@ -19,7 +21,8 @@ namespace PAM.Core
 
             var result = string.Empty;
 
-            if (userValue.Hours > 0) {
+            if (userValue.Hours > 0)
+            {
                 result += userValue.Hours + "h ";
             }
 
@@ -31,6 +34,15 @@ namespace PAM.Core
             if (userValue.Seconds > 0)
             {
                 result += userValue.Seconds + "s";
+            }
+            if ((int)AppsTotalTime.TotalSeconds > 0)
+            {
+
+                var valueInPercentage = (userValue.TotalSeconds * 100) / AppsTotalTime.TotalSeconds;
+
+                var percentageAsString = valueInPercentage < 1 ? "< 1" : valueInPercentage.ToString("0.0");
+
+                result += String.Format(" ({0}%)", percentageAsString);
             }
 
             return result;

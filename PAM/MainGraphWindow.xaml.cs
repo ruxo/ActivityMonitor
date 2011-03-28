@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Win32;
 using PAM.Core.Implementation.Monitor;
 using PAM.Windows;
 
@@ -127,5 +128,23 @@ namespace PAM
             aboutWindow.Show();
         }
 
+        private void OnMenuItemExportClick(object sender,
+                                           EventArgs e)
+        {
+
+
+            var saveWindow = new SaveFileDialog
+                                 {
+                                     FileName =
+                                         string.Format("Personal Activity Monitor ({0}).xml",
+                                                       DateTime.Now.ToShortDateString()),
+                                     Filter = "Xml file (.xml)|*.xml"
+                                 };
+            //saveWindow.FileName = "pamResult.xml";
+
+            if (saveWindow.ShowDialog() != true) return;
+            var exporter = new DataExporter(_monitor.Data);
+            exporter.SaveToXml(saveWindow.OpenFile());
+        }
     }
 }

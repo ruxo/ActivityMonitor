@@ -155,6 +155,11 @@
             "AssemblyAsmDisplayName" = "8:PAM.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_801D7DD974E00B0B5C964F46DF4F1BD2"
+                    {
+                    "Name" = "8:PAM.Core.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:PAM.Core.dll"
             "TargetName" = "8:"
@@ -262,7 +267,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Personal Activity Monitor"
         "ProductCode" = "8:{725F5E5B-765D-47D6-AB55-3974B9F3D8E0}"
-        "PackageCode" = "8:{A7BE0E02-3061-4A25-9419-076399B23AD1}"
+        "PackageCode" = "8:{A06D4631-37A9-4BAE-8216-FEFE615B12DF}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
