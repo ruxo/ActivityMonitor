@@ -310,7 +310,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Personal Activity Monitor"
         "ProductCode" = "8:{25DDE70D-3179-4CEC-B232-B30BEB4C0E12}"
-        "PackageCode" = "8:{E06F6D7B-CC55-4627-8FC7-5CA6376C4552}"
+        "PackageCode" = "8:{279D3F26-3504-42D6-8384-C6A313BD68CC}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

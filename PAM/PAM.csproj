@@ -92,6 +92,9 @@
     <Compile Include="Utils\Export\DataExporter.xaml.cs" />
     <Compile Include="Utils\Settings\SettingsProvider.cs" />
     <Compile Include="Utils\VersionChecking\VersionChecker.cs" />
+    <Compile Include="Views\NoNewVersionPopupView.xaml.cs">
+      <DependentUpon>NoNewVersionPopupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ToolTipView.xaml.cs">
       <DependentUpon>ToolTipView.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
       <DependentUpon>MainGraphWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\NoNewVersionPopupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ToolTipView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

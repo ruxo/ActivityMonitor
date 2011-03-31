@@ -34,7 +34,7 @@ namespace PAM
             CheckForNewVersion();
         }
 
-        private void CheckForNewVersion()
+        private void CheckForNewVersion(bool showMessageWhenNoNewVersion = false)
         {
             Task.Factory.StartNew(() =>
             {
@@ -49,6 +49,10 @@ namespace PAM
                     var newVersionView = new NewVersionPopupView();
                     newVersionView.DataContext = m.Result;
                     taskbarIcon.ShowCustomBalloon(newVersionView, PopupAnimation.Slide, 5000);
+                }
+                else {
+                    var noNewVersionView = new NoNewVersionPopupView();
+                    taskbarIcon.ShowCustomBalloon(noNewVersionView, PopupAnimation.Slide, 5000);
                 }
 
             }, TaskScheduler.FromCurrentSynchronizationContext());
@@ -158,6 +162,11 @@ namespace PAM
             if (saveWindow.ShowDialog() != true) return;
             var exporter = new DataExporter(_monitor.Data);
             exporter.SaveToXml(saveWindow.OpenFile());
+        }
+
+        private void OnMenuItemCheckNewVersionClick(object sender, RoutedEventArgs e)
+        {
+            CheckForNewVersion(true);
         }
 
     }

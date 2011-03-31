@@ -18,6 +18,7 @@
                     <MenuItem Header="Settings..." Click="OnMenuItemSettingsClick"/>
                     <Separator/>
                     <MenuItem Header="About" Click="OnMenuItemAboutClick"/>
+                    <MenuItem Header="Check new version" Click="OnMenuItemCheckNewVersionClick"/>
                     <Separator/>
                     <MenuItem Header="Exit" Click="OnMenuItemExitClick" />
                 </ContextMenu>
