@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using PAM.Core.Implementation.ApplicationImp;
 
-namespace PAM
+namespace PAM.Utils.Export
 {
     internal class DataExporter
     {

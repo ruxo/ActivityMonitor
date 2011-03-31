@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_622DFA8D1A70DAC616A3E2B46AB8DE0A"
+        "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_801D7DD974E00B0B5C964F46DF4F1BD2"
         "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
         "MsmSig" = "8:_UNDEFINED"
@@ -41,6 +47,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_801D7DD974E00B0B5C964F46DF4F1BD2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_622DFA8D1A70DAC616A3E2B46AB8DE0A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -148,6 +160,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_622DFA8D1A70DAC616A3E2B46AB8DE0A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Hardcodet.Wpf.TaskbarNotification, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_622DFA8D1A70DAC616A3E2B46AB8DE0A"
+                    {
+                    "Name" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_801D7DD974E00B0B5C964F46DF4F1BD2"
             {
             "AssemblyRegister" = "3:1"
@@ -267,7 +310,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Personal Activity Monitor"
         "ProductCode" = "8:{25DDE70D-3179-4CEC-B232-B30BEB4C0E12}"
-        "PackageCode" = "8:{6B4DB58B-C98C-47D0-9622-E07CDCCFA261}"
+        "PackageCode" = "8:{E06F6D7B-CC55-4627-8FC7-5CA6376C4552}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

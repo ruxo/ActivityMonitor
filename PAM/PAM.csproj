@@ -88,8 +88,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataExporter.xaml.cs" />
-    <Compile Include="SettingsProvider.cs" />
+    <Compile Include="Utils\VersionChecking\VersionInfo.cs" />
+    <Compile Include="Utils\Export\DataExporter.xaml.cs" />
+    <Compile Include="Utils\Settings\SettingsProvider.cs" />
+    <Compile Include="Utils\VersionChecking\VersionChecker.cs" />
+    <Compile Include="Views\ToolTipView.xaml.cs">
+      <DependentUpon>ToolTipView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewVersionPopupView.xaml.cs">
+      <DependentUpon>NewVersionPopupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AboutBox.xaml.cs">
       <DependentUpon>AboutBox.xaml</DependentUpon>
     </Compile>
@@ -124,13 +132,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ShellIcon.cs" />
     <Compile Include="Extensions\ControlsExtension.cs" />
     <Compile Include="MainGraphWindow.xaml.cs">
       <DependentUpon>MainGraphWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NotificationAreaIcon.cs" />
+    <Page Include="Views\ToolTipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewVersionPopupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\AboutBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +202,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NotifyIconWpf\NotifyIconWpf.csproj">
+      <Project>{7AC63864-7638-41C4-969C-D3197EF2BED9}</Project>
+      <Name>NotifyIconWpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PAM.Core\PAM.Core.csproj">
       <Project>{451A3C83-76A2-44DD-8F02-09735C7BB5D2}</Project>
       <Name>PAM.Core</Name>
@@ -218,6 +236,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

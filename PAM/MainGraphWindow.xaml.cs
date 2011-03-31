@@ -1,10 +1,16 @@
 using System;
 using System.ComponentModel;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Microsoft.Win32;
 using PAM.Core.Implementation.Monitor;
+using PAM.Utils.Export;
+using PAM.Utils.Settings;
+using PAM.Utils.VersionChecking;
+using PAM.Views;
 using PAM.Windows;
 
 namespace PAM
@@ -22,9 +28,35 @@ namespace PAM
         {
             InitializeComponent();
 
-            AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
+            //AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
             Core.SettingsManager.Settings.SettingsProvider = new SettingsProvider();
+
+            CheckForNewVersion();
         }
+
+        private void CheckForNewVersion()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var versionChecker = new VersionChecker();
+                return versionChecker.GetLatestVersionInfo();
+            }).ContinueWith(m =>
+            {
+
+                if (m.Result.Version.CompareTo(Assembly.GetExecutingAssembly().GetName().Version.ToString()) > 0)
+                {
+
+                    var newVersionView = new NewVersionPopupView();
+                    newVersionView.DataContext = m.Result;
+                    taskbarIcon.ShowCustomBalloon(newVersionView, PopupAnimation.Slide, 5000);
+                }
+
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+
+        }
+
+
+
 
         protected override void OnStateChanged(EventArgs e)
         {
@@ -96,30 +128,11 @@ namespace PAM
         //    appsTree.Applications = result;
         //}
 
-        private void OnMenuItemAutostartClick(object sender, EventArgs e)
-        {
-            AutostartMenuItem.Checked = !AutostartMenuItem.Checked;
-
-            Core.SettingsManager.Settings.Autostart = AutostartMenuItem.Checked;
-
-        }
 
         private void OnMenuItemSettingsClick(object sender, EventArgs e)
         {
             var settingsWindow = new Settings();
             settingsWindow.ShowDialog();
-        }
-
-
-        private void NotificationAreaIconContextMenuOpening(object sender,
-                                                            ContextMenuEventArgs e)
-        {
-            AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
-        }
-
-        private void NotificationAreaIconMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
         }
 
         private void OnMenuItemAboutClick(object sender, EventArgs e)
@@ -146,5 +159,6 @@ namespace PAM
             var exporter = new DataExporter(_monitor.Data);
             exporter.SaveToXml(saveWindow.OpenFile());
         }
+
     }
 }

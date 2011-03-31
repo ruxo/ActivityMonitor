@@ -1,6 +1,6 @@
 using PAM.Core.SettingsManager;
 
-namespace PAM
+namespace PAM.Utils.Settings
 {
     public class SettingsProvider : ISettingsProvider
     {
