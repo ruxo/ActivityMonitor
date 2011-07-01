@@ -4,8 +4,10 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using Microsoft.Win32;
+using PAM.Core.Extensions;
 using PAM.Core.Implementation.Monitor;
 using PAM.Utils.Export;
 using PAM.Utils.Settings;
@@ -102,8 +104,16 @@ namespace PAM
         private void FormLoaded(object sender, RoutedEventArgs e)
         {
             _monitor = new AppMonitor(Dispatcher);
-            appsTree.Applications = _monitor.Data;
+            appsTree.Applications = _monitor.SortedData as CollectionView;
             CurrentApp.DataContext = _monitor;
+            _monitor.PropertyChanged += new PropertyChangedEventHandler(_monitor_PropertyChanged);
+        }
+
+        void _monitor_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            //appsTree.Applications.Refresh();
+
+            this.InvokeIfRequired(() => appsTree.Applications.Refresh());
         }
 
         //private void SaveButtonClick(object sender, RoutedEventArgs e)
@@ -169,5 +179,33 @@ namespace PAM
             CheckForNewVersion(true);
         }
 
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            appsTree.Applications.SortDescriptions.Clear();
+            appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime",ListSortDirection.Ascending));
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            appsTree.Applications.SortDescriptions.Clear();
+            appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime", ListSortDirection.Descending));
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            appsTree.Applications.Filter = CustomFilter;
+            appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime", ListSortDirection.Descending));
+        }
+
+        private bool CustomFilter(object item)
+        {
+            var application = item as PAM.Core.Implementation.ApplicationImp.Application;
+            return application.TotalTimeInMunites > 1;
+        }
+
+        private void button4_Click(object sender, RoutedEventArgs e)
+        {
+             appsTree.Applications.Refresh();
+        }
     }
 }

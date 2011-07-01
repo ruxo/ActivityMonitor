@@ -74,7 +74,11 @@
 							<Label Name="appUsage" Content="{Binding CurrentApplicationTotalUsageTime}"/>
 						</StackPanel>
 					</StackPanel>
-				</StackPanel>
+                    <Button Content="asc" Height="23" Name="button1" Width="44" Click="button1_Click" />
+                    <Button Content="desc" Height="23" Name="button2" Width="46" Click="button2_Click" />
+                    <Button Content="filter" Height="23" Name="button3" Width="40" Click="button3_Click" />
+                    <Button Content="refresh" Height="23" Name="button4" Width="75" Click="button4_Click" />
+                </StackPanel>
 			</Expander>
 		</Border>
 		<Border  CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">

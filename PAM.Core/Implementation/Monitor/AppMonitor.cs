@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Timers;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Win32;
@@ -46,7 +47,8 @@ namespace PAM.Core.Implementation.Monitor
         private bool _sessionStopped;
         public void SystemEventsSessionSwitch(object sender, SessionSwitchEventArgs e)
         {
-            switch (e.Reason) {
+            switch (e.Reason)
+            {
                 case SessionSwitchReason.SessionLock:
                     _sessionStopped = true;
                     break;
@@ -116,9 +118,20 @@ namespace PAM.Core.Implementation.Monitor
         }
 
 
+        private Applications _data;
+        public Applications Data
+        {
+            get { return _data; }
+            private set
+            {
+                _data = value;
+                SortedData = CollectionViewSource.GetDefaultView(_data);
+                SortedData.SortDescriptions.Add(new SortDescription("TotalUsageTime",ListSortDirection.Descending));
+            }
+        }
 
-        public Applications Data { get; private set; }
 
+        public ICollectionView SortedData { get; private set; }
 
         public string CurrentApplicationName
         {

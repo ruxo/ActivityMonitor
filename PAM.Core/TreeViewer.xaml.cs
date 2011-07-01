@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Data;
 using PAM.Core.Converters;
 using PAM.Core.Implementation.ApplicationImp;
 
@@ -10,19 +11,20 @@ namespace PAM.Core
     public partial class TreeViewer
     {
 
-        private IEnumerable<Application> _applications;
+        private CollectionView _applications;
         public TreeViewer()
         {
             InitializeComponent();
         }
 
-        public IEnumerable<Application> Applications
+        public CollectionView Applications
         {
             set
             {
                 _applications = value;
                 tree.ItemsSource = _applications;
             }
+            get { return _applications; }
         }
 
         private void TreeSizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
