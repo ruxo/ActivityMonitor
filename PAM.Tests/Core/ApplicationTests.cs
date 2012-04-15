@@ -1,4 +1,4 @@
-using MbUnit.Framework;
+using NUnit.Framework;
 using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Tests.Core

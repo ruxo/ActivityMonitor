@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ViewModels="clr-namespace:PAM.ViewModels" xmlns:Core1="clr-namespace:PAM.Core.Converters.PAM.Core;assembly=PAM.Core" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="383" d:DesignWidth="297">
 <UserControl.Resources>
         <Core1:SecondsToTimeConverter x:Key="TimeConverter" />
 </UserControl.Resources>
@@ -30,5 +30,18 @@
                     </StackPanel>
             </Expander>
         </Border>
-</DockPanel>
+        <Border DockPanel.Dock="Top" Margin="10" CornerRadius="10" Background="#1300FF00">
+            <Expander Header="Auto export" IsExpanded="True">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" Margin="5">Auto exporting data to xml file every <TextBlock Text="{Binding Path=AutoExportInterval, Converter={StaticResource TimeConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Padding="0" /></TextBlock>
+                    <CheckBox IsChecked="{Binding AutoexportEnabled}">Enabled</CheckBox>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Path=AutoExportPath}"/>
+                        <Button Click="ButtonClick">Select path</Button>
+                    </StackPanel>
+                    <Slider Value="{Binding AutoExportInterval}" Minimum="1" Maximum="3600" />
+                </StackPanel>
+            </Expander>
+        </Border>
+    </DockPanel>
 </UserControl>

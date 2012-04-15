@@ -1,4 +1,6 @@
-﻿namespace PAM.Windows
+﻿using System.Windows.Forms;
+
+namespace PAM.Windows
 {
     /// <summary>
     /// Interaction logic for Settings.xaml
@@ -9,5 +11,7 @@
         {
             InitializeComponent();
         }
+
+       
     }
 }

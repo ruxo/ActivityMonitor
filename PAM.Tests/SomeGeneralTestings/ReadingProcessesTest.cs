@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using MbUnit.Framework;
+using NUnit.Framework;
 
 namespace PAM.Tests.SomeGeneralTestings
 {
@@ -13,7 +13,7 @@ namespace PAM.Tests.SomeGeneralTestings
     {
         
 
-        [Test]
+        [Test, Ignore]
         public void ReadingProcesses()
         {
             for (var i = 0; i > -1; i++)

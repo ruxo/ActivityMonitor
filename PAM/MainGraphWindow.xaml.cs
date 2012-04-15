@@ -52,9 +52,10 @@ namespace PAM
                     newVersionView.DataContext = m.Result;
                     taskbarIcon.ShowCustomBalloon(newVersionView, PopupAnimation.Slide, 5000);
                 }
-                else {
-                    var noNewVersionView = new NoNewVersionPopupView();
-                    taskbarIcon.ShowCustomBalloon(noNewVersionView, PopupAnimation.Slide, 5000);
+                else
+                {
+                    //var noNewVersionView = new NoNewVersionPopupView();
+                    //taskbarIcon.ShowCustomBalloon(noNewVersionView, PopupAnimation.Slide, 5000);
                 }
 
             }, TaskScheduler.FromCurrentSynchronizationContext());
@@ -106,7 +107,10 @@ namespace PAM
             _monitor = new AppMonitor(Dispatcher);
             appsTree.Applications = _monitor.SortedData as CollectionView;
             CurrentApp.DataContext = _monitor;
-            _monitor.PropertyChanged += new PropertyChangedEventHandler(_monitor_PropertyChanged);
+            _monitor.PropertyChanged += _monitor_PropertyChanged;
+
+            new SettingsProvider().RunAutoExport(_monitor);
+            
         }
 
         void _monitor_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -115,32 +119,6 @@ namespace PAM
 
             this.InvokeIfRequired(() => appsTree.Applications.Refresh());
         }
-
-        //private void SaveButtonClick(object sender, RoutedEventArgs e)
-        //{
-        //    var persister = new AppMonitorPersister(_monitor.Applications);
-        //    persister.Save();
-        //}
-
-        //private void ReadButtonClick(object sender, RoutedEventArgs e)
-        //{
-        //    var persister = new AppMonitorPersister(_monitor.Applications);
-        //    _monitor.Applications = persister.Restore();
-
-        //    appsTree.Applications = _monitor.Data;
-
-        //}
-
-        //private void FilterButtonClick(object sender, RoutedEventArgs e)
-        //{
-        //    var result = from data in _monitor.Data
-        //                 where (from details in data.Details
-        //                        where details.Usages.Count > 10
-        //                        select details) != null
-        //                 select data;
-
-        //    appsTree.Applications = result;
-        //}
 
 
         private void OnMenuItemSettingsClick(object sender, EventArgs e)
@@ -182,18 +160,12 @@ namespace PAM
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             appsTree.Applications.SortDescriptions.Clear();
-            appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime",ListSortDirection.Ascending));
+            appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime", ListSortDirection.Ascending));
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             appsTree.Applications.SortDescriptions.Clear();
-            appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime", ListSortDirection.Descending));
-        }
-
-        private void button3_Click(object sender, RoutedEventArgs e)
-        {
-            appsTree.Applications.Filter = CustomFilter;
             appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime", ListSortDirection.Descending));
         }
 
@@ -203,9 +175,5 @@ namespace PAM
             return application.TotalTimeInMunites > 1;
         }
 
-        private void button4_Click(object sender, RoutedEventArgs e)
-        {
-             appsTree.Applications.Refresh();
-        }
     }
 }

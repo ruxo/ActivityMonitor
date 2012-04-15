@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using MbUnit.Framework;
+using NUnit.Framework;
 using PAM.Core.Implementation.ApplicationImp;
 
 namespace PAM.Tests.SomeGeneralTestings

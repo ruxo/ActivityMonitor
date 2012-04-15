@@ -3,59 +3,38 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:TaskbarNotification="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification" xmlns:local="clr-namespace:PAM.Views" Title="PAM" Height="598" Width="694" Icon="/PAM;component/Resources/App.ico"
 		Loaded="FormLoaded">
 	<DockPanel LastChildFill="True">
-        <TaskbarNotification:TaskbarIcon 
-            x:Name="taskbarIcon" 
-            VerticalAlignment="Top" 
-            ToolTipText="Hello world tooltip" 
-            Visibility="Visible" 
-            IconSource="Resources\NotificationAreaIcon.ico">
-            <TaskbarNotification:TaskbarIcon.ContextMenu>
-                <ContextMenu>
-                    
-                    <MenuItem Header="Open" Click="OnMenuItemOpenClick" />
-                    <MenuItem Header="Export" Click="OnMenuItemExportClick"/>
-                    <Separator/>
-                    <MenuItem Header="Settings..." Click="OnMenuItemSettingsClick"/>
-                    <Separator/>
-                    <MenuItem Header="About" Click="OnMenuItemAboutClick"/>
-                    <MenuItem Header="Check new version" Click="OnMenuItemCheckNewVersionClick"/>
-                    <Separator/>
-                    <MenuItem Header="Exit" Click="OnMenuItemExitClick" />
-                </ContextMenu>
-            </TaskbarNotification:TaskbarIcon.ContextMenu>
-            <TaskbarNotification:TaskbarIcon.TrayPopup>
-                <!-- the control will be put into a popup with an explicit DataContext -->
-                <local:NewVersionPopupView />
-            </TaskbarNotification:TaskbarIcon.TrayPopup>
+		<TaskbarNotification:TaskbarIcon 
+			x:Name="taskbarIcon" 
+			VerticalAlignment="Top" 
+			ToolTipText="Hello world tooltip" 
+			Visibility="Visible" 
+			IconSource="Resources\NotificationAreaIcon.ico">
+			<TaskbarNotification:TaskbarIcon.ContextMenu>
+				<ContextMenu>
+					
+					<MenuItem Header="Open" Click="OnMenuItemOpenClick" />
+					<MenuItem Header="Export" Click="OnMenuItemExportClick"/>
+					<Separator/>
+					<MenuItem Header="Settings..." Click="OnMenuItemSettingsClick"/>
+					<Separator/>
+					<MenuItem Header="About" Click="OnMenuItemAboutClick"/>
+					<MenuItem Header="Check new version" Click="OnMenuItemCheckNewVersionClick"/>
+					<Separator/>
+					<MenuItem Header="Exit" Click="OnMenuItemExitClick" />
+				</ContextMenu>
+			</TaskbarNotification:TaskbarIcon.ContextMenu>
+			<TaskbarNotification:TaskbarIcon.TrayPopup>
+				<!-- the control will be put into a popup with an explicit DataContext -->
+				<local:NewVersionPopupView />
+			</TaskbarNotification:TaskbarIcon.TrayPopup>
 
-            <TaskbarNotification:TaskbarIcon.TrayToolTip>
-                <!-- the control will be put into a tooltip with an explicit DataContext -->
-                <local:ToolTipView/>
-            </TaskbarNotification:TaskbarIcon.TrayToolTip>
+			<TaskbarNotification:TaskbarIcon.TrayToolTip>
+				<!-- the control will be put into a tooltip with an explicit DataContext -->
+				<local:ToolTipView/>
+			</TaskbarNotification:TaskbarIcon.TrayToolTip>
 
-        </TaskbarNotification:TaskbarIcon>
-        
-
-
-        <!--<l:NotificationAreaIcon  DockPanel.Dock="Top"
-					  Text="PAM" 
-					  Icon="Resources\NotificationAreaIcon.ico"
-					  MouseDoubleClick="OnNotificationAreaIconDoubleClick"
-                                 ContextMenuOpening="NotificationAreaIconContextMenuOpening"
-                                 MouseDown="NotificationAreaIconMouseDown">
-            
-			<l:NotificationAreaIcon.MenuItems>
-				<forms:MenuItem Text="Open" Click="OnMenuItemOpenClick" DefaultItem="True" />
-                <forms:MenuItem Text="Export" Click="OnMenuItemExportClick" DefaultItem="False" />
-                <forms:MenuItem Text="-" />
-                <forms:MenuItem Text="Autostart" Click="OnMenuItemAutostartClick" Checked="False" x:Name="AutostartMenuItem"/>
-                <forms:MenuItem Text="Settings..." Click="OnMenuItemSettingsClick" DefaultItem="false" />
-                <forms:MenuItem Text="-" />
-                <forms:MenuItem Text="About" Click="OnMenuItemAboutClick" DefaultItem="False" />
-                <forms:MenuItem Text="-" />
-				<forms:MenuItem Text="Exit" Click="OnMenuItemExitClick" />
-			</l:NotificationAreaIcon.MenuItems>
-		</l:NotificationAreaIcon>-->
+		</TaskbarNotification:TaskbarIcon>
+	
 		<Border DockPanel.Dock="Top" CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1" >
 			<Expander Header="Currently running application" IsExpanded="True" ExpandDirection="Down">
 				<StackPanel Orientation="Horizontal" Name="CurrentApp" Margin="0,10,0,0">
@@ -74,16 +53,21 @@
 							<Label Name="appUsage" Content="{Binding CurrentApplicationTotalUsageTime}"/>
 						</StackPanel>
 					</StackPanel>
-                    <Button Content="asc" Height="23" Name="button1" Width="44" Click="button1_Click" />
-                    <Button Content="desc" Height="23" Name="button2" Width="46" Click="button2_Click" />
-                    <Button Content="filter" Height="23" Name="button3" Width="40" Click="button3_Click" />
-                    <Button Content="refresh" Height="23" Name="button4" Width="75" Click="button4_Click" />
-                </StackPanel>
+					
+				</StackPanel>
 			</Expander>
 		</Border>
 		<Border  CornerRadius="10" Margin="5" Padding="5" Background="#5296E296" BorderThickness="1">
 			<DockPanel LastChildFill="True">
-				<Label DockPanel.Dock="Top">Applications history</Label>
+				<StackPanel DockPanel.Dock="Top">
+					<Label>Applications history</Label>
+					
+					<StackPanel Orientation="Horizontal">
+						<Button Content="sort apps by usage ascending" Height="23" Name="button1" Click="button1_Click" />
+						<Button Content="sort apps by usage descenging" Height="23" Name="button2" Click="button2_Click" />
+					</StackPanel>
+				</StackPanel>
+				
 				<my:TreeViewer  Name="appsTree" Margin="0,10,0,0"/>
 			</DockPanel>
 		</Border>
