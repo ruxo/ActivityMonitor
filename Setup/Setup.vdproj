@@ -15,20 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_622DFA8D1A70DAC616A3E2B46AB8DE0A"
-        "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_801D7DD974E00B0B5C964F46DF4F1BD2"
-        "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_80E397043B73461BB692A130E574F36A"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD2D448F3CEBC137D18DC437ECBB229C"
+        "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D17BCE1402F84831B2794A6738EEECF6"
+        "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DC5A880757A2D9EB898BD183CD5FC0BD"
+        "OwnerKey" = "8:_E49C0C19AE254C4794498F1EC66CD152"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -46,13 +52,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_801D7DD974E00B0B5C964F46DF4F1BD2"
+        "OwnerKey" = "8:_DC5A880757A2D9EB898BD183CD5FC0BD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_622DFA8D1A70DAC616A3E2B46AB8DE0A"
+        "OwnerKey" = "8:_D17BCE1402F84831B2794A6738EEECF6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BD2D448F3CEBC137D18DC437ECBB229C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -160,18 +172,33 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_622DFA8D1A70DAC616A3E2B46AB8DE0A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80E397043B73461BB692A130E574F36A"
+            {
+            "SourcePath" = "8:..\\PAM\\Resources\\App.ico"
+            "TargetName" = "8:App.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BD2D448F3CEBC137D18DC437ECBB229C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Hardcodet.Wpf.TaskbarNotification, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_622DFA8D1A70DAC616A3E2B46AB8DE0A"
-                    {
-                    "Name" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
             "TargetName" = "8:"
@@ -191,18 +218,13 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_801D7DD974E00B0B5C964F46DF4F1BD2"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D17BCE1402F84831B2794A6738EEECF6"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:PAM.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_801D7DD974E00B0B5C964F46DF4F1BD2"
-                    {
-                    "Name" = "8:PAM.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:PAM.Core.dll"
             "TargetName" = "8:"
@@ -222,10 +244,21 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80E397043B73461BB692A130E574F36A"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DC5A880757A2D9EB898BD183CD5FC0BD"
             {
-            "SourcePath" = "8:..\\PAM\\Resources\\App.ico"
-            "TargetName" = "8:App.ico"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_DC5A880757A2D9EB898BD183CD5FC0BD"
+                    {
+                    "Name" = "8:nunit.framework.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:nunit.framework.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8C1AE13B526F4888A5FE2CACFC15E9A9"
             "Condition" = "8:"
@@ -239,7 +272,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -309,15 +342,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Personal Activity Monitor"
-        "ProductCode" = "8:{25DDE70D-3179-4CEC-B232-B30BEB4C0E12}"
-        "PackageCode" = "8:{279D3F26-3504-42D6-8384-C6A313BD68CC}"
+        "ProductCode" = "8:{0529C2F6-660F-44FF-8A2E-2EB9084DF0D2}"
+        "PackageCode" = "8:{6335925F-A994-4B67-8844-1785D33CF28B}"
         "UpgradeCode" = "8:{579956B2-E598-4716-BBE5-1CA5F94795CE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.1.4"
+        "ProductVersion" = "8:0.1.5"
         "Manufacturer" = "8:Arkadiusz Benedykt"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://activitymonitor.codeplex.com/"
