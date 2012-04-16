@@ -54,8 +54,12 @@ namespace PAM
                 }
                 else
                 {
-                    //var noNewVersionView = new NoNewVersionPopupView();
-                    //taskbarIcon.ShowCustomBalloon(noNewVersionView, PopupAnimation.Slide, 5000);
+                    if (showMessageWhenNoNewVersion)
+                    {
+                        var noNewVersionView = new NoNewVersionPopupView();
+                        taskbarIcon.ShowCustomBalloon(noNewVersionView, PopupAnimation.Slide, 5000);
+                    }
+
                 }
 
             }, TaskScheduler.FromCurrentSynchronizationContext());
@@ -110,7 +114,7 @@ namespace PAM
             _monitor.PropertyChanged += _monitor_PropertyChanged;
 
             new SettingsProvider().RunAutoExport(_monitor);
-            
+
         }
 
         void _monitor_PropertyChanged(object sender, PropertyChangedEventArgs e)

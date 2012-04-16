@@ -8,7 +8,7 @@
 			VerticalAlignment="Top" 
 			ToolTipText="Hello world tooltip" 
 			Visibility="Visible" 
-			IconSource="Resources\NotificationAreaIcon.ico">
+			IconSource="Resources\NotificationAreaIcon.ico" MenuActivation="All">
 			<TaskbarNotification:TaskbarIcon.ContextMenu>
 				<ContextMenu>
 					
@@ -23,10 +23,10 @@
 					<MenuItem Header="Exit" Click="OnMenuItemExitClick" />
 				</ContextMenu>
 			</TaskbarNotification:TaskbarIcon.ContextMenu>
-			<TaskbarNotification:TaskbarIcon.TrayPopup>
+			<!--<TaskbarNotification:TaskbarIcon.TrayPopup>-->
 				<!-- the control will be put into a popup with an explicit DataContext -->
-				<local:NewVersionPopupView />
-			</TaskbarNotification:TaskbarIcon.TrayPopup>
+				<!--<local:NewVersionPopupView />-->
+			<!--</TaskbarNotification:TaskbarIcon.TrayPopup>-->
 
 			<TaskbarNotification:TaskbarIcon.TrayToolTip>
 				<!-- the control will be put into a tooltip with an explicit DataContext -->
