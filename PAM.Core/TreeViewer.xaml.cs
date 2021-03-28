@@ -10,8 +10,7 @@ namespace PAM.Core
     /// </summary>
     public partial class TreeViewer
     {
-
-        private CollectionView _applications;
+        CollectionView _applications;
         public TreeViewer()
         {
             InitializeComponent();
@@ -27,7 +26,7 @@ namespace PAM.Core
             get { return _applications; }
         }
 
-        private void TreeSizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
+        void TreeSizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
         {
             WidthCalculator.MaxControlWidth = tree.ActualWidth;
         }

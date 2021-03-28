@@ -1,6 +1,6 @@
 ﻿namespace PAM.ViewModels
 {
-    class ApplicationsViewModel
+    internal class ApplicationsViewModel
     {
     }
 }

@@ -16,12 +16,12 @@ namespace PAM.Core.Implementation.Monitor
 {
     public class AppMonitor : INotifyPropertyChanged
     {
-        private readonly Timer _timer;
-        private readonly AppUpdater _appUpdater;
-        private string _currentApplicationName;
-        private TimeSpan _currentApplicationTotalUsageTime;
-        private string _currentApplicationPath;
-        private ImageSource _currentApplicationIcon;
+        readonly Timer      _timer;
+        readonly AppUpdater _appUpdater;
+        string              _currentApplicationName;
+        TimeSpan            _currentApplicationTotalUsageTime;
+        string              _currentApplicationPath;
+        ImageSource         _currentApplicationIcon;
         public Applications Applications
         {
             get { return Data; }
@@ -32,7 +32,7 @@ namespace PAM.Core.Implementation.Monitor
             }
         }
 
-        private readonly DateTime _startTime = DateTime.Now;
+        readonly DateTime _startTime = DateTime.Now;
 
         public AppMonitor(Dispatcher dispatcher)
         {
@@ -45,7 +45,7 @@ namespace PAM.Core.Implementation.Monitor
             SystemEvents.SessionSwitch += SystemEventsSessionSwitch;
         }
 
-        private bool _sessionStopped;
+        bool _sessionStopped;
         [SupportedOSPlatform("windows")]
         public void SystemEventsSessionSwitch(object sender, SessionSwitchEventArgs e)
         {
@@ -61,7 +61,8 @@ namespace PAM.Core.Implementation.Monitor
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String info)
+
+        void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
             {
@@ -69,7 +70,7 @@ namespace PAM.Core.Implementation.Monitor
             }
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             _timer.Stop();
 
@@ -120,7 +121,7 @@ namespace PAM.Core.Implementation.Monitor
         }
 
 
-        private Applications _data;
+        Applications _data;
         public Applications Data
         {
             get { return _data; }

@@ -1,6 +1,6 @@
 ﻿namespace PAM.ViewModels
 {
-    class AlertsViewModel
+    internal class AlertsViewModel
     {
     }
 }

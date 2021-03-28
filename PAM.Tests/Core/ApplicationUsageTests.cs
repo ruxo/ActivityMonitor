@@ -8,8 +8,7 @@ namespace PAM.Tests.Core
     [TestFixture]
     public class ApplicationUsageTests
     {
-
-        private Application _application;
+        Application _application;
 
         [SetUp]
         public void Setup()

@@ -12,8 +12,7 @@ namespace PAM.Tests.SomeGeneralTestings
     [TestFixture]
     public class TestingXMLSerialization
     {
-
-        private Applications _applications;
+        Applications _applications;
 
         [SetUp]
         public void Setup()
@@ -82,7 +81,7 @@ namespace PAM.Tests.SomeGeneralTestings
 
         }
 
-        private static String Utf8ByteArrayToString(Byte[] characters)
+        static String Utf8ByteArrayToString(Byte[] characters)
         {
             var encoding = new UTF8Encoding();
             var constructedString = encoding.GetString(characters);

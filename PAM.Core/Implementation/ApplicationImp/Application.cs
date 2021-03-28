@@ -11,7 +11,8 @@ namespace PAM.Core.Implementation.ApplicationImp
     public class Application : IApplication, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String info)
+
+        void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
             {
@@ -62,7 +63,7 @@ namespace PAM.Core.Implementation.ApplicationImp
 
         public double TotalTimeInMunites { get { return TotalUsageTime.TotalMinutes; } }
 
-        private ApplicationUsages _usage;
+        ApplicationUsages _usage;
 
         public ApplicationUsages Usage
         {

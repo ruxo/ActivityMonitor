@@ -7,14 +7,13 @@ namespace PAM.Core.SettingsManager
 {
     public class Settings
     {
-
-        private const string RunRegistryKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
-        private const string ValueName = "PAM - Personal Activity Monitor";
-        private static ISettingsProvider _settingsProvider;
-        private static int _idleTime;
-        private static bool _autoExportEnabled;
-        private static int _autoExportInterval;
-        private static string _autoExportPath;
+        const  string            RunRegistryKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
+        const  string            ValueName      = "PAM - Personal Activity Monitor";
+        static ISettingsProvider _settingsProvider;
+        static int               _idleTime;
+        static bool              _autoExportEnabled;
+        static int               _autoExportInterval;
+        static string            _autoExportPath;
 
 
         public static bool AutoExportEnabled

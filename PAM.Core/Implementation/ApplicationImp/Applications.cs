@@ -9,8 +9,7 @@ namespace PAM.Core.Implementation.ApplicationImp
 {
     public class Applications : ObservableCollection<Application>
     {
-
-        private ICollectionView _filteredItems;
+        ICollectionView _filteredItems;
 
         public Applications()
         {

@@ -14,7 +14,7 @@ namespace PAM.Views
             InitializeComponent();
         }
 
-        private void ButtonClick(object sender, RoutedEventArgs e)
+        void ButtonClick(object sender, RoutedEventArgs e)
         {
             var dialog = new FolderBrowserDialog();
 

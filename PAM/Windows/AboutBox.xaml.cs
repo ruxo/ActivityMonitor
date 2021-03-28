@@ -35,7 +35,7 @@ namespace PAM.Windows
         /// </summary>
         /// <param name="sender">Object the sent the event.</param>
         /// <param name="e">Navigation events arguments.</param>
-        private void HyperlinkRequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        void HyperlinkRequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             if (e.Uri == null || string.IsNullOrEmpty(e.Uri.OriginalString)) return;
             var uri = e.Uri.AbsoluteUri;
@@ -45,22 +45,23 @@ namespace PAM.Windows
 
         #region AboutData Provider
         #region Member data
-        private XmlDocument _xmlDoc;
 
-        private const string PropertyNameTitle = "Title";
-        private const string PropertyNameDescription = "Description";
-        private const string PropertyNameProduct = "Product";
-        private const string PropertyNameCopyright = "Copyright";
-        private const string PropertyNameCompany = "Company";
-        private const string XPathRoot = "ApplicationInfo/";
-        private const string XPathTitle = XPathRoot + PropertyNameTitle;
-        private const string XPathVersion = XPathRoot + "Version";
-        private const string XPathDescription = XPathRoot + PropertyNameDescription;
-        private const string XPathProduct = XPathRoot + PropertyNameProduct;
-        private const string XPathCopyright = XPathRoot + PropertyNameCopyright;
-        private const string XPathCompany = XPathRoot + PropertyNameCompany;
-        private const string XPathLink = XPathRoot + "Link";
-        private const string XPathLinkUri = XPathRoot + "Link/@Uri";
+        XmlDocument _xmlDoc;
+
+        const string PropertyNameTitle       = "Title";
+        const string PropertyNameDescription = "Description";
+        const string PropertyNameProduct     = "Product";
+        const string PropertyNameCopyright   = "Copyright";
+        const string PropertyNameCompany     = "Company";
+        const string XPathRoot               = "ApplicationInfo/";
+        const string XPathTitle              = XPathRoot + PropertyNameTitle;
+        const string XPathVersion            = XPathRoot + "Version";
+        const string XPathDescription        = XPathRoot + PropertyNameDescription;
+        const string XPathProduct            = XPathRoot + PropertyNameProduct;
+        const string XPathCopyright          = XPathRoot + PropertyNameCopyright;
+        const string XPathCompany            = XPathRoot + PropertyNameCompany;
+        const string XPathLink               = XPathRoot + "Link";
+        const string XPathLinkUri            = XPathRoot + "Link/@Uri";
         #endregion
 
         #region Properties
@@ -153,7 +154,7 @@ namespace PAM.Windows
         /// <param name="xpathQuery">XPath to the element in the XML data resource.</param>
         /// <returns>The resulting string to use for a property.
         /// Returns null if no data could be retrieved.</returns>
-        private string CalculatePropertyValue<T>(string propertyName, string xpathQuery)
+        string CalculatePropertyValue<T>(string propertyName, string xpathQuery)
         {
             var result = string.Empty;
             // first, try to get the property value from an attribute.
@@ -233,7 +234,7 @@ namespace PAM.Windows
 
         #endregion
 
-        private void OkButtonClick(object sender, RoutedEventArgs e)
+        void OkButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
 

@@ -1,43 +1,41 @@
+using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 
 namespace PAM.Utils.VersionChecking
 {
-    public class VersionChecker
+    public static class VersionChecker
     {
-        private const string WebRequestAddress =
-            @"http://activitymonitor.codeplex.com/wikipage?title=Latest%20application%20version";
+        const string WebRequestAddress = "http://activitymonitor.codeplex.com/wikipage?title=Latest%20application%20version";
+        const string HtmlTagB    = "<b>";
+        const string HtmlEndTagB = "</b>";
 
-        private const string HtmlTagB = "<b>";
-        private const string HtmlEndTagB = "</b>";
-
-        public VersionInfo GetLatestVersionInfo()
+        public static VersionInfo? GetLatestVersionInfo()
         {
-            var request = (HttpWebRequest)WebRequest.Create(WebRequestAddress);
-            var response = request.GetResponse();
-            var responseStream = response.GetResponseStream();
-            if (responseStream == null) return null;
-            var objReader = new StreamReader(responseStream);
-
-            var sLine = "";
-            var i = 0;
-
-            while (sLine != null)
+            try
             {
-                i++;
-                sLine = objReader.ReadLine();
-                if (sLine != null &&
-                    sLine.Contains(@"<div class=""wikidoc"">"))
+                var request        = (HttpWebRequest)WebRequest.Create(WebRequestAddress);
+                var response       = request.GetResponse();
+                var responseStream = response.GetResponseStream();
+                var objReader      = new StreamReader(responseStream);
+
+                var sLine = string.Empty;
+                while (sLine != null)
                 {
-                    return Extract(sLine);
+                    sLine = objReader.ReadLine();
+                    if (sLine != null && sLine.Contains(@"<div class=""wikidoc"">"))
+                        return Extract(sLine);
                 }
-
             }
-
+            catch (WebException e)
+            {
+                Trace.WriteLine($"Version checking failed.. {e.Message}");
+            }
             return null;
         }
 
-        private static VersionInfo Extract(string text)
+        static VersionInfo Extract(string text)
         {
             var verStartIndex = text.IndexOf(HtmlTagB, 0);
             var verEndIndex = text.IndexOf(HtmlEndTagB, verStartIndex);
@@ -48,7 +46,6 @@ namespace PAM.Utils.VersionChecking
             var releaseDate = text.Substring(releaseDateStartIndex + HtmlTagB.Length, releaseDateEndIndex - releaseDateStartIndex - HtmlTagB.Length);
 
             return new VersionInfo(version, releaseDate);
-
         }
 
     }

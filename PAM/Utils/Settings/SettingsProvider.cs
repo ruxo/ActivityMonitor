@@ -12,10 +12,7 @@ namespace PAM.Utils.Settings
     {
         public int IdleTime
         {
-            get
-            {
-                return Properties.Settings.Default.IdleTime;
-            }
+            get => Properties.Settings.Default.IdleTime;
             set
             {
                 Properties.Settings.Default.IdleTime = value;
@@ -25,10 +22,7 @@ namespace PAM.Utils.Settings
 
         public bool AutoExportEnabled
         {
-            get
-            {
-                return Properties.Settings.Default.AutoExportEnabled;
-            }
+            get => Properties.Settings.Default.AutoExportEnabled;
             set
             {
                 Properties.Settings.Default.AutoExportEnabled = value;
@@ -38,10 +32,7 @@ namespace PAM.Utils.Settings
 
         public int AutoExportInterval
         {
-            get
-            {
-                return Properties.Settings.Default.AutoExportInterval;
-            }
+            get => Properties.Settings.Default.AutoExportInterval;
             set
             {
                 Properties.Settings.Default.AutoExportInterval = value;
@@ -51,10 +42,7 @@ namespace PAM.Utils.Settings
 
         public string AutoExportPath
         {
-            get
-            {
-                return Properties.Settings.Default.AutoExportPath;
-            }
+            get => Properties.Settings.Default.AutoExportPath;
             set
             {
                 Properties.Settings.Default.AutoExportPath = value;

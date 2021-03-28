@@ -10,7 +10,7 @@ namespace PAM.Views
             InitializeComponent();
         }
 
-        private void HyperlinkRequestNavigate(object sender, RequestNavigateEventArgs e)
+        void HyperlinkRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
 

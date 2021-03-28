@@ -48,7 +48,7 @@ namespace PAM.Core.Implementation.Monitor
             return GetIcon(fileName, Win32.ShgfiLargeicon);
         }
 
-        private static Icon GetIcon(string fileName, uint flags)
+        static Icon GetIcon(string fileName, uint flags)
         {
             var shinfo = new Shfileinfo();
             Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.ShgfiIcon | flags);

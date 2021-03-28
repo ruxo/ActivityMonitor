@@ -7,8 +7,7 @@ namespace PAM.Tests.Core
     [TestFixture]
     public class ApplicationCollectionTests
     {
-
-        private Applications _applications;
+        Applications _applications;
 
         [SetUp]
         public void Setup()
@@ -16,18 +15,18 @@ namespace PAM.Tests.Core
             _applications = new Applications { TestApplication1(), TestApplication2() };
         }
 
-        private static Application TestApplication1()
+        static Application TestApplication1()
         {
 
             return new Application("TestApp1", @"c:\appPath1");
         }
 
-        private static Application TestApplication2()
+        static Application TestApplication2()
         {
             return new Application("TestApp2", @"c:\appPath2");
         }
 
-        private static Application TestApplication3()
+        static Application TestApplication3()
         {
             return new Application("TestApp3", @"c:\appPath3");
         }

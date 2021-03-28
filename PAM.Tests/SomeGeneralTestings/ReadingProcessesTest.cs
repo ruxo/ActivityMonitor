@@ -52,10 +52,10 @@ namespace PAM.Tests.SomeGeneralTestings
 
         // Declare external functions.
         [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
+        static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
-        private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern int GetWindowThreadProcessId(HandleRef handle, out int processId);

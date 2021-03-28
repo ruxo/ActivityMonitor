@@ -7,10 +7,9 @@ namespace PAM.Tests.Core
     [TestFixture]
     public class ApplicationTests
     {
-
-        private Application _application;
-        private const string AppPath = @"c:\program files\app\app.exe";
-        private const string AppName = "TestApp";
+        Application  _application;
+        const string AppPath = @"c:\program files\app\app.exe";
+        const string AppName = "TestApp";
 
         [SetUp]
         public void Setup()

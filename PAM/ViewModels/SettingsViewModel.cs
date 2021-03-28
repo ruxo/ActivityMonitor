@@ -5,7 +5,7 @@ namespace PAM.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
-        private int _autoIdle;
+        int _autoIdle;
 
         public int AutoIdle
         {
@@ -41,7 +41,7 @@ namespace PAM.ViewModels
             }
         }
 
-        private bool _autoExportEnabled;
+        bool _autoExportEnabled;
         public bool AutoexportEnabled
         {
             get { return Core.SettingsManager.Settings.AutoExportEnabled; }
@@ -55,7 +55,7 @@ namespace PAM.ViewModels
             }
         }
 
-        private int _autoExportInterval = 10;
+        int _autoExportInterval = 10;
         public int AutoExportInterval
         {
             get { return Core.SettingsManager.Settings.AutoExportInterval; }
@@ -69,7 +69,7 @@ namespace PAM.ViewModels
             }
         }
 
-        private string _autoExportPath = "Path";
+        string _autoExportPath = "Path";
         public string AutoExportPath
         {
             get { return Core.SettingsManager.Settings.AutoExportPath; }

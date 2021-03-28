@@ -23,51 +23,26 @@ namespace PAM
     public partial class MainGraphWindow
     {
         WindowState _lastWindowState;
-        bool _shouldClose;
-        private AppMonitor _monitor;
+        bool        _shouldClose;
+        AppMonitor  _monitor = null!;
 
         public MainGraphWindow()
         {
             InitializeComponent();
 
-            //AutostartMenuItem.Checked = Core.SettingsManager.Settings.Autostart;
             Core.SettingsManager.Settings.SettingsProvider = new SettingsProvider();
 
-            CheckForNewVersion();
+            Task.Run(() => CheckForNewVersion());
         }
 
-        private void CheckForNewVersion(bool showMessageWhenNoNewVersion = false)
+        void CheckForNewVersion(bool showMessageWhenNoNewVersion = false)
         {
-            Task.Factory.StartNew(() =>
-            {
-                var versionChecker = new VersionChecker();
-                return versionChecker.GetLatestVersionInfo();
-            }).ContinueWith(m =>
-            {
-
-                if (m.Result.Version.CompareTo(Assembly.GetExecutingAssembly().GetName().Version.ToString()) > 0)
-                {
-
-                    var newVersionView = new NewVersionPopupView();
-                    newVersionView.DataContext = m.Result;
-                    taskbarIcon.ShowCustomBalloon(newVersionView, PopupAnimation.Slide, 5000);
-                }
-                else
-                {
-                    if (showMessageWhenNoNewVersion)
-                    {
-                        var noNewVersionView = new NoNewVersionPopupView();
-                        taskbarIcon.ShowCustomBalloon(noNewVersionView, PopupAnimation.Slide, 5000);
-                    }
-
-                }
-
-            }, TaskScheduler.FromCurrentSynchronizationContext());
-
+            var version        = VersionChecker.GetLatestVersionInfo();
+            var currentVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? string.Empty;
+            if (version != null && string.Compare(version.Version, currentVersion, StringComparison.Ordinal) > 0)
+                Popup(new NewVersionPopupView {DataContext = version});
+            else if (showMessageWhenNoNewVersion) Popup(new NoNewVersionPopupView());
         }
-
-
-
 
         protected override void OnStateChanged(EventArgs e)
         {
@@ -81,7 +56,7 @@ namespace PAM
             Hide();
         }
 
-        private void OnNotificationAreaIconDoubleClick(object sender, MouseButtonEventArgs e)
+        void OnNotificationAreaIconDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
@@ -89,28 +64,28 @@ namespace PAM
             }
         }
 
-        private void OnMenuItemOpenClick(object sender, EventArgs e)
+        void OnMenuItemOpenClick(object sender, EventArgs e)
         {
             Open();
         }
 
-        private void Open()
+        void Open()
         {
             Show();
             WindowState = _lastWindowState;
         }
 
-        private void OnMenuItemExitClick(object sender, EventArgs e)
+        void OnMenuItemExitClick(object sender, EventArgs e)
         {
             _shouldClose = true;
             Close();
         }
 
-        private void FormLoaded(object sender, RoutedEventArgs e)
+        void FormLoaded(object sender, RoutedEventArgs e)
         {
-            _monitor = new AppMonitor(Dispatcher);
-            appsTree.Applications = _monitor.SortedData as CollectionView;
-            CurrentApp.DataContext = _monitor;
+            _monitor                 =  new(Dispatcher);
+            appsTree.Applications    =  _monitor.SortedData as CollectionView;
+            CurrentApp.DataContext   =  _monitor;
             _monitor.PropertyChanged += _monitor_PropertyChanged;
 
             new SettingsProvider().RunAutoExport(_monitor);
@@ -125,20 +100,20 @@ namespace PAM
         }
 
 
-        private void OnMenuItemSettingsClick(object sender, EventArgs e)
+        void OnMenuItemSettingsClick(object sender, EventArgs e)
         {
             var settingsWindow = new Settings();
             settingsWindow.ShowDialog();
         }
 
-        private void OnMenuItemAboutClick(object sender, EventArgs e)
+        void OnMenuItemAboutClick(object sender, EventArgs e)
         {
             var aboutWindow = new AboutBox(null);
             aboutWindow.Show();
         }
 
-        private void OnMenuItemExportClick(object sender,
-                                           EventArgs e)
+        void OnMenuItemExportClick(object    sender,
+                                   EventArgs e)
         {
 
 
@@ -156,28 +131,29 @@ namespace PAM
             exporter.SaveToXml(saveWindow.OpenFile());
         }
 
-        private void OnMenuItemCheckNewVersionClick(object sender, RoutedEventArgs e)
+        void OnMenuItemCheckNewVersionClick(object sender, RoutedEventArgs e)
         {
             CheckForNewVersion(true);
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        void button1_Click(object sender, RoutedEventArgs e)
         {
             appsTree.Applications.SortDescriptions.Clear();
             appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime", ListSortDirection.Ascending));
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
+        void button2_Click(object sender, RoutedEventArgs e)
         {
             appsTree.Applications.SortDescriptions.Clear();
             appsTree.Applications.SortDescriptions.Add(new SortDescription("TotalUsageTime", ListSortDirection.Descending));
         }
 
-        private bool CustomFilter(object item)
+        bool CustomFilter(object item)
         {
             var application = item as PAM.Core.Implementation.ApplicationImp.Application;
             return application.TotalTimeInMunites > 1;
         }
 
+        void Popup(UIElement view) => taskbarIcon.ShowCustomBalloon(view, PopupAnimation.Slide, 5000);
     }
 }

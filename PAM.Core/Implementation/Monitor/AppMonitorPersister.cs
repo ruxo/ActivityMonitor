@@ -7,8 +7,8 @@ namespace PAM.Core.Implementation.Monitor
 {
     public class AppMonitorPersister
     {
-        private readonly Applications _applications;
-        private const string DataFile = "PersonalActivityMonitorData.xml";
+        readonly Applications _applications;
+        const    string       DataFile = "PersonalActivityMonitorData.xml";
 
         public AppMonitorPersister(Applications applications)
         {
@@ -37,8 +37,9 @@ namespace PAM.Core.Implementation.Monitor
         }
 
 
-        private IsolatedStorageFile _isolatedStorage;
-        private IsolatedStorageFile IsolatedStorage
+        IsolatedStorageFile _isolatedStorage;
+
+        IsolatedStorageFile IsolatedStorage
         {
             get
             {

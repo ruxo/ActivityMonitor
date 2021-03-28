@@ -12,9 +12,9 @@ namespace PAM.Core.Implementation.Monitor
 {
     public class AppUpdater
     {
-        private static Applications _applications;
-        private readonly Dispatcher _dispatcher;
-        private string _previousApplicationName = string.Empty;
+        static   Applications _applications;
+        readonly Dispatcher   _dispatcher;
+        string                _previousApplicationName = string.Empty;
         public static Applications Applications
         {
             set { _applications = value; }

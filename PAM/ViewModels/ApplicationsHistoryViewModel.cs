@@ -1,6 +1,6 @@
 ﻿namespace PAM.ViewModels
 {
-    class ApplicationsHistoryViewModel
+    internal class ApplicationsHistoryViewModel
     {
     }
 }

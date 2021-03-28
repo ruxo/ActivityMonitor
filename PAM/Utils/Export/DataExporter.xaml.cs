@@ -8,7 +8,7 @@ namespace PAM.Utils.Export
 {
     internal class DataExporter
     {
-        private readonly Applications _data;
+        readonly Applications _data;
 
         public DataExporter(Applications data)
         {
