@@ -1,17 +1,21 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM", "PAM\PAM.csproj", "{78A971F0-9183-4E3E-94DC-F737B58FA377}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM.Core", "PAM.Core\PAM.Core.csproj", "{451A3C83-76A2-44DD-8F02-09735C7BB5D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM.Tests", "PAM.Tests\PAM.Tests.csproj", "{3FB63C08-8D04-45E6-813C-CBE67F132ACC}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotifyIconWpf", "NotifyIconWpf\NotifyIconWpf.csproj", "{7AC63864-7638-41C4-969C-D3197EF2BED9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8E75140A-42FB-42B6-A0F2-E967D5E07DBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BCB11CEE-11AF-4134-A921-B497ECEBFB64}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,28 +57,11 @@ Global
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|x86.ActiveCfg = Release|Any CPU
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Debug|Any CPU.ActiveCfg = Debug
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Debug|Mixed Platforms.Build.0 = Debug
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Debug|x86.ActiveCfg = Debug
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Debug|x86.Build.0 = Debug
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Release|Any CPU.ActiveCfg = Release
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Release|Mixed Platforms.ActiveCfg = Release
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Release|Mixed Platforms.Build.0 = Release
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Release|x86.ActiveCfg = Release
-		{94DC77CD-8A95-4E08-AD68-C2EC4C5A814D}.Release|x86.Build.0 = Release
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9681F05E-516A-4321-9B4F-A26486E9EA4E}
 	EndGlobalSection
 EndGlobal

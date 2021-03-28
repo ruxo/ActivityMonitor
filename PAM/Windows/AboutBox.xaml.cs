@@ -75,7 +75,7 @@ namespace PAM.Windows
                 if (string.IsNullOrEmpty(result))
                 {
                     // otherwise, just get the name of the assembly itself.
-                    result = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+                    result = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location);
                 }
                 return result;
             }

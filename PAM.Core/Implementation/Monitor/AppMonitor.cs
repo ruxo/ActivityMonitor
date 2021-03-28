@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Timers;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -45,6 +46,7 @@ namespace PAM.Core.Implementation.Monitor
         }
 
         private bool _sessionStopped;
+        [SupportedOSPlatform("windows")]
         public void SystemEventsSessionSwitch(object sender, SessionSwitchEventArgs e)
         {
             switch (e.Reason)

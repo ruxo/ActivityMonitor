@@ -13,7 +13,7 @@ namespace PAM.Tests.SomeGeneralTestings
     {
         
 
-        [Test, Ignore]
+        [Test, Ignore("Unfinished?")]
         public void ReadingProcesses()
         {
             for (var i = 0; i > -1; i++)

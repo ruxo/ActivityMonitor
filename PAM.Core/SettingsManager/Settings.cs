@@ -1,5 +1,6 @@
 ﻿
 using System.Reflection;
+using System.Runtime.Versioning;
 using Microsoft.Win32;
 
 namespace PAM.Core.SettingsManager
@@ -99,6 +100,7 @@ namespace PAM.Core.SettingsManager
             }
         }
 
+        [SupportedOSPlatform("windows")]
         public static bool Autostart
         {
             get

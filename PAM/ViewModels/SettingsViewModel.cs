@@ -1,4 +1,5 @@
-﻿using PAM.Core.MvvmFramework;
+﻿using System.Runtime.Versioning;
+using PAM.Core.MvvmFramework;
 
 namespace PAM.ViewModels
 {
@@ -24,6 +25,7 @@ namespace PAM.ViewModels
             }
         }
 
+        [SupportedOSPlatform("windows")]
         public bool Autostart
         {
             get
