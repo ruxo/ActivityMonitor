@@ -22,9 +22,9 @@ namespace PAM
     /// </summary>
     public partial class MainGraphWindow
     {
-        WindowState _lastWindowState;
-        bool        _shouldClose;
-        AppMonitor  _monitor = null!;
+        WindowState lastWindowState;
+        bool        shouldClose;
+        AppMonitor  monitor = null!;
 
         public MainGraphWindow()
         {
@@ -46,12 +46,12 @@ namespace PAM
 
         protected override void OnStateChanged(EventArgs e)
         {
-            _lastWindowState = WindowState;
+            lastWindowState = WindowState;
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (_shouldClose) return;
+            if (shouldClose) return;
             e.Cancel = true;
             Hide();
         }
@@ -72,33 +72,29 @@ namespace PAM
         void Open()
         {
             Show();
-            WindowState = _lastWindowState;
+            WindowState = lastWindowState;
         }
 
         void OnMenuItemExitClick(object sender, EventArgs e)
         {
-            _shouldClose = true;
+            shouldClose = true;
             Close();
         }
 
         void FormLoaded(object sender, RoutedEventArgs e)
         {
-            _monitor                 =  new(Dispatcher);
-            appsTree.Applications    =  _monitor.SortedData as CollectionView;
-            CurrentApp.DataContext   =  _monitor;
-            _monitor.PropertyChanged += _monitor_PropertyChanged;
+            monitor                 =  new(Dispatcher);
+            appsTree.Applications    =  monitor.SortedData as CollectionView;
+            CurrentApp.DataContext   =  monitor;
+            monitor.PropertyChanged += _monitor_PropertyChanged;
 
-            new SettingsProvider().RunAutoExport(_monitor);
-
+            new SettingsProvider().RunAutoExport(monitor);
         }
 
         void _monitor_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            //appsTree.Applications.Refresh();
-
             this.InvokeIfRequired(() => appsTree.Applications.Refresh());
         }
-
 
         void OnMenuItemSettingsClick(object sender, EventArgs e)
         {
@@ -112,22 +108,17 @@ namespace PAM
             aboutWindow.Show();
         }
 
-        void OnMenuItemExportClick(object    sender,
-                                   EventArgs e)
+        void OnMenuItemExportClick(object sender, EventArgs e)
         {
-
-
             var saveWindow = new SaveFileDialog
                                  {
-                                     FileName =
-                                         string.Format("Personal Activity Monitor ({0}).xml",
-                                                       DateTime.Now.ToShortDateString()),
-                                     Filter = "Xml file (.xml)|*.xml"
+                                     FileName = $"Personal Activity Monitor ({DateTime.Now.ToShortDateString()}).xml",
+                                     Filter   = "Xml file (.xml)|*.xml"
                                  };
             //saveWindow.FileName = "pamResult.xml";
 
             if (saveWindow.ShowDialog() != true) return;
-            var exporter = new DataExporter(_monitor.Data);
+            var exporter = new DataExporter(monitor.Data);
             exporter.SaveToXml(saveWindow.OpenFile());
         }
 

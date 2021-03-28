@@ -8,14 +8,9 @@ namespace PAM.Core.Extensions
         public static void InvokeIfRequired(this Control control, Action action)
         {
             if (System.Threading.Thread.CurrentThread != control.Dispatcher.Thread)
-            {
                 control.Dispatcher.Invoke(action);
-            }
             else
-            {
                 action();
-            }
-
         }
 
         public static void InvokeIfRequired<T>(this Control control, Action<T> action, T parameter)

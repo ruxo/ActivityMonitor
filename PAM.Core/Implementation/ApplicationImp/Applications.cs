@@ -3,69 +3,38 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using LanguageExt;
 using PAM.Core.Abstract;
+using RZ.Foundation.Extensions;
 
 namespace PAM.Core.Implementation.ApplicationImp
 {
-    public class Applications : ObservableCollection<Application>
+    public sealed class Applications : ObservableCollection<Application>
     {
-        ICollectionView _filteredItems;
+        readonly ICollectionView filteredItems;
 
         public Applications()
         {
-            _filteredItems = CollectionViewSource.GetDefaultView(this);
+            filteredItems = CollectionViewSource.GetDefaultView(this);
         }
 
-        public bool Contains(string application)
+        public bool Contains(string application) => this[application].IsSome;
+        public bool Contains(string application, string path) => this.FirstOrDefault(app => app.Name == application && app.Path == path) != null;
+
+        public Option<IApplication> this[string applicationName] => this.TryFirst(app => app.Name == applicationName).Map(x => (IApplication)x);
+
+        public TimeSpan TotalTime =>
+            this.Select(app => app.TotalUsageTime)
+                .Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
+
+        public void UIRefresh()
         {
-            return (from app in this
-                    where app.Name == application
-                    select app).FirstOrDefault() != null;
-        }
-
-        public bool Contains(string application, string path)
-        {
-            return (from app in this
-                    where app.Name == application && app.Path == path
-                    select app).FirstOrDefault() != null;
-        }
-
-        public IApplication this[string applicationName]
-        {
-            get
-            {
-                return (from app in this
-                        where app.Name == applicationName
-                        select app).FirstOrDefault();
-
-
-            }
-
-        }
-
-        public TimeSpan TotalTime
-        {
-            get
-            {
-                return (from app in this
-                        select app.TotalUsageTime).Aggregate(TimeSpan.Zero, (subtotal,
-                                                                             t) => subtotal.Add(t));
-            }
-        }
-
-        public void Refresh()
-        {
-
             TimeConverter.AppsTotalTime = TotalTime;
-
-
 
             foreach (var application in this)
             {
                 application.Refresh();
             }
-
-            
         }
 
 
@@ -73,15 +42,14 @@ namespace PAM.Core.Implementation.ApplicationImp
 
         public ICollectionView FilteredItems()
         {
-            return _filteredItems;
+            return filteredItems;
         }
 
         public void ShowAll()
         {
-            _filteredItems.SortDescriptions.Clear();
-            _filteredItems.Filter -= Filter;
+            filteredItems.SortDescriptions.Clear();
+            filteredItems.Filter -= Filter;
         }
-
 
         public bool Filter(object app)
         {
@@ -92,14 +60,14 @@ namespace PAM.Core.Implementation.ApplicationImp
 
         public void SortAsc()
         {
-            _filteredItems.SortDescriptions.Clear();
-            _filteredItems.SortDescriptions.Add(new SortDescription("Duration", ListSortDirection.Ascending));
+            filteredItems.SortDescriptions.Clear();
+            filteredItems.SortDescriptions.Add(new SortDescription("Duration", ListSortDirection.Ascending));
         }
 
         public void SortDesc()
         {
-            _filteredItems.SortDescriptions.Clear();
-            _filteredItems.SortDescriptions.Add(new SortDescription("Duration", ListSortDirection.Descending));
+            filteredItems.SortDescriptions.Clear();
+            filteredItems.SortDescriptions.Add(new SortDescription("Duration", ListSortDirection.Descending));
         }
 
 

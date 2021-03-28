@@ -6,9 +6,6 @@ namespace PAM.Core.Implementation.ApplicationImp
 {
     public class ApplicationUsages : List<ApplicationUsage>
     {
-
-
-
         public TimeSpan TotalUsageTime()
         {
 

@@ -5,159 +5,92 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using LanguageExt;
 using PAM.Core.Abstract;
 using PAM.Core.Implementation.ApplicationImp;
+using RZ.Foundation.Extensions;
+using static LanguageExt.Prelude;
 
 namespace PAM.Core.Implementation.Monitor
 {
-    public class AppUpdater
+    public sealed class AppUpdater
     {
-        static   Applications _applications;
-        readonly Dispatcher   _dispatcher;
-        string                _previousApplicationName = string.Empty;
-        public static Applications Applications
-        {
-            set { _applications = value; }
-        }
+        static   Applications? _applications;
+        readonly Dispatcher    dispatcher;
+        string                 previousApplicationName = string.Empty;
 
-        public static double GetMaxValue
-        {
-            get
-            {
-                return (from app in _applications
-                        select app.TotalUsageTime.TotalSeconds).Max();
-            }
-        }
+        public static double GetMaxValue => _applications?.Select(app => app.TotalUsageTime.TotalSeconds).Max() ?? 0;
 
         public AppUpdater(Applications applications, Dispatcher dispatcher)
         {
-            _applications = applications;
-            _dispatcher = dispatcher;
+            _applications   = applications;
+            this.dispatcher = dispatcher;
         }
-
 
         public void Stop(Process process)
         {
-            try
-            {
+            var lastUsage = lastUsageOf(previousApplicationName);
+            lastUsage.Do(u => u.End());
 
-                if (_applications[_previousApplicationName] != null &&
-                        _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed) != null)
-                {
-                    _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed).End();
-                }
-
-                var currentProcess = process.MainModule.FileVersionInfo.FileDescription;
-                if (_applications[currentProcess] != null &&
-                            _applications[currentProcess].Usage.FindLast(u => !u.IsClosed) != null)
-                {
-                    _applications[currentProcess].Usage.FindLast(u => !u.IsClosed).End();
-                }
-            }
-            catch (Exception)
-            {
-
-                // todo logging
-            }
-
-
+            var currentProcess = process.MainModule!.FileVersionInfo.FileDescription!;
+            var currentUsage   = lastUsageOf(currentProcess);
+            currentUsage.Do(u => u.End());
         }
 
-        public IApplication Update(Process process)
+        public Option<IApplication> Update(Process process)
         {
-            try
-            {
-                if (_previousApplicationName != process.MainModule.FileVersionInfo.FileDescription)
-                {
+            // some process has higher priviledge and cannot retrieve the file info.
+            var fn = Try(() => process.MainModule!.FileVersionInfo.FileName).ToOption();
+            if (fn.IsNone)
+                return None;
+            var fileName = fn.Get();
 
-                    if (_applications[_previousApplicationName] != null &&
-                        _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed) != null)
+            var processName     = process.ProcessName;
+            if (processName == null) throw new InvalidOperationException("Unexpected invalid process name");
+
+            var lastUsage = lastUsageOf(previousApplicationName);
+            if (previousApplicationName == processName)
+                return _applications![previousApplicationName];
+
+            lastUsage.Do(u => u.End());
+
+            previousApplicationName = processName;
+
+            if (!_applications!.Contains(processName, fileName))
+                dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                {
+                    var          icon     = Icon.ExtractAssociatedIcon(fileName);
+                    BitmapImage? bmpImage = null;
+                    if (icon != null)
                     {
-                        _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed).End();
+                        using var bmp  = icon.ToBitmap();
+                        var       strm = new MemoryStream();
+                        bmp.Save(strm, System.Drawing.Imaging.ImageFormat.Png);
+
+                        bmpImage = new();
+
+                        bmpImage.BeginInit();
+                        strm.Seek(0, SeekOrigin.Begin);
+                        bmpImage.StreamSource = strm;
+                        bmpImage.EndInit();
                     }
 
-                    _previousApplicationName = process.MainModule.FileVersionInfo.FileDescription;
+                    Application application                = new(processName, fileName);
+                    if (bmpImage != null) application.Icon = bmpImage;
 
-                    if (
-                        !_applications.Contains(process.MainModule.FileVersionInfo.FileDescription,
-                                                process.MainModule.FileVersionInfo.FileName))
-                    {
-                        try
-                        {
-                            using (new MemoryStream())
-                            {
-                                _dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
-                                                                                           {
-                                                                                               var icon = Icon.ExtractAssociatedIcon(process.MainModule.FileVersionInfo.FileName);
-                                                                                               BitmapImage bmpImage = null;
-                                                                                               if (icon != null)
-                                                                                               {
-                                                                                                   var bmp = icon.ToBitmap();
-                                                                                                   var strm = new MemoryStream();
-                                                                                                   bmp.Save(strm, System.Drawing.Imaging.ImageFormat.Png);
+                    _applications.Add(application);
+                }));
 
-                                                                                                   bmpImage = new BitmapImage();
+            var usage = ApplicationUsage.Start(process.MainWindowTitle);
+            _applications[processName].Do(a => a.Usage.Add(usage));
 
-                                                                                                   bmpImage.BeginInit();
-                                                                                                   strm.Seek(0, SeekOrigin.Begin);
-                                                                                                   bmpImage.StreamSource = strm;
-                                                                                                   bmpImage.EndInit();
+            //update collection
+            dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => _applications.UIRefresh()));
 
-                                                                                               }
-                                                                                               _applications.Add(
-                                                                                                   new Application(
-                                                                                                       process.MainModule.FileVersionInfo.FileDescription,
-                                                                                                       process.MainModule.FileVersionInfo.FileName) { Icon = bmpImage });
-                                                                                           }));
-
-                            }
-
-                        }
-                        catch (Exception ex)
-                        {
-                            //todo logging
-                        }
-                    }
-
-                    var usage = new ApplicationUsage { DetailedName = process.MainWindowTitle };
-                    usage.Start();
-                    _applications[process.MainModule.FileVersionInfo.FileDescription].Usage.Add(usage);
-
-                }
-
-                // if reasume - no usages are present
-                var currentProcess = process.MainModule.FileVersionInfo.FileDescription;
-                if (_applications[_previousApplicationName] != null &&
-                    _applications[_previousApplicationName].Usage.FindLast(u => !u.IsClosed) == null &&
-                    _applications[currentProcess] != null &&
-                    _applications[currentProcess].Usage.FindLast(u => !u.IsClosed) == null)
-                {
-                    var usage = new ApplicationUsage { DetailedName = process.MainWindowTitle };
-                    usage.Start();
-                    _applications[process.MainModule.FileVersionInfo.FileDescription].Usage.Add(usage);
-                }
-
-
-                //update collection
-                _dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() => _applications.Refresh()));
-
-
-            }
-            catch (Exception ex)
-            {
-                //todo logging
-
-            }
-
-
-            return _applications[_previousApplicationName];
+            return _applications[previousApplicationName];
         }
 
-        protected IApplication CurrentApplication
-        {
-            get;
-            private set;
-        }
-
+        Option<ApplicationUsage> lastUsageOf(string appName) =>
+            _applications![appName].Bind(a => Optional(a.Usage.FindLast(u => !u.IsClosed)!));
     }
 }

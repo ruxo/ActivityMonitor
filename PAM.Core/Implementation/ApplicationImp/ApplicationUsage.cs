@@ -6,22 +6,7 @@ namespace PAM.Core.Implementation.ApplicationImp
 {
     public class ApplicationUsage : IApplicationUsage
     {
-        public ApplicationUsage()
-        {
-        }
-
-        public ApplicationUsage(DateTime beginTime,
-                                DateTime endTime,
-                                string detailedName = "")
-        {
-            BeginTime = beginTime;
-            EndTime = endTime;
-            DetailedName = detailedName;
-        }
-
-        [XmlAttribute]
-        public string DetailedName { get; set; }
-
+        [XmlAttribute] public string DetailedName { get; set; } = string.Empty;
 
         [XmlAttribute]
         public DateTime BeginTime { get; set; }
@@ -29,9 +14,27 @@ namespace PAM.Core.Implementation.ApplicationImp
         [XmlAttribute]
         public DateTime EndTime { get; set; }
 
-
         [XmlAttribute]
         public bool IsClosed { get; set; }
+
+        #region ctors
+
+        public ApplicationUsage(){}
+        public ApplicationUsage(string detailedName)
+        {
+            DetailedName = detailedName;
+        }
+
+        public ApplicationUsage(DateTime beginTime, DateTime endTime, string detailedName = "")
+        {
+            BeginTime    = beginTime;
+            EndTime      = endTime;
+            DetailedName = detailedName;
+        }
+
+        #endregion
+
+        public static ApplicationUsage Start(string detailedName) => new(DateTime.Now, DateTime.MinValue, detailedName);
 
         public void Start()
         {
@@ -45,15 +48,6 @@ namespace PAM.Core.Implementation.ApplicationImp
             IsClosed = true;
         }
 
-        public TimeSpan Total
-        {
-            get
-            {
-                return IsClosed ? EndTime.Subtract(BeginTime) : DateTime.Now.Subtract(BeginTime);
-            }
-        }
-
-
-
+        public TimeSpan Total => (IsClosed ? EndTime : DateTime.Now) - BeginTime;
     }
 }

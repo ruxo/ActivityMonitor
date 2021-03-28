@@ -6,81 +6,51 @@ using PAM.Core.Abstract;
 
 namespace PAM.Core.Implementation.ApplicationImp
 {
-   
-
     public class Application : IApplication, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        [XmlAttribute] public string Path { get; set; } = string.Empty;
+        [XmlAttribute] public string Name { get; set; } = string.Empty;
 
-        void NotifyPropertyChanged(String info)
+        public TimeSpan TotalUsageTime => Usage.TotalUsageTime();
+
+        public double TotalTimeInMunites => TotalUsageTime.TotalMinutes;
+
+        public ApplicationUsages Usage { get; init; }
+
+        [XmlIgnore]
+        public ImageSource? Icon { get; set; }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        #region ctors
+
+        public Application(ApplicationUsages? usage = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
+            Usage = usage ?? new ();
         }
+
+        public Application()
+        {
+            Usage = new ();
+        }
+
+        public Application(string name, string path)
+        {
+            Path  = path;
+            Name  = name;
+            Usage = new ();
+        }
+
+        #endregion
 
         public void Refresh()
         {
             NotifyPropertyChanged("TotalUsageTime");
         }
 
-
-        public Application(ApplicationUsages usage = null)
+        void NotifyPropertyChanged(string info)
         {
-
-            Usage = usage ?? new ApplicationUsages();
-
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
         }
-
-        public Application()
-        {
-            Usage = new ApplicationUsages();
-        }
-
-        public Application(string name, string path)
-        {
-            Path = path;
-            Name = name;
-            Usage = new ApplicationUsages();
-        }
-
-
-        [XmlAttribute]
-        public string Path
-        {
-            get;
-            set;
-        }
-
-        [XmlAttribute]
-        public string Name { get; set; }
-
-        public TimeSpan TotalUsageTime
-        {
-            get { return Usage.TotalUsageTime(); }
-        }
-
-        public double TotalTimeInMunites { get { return TotalUsageTime.TotalMinutes; } }
-
-        ApplicationUsages _usage;
-
-        public ApplicationUsages Usage
-        {
-            get { return _usage; }
-            set
-            {
-                _usage = value;
-                NotifyPropertyChanged("Usage");
-            }
-        }
-
-        [XmlIgnore]
-        public ImageSource Icon { get; set; }
-
-        public ApplicationDetails Details { get; set; }
-
-
-
     }
 }

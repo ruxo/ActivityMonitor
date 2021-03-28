@@ -2,205 +2,161 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Timers;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
+using LanguageExt;
 using Microsoft.Win32;
 using PAM.Core.Implementation.ApplicationImp;
 using PAM.Core.SettingsManager;
+using RZ.Foundation.Extensions;
+using static LanguageExt.Prelude;
 
 namespace PAM.Core.Implementation.Monitor
 {
-    public class AppMonitor : INotifyPropertyChanged
+    [SupportedOSPlatform("windows")]
+    public sealed class AppMonitor : INotifyPropertyChanged
     {
-        readonly Timer      _timer;
-        readonly AppUpdater _appUpdater;
-        string              _currentApplicationName;
-        TimeSpan            _currentApplicationTotalUsageTime;
-        string              _currentApplicationPath;
-        ImageSource         _currentApplicationIcon;
-        public Applications Applications
-        {
-            get { return Data; }
-            set
-            {
-                Data = value;
-                AppUpdater.Applications = value;
-            }
-        }
+        readonly Timer      timer;
+        readonly AppUpdater appUpdater;
+        string              currentApplicationName           = string.Empty;
+        TimeSpan            currentApplicationTotalUsageTime = TimeSpan.Zero;
+        string              currentApplicationPath           = string.Empty;
+        ImageSource?        currentApplicationIcon;
 
-        readonly DateTime _startTime = DateTime.Now;
+        readonly DateTime startTime = DateTime.Now;
+
+        public Applications Data { get; }
+
+        public ICollectionView SortedData { get; }
 
         public AppMonitor(Dispatcher dispatcher)
         {
-            _timer = new Timer { Interval = 1000 };
-            _timer.Elapsed += TimerElapsed;
-            Data = new Applications();
-            _appUpdater = new AppUpdater(Data, dispatcher);
+            Data       = new();
+            SortedData = CollectionViewSource.GetDefaultView(Data);
+            SortedData.SortDescriptions.Add(new("TotalUsageTime", ListSortDirection.Descending));
 
-            _timer.Start();
+            appUpdater = new(Data, dispatcher);
+
             SystemEvents.SessionSwitch += SystemEventsSessionSwitch;
+
+            timer         =  new() {Interval = 1000, AutoReset = false};
+            timer.Elapsed += TimerElapsed;
+            timer.Start();
         }
 
-        bool _sessionStopped;
-        [SupportedOSPlatform("windows")]
-        public void SystemEventsSessionSwitch(object sender, SessionSwitchEventArgs e)
+        #region User session detection
+
+        bool sessionIsActive = true;
+
+        void SystemEventsSessionSwitch(object sender, SessionSwitchEventArgs e)
         {
-            switch (e.Reason)
-            {
-                case SessionSwitchReason.SessionLock:
-                    _sessionStopped = true;
-                    break;
-                case SessionSwitchReason.SessionUnlock:
-                    _sessionStopped = false;
-                    break;
-            }
+            sessionIsActive = e.Reason == SessionSwitchReason.SessionUnlock ||
+                              e.Reason == SessionSwitchReason.RemoteConnect ||
+                              e.Reason == SessionSwitchReason.SessionRemoteControl;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
-        void NotifyPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
-
-        void TimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            _timer.Stop();
-
-            try
-            {
-                // turn the timer off while processing elapsed because we want to avoid problems with threads - which are not needed here
-                var handle = WinApi.GetForegroundWindow();
-                int processId;
-                //todo write result to trace and add try catch
-                WinApi.GetWindowThreadProcessId(new HandleRef(null, handle), out processId);
-                var process = Process.GetProcessById(processId);
-
-                // checking if the user is in iddle mode - if so, dont updat process
-                // todo refactor
-                var inputInfo = new WinApi.Lastinputinfo();
-                inputInfo.cbSize = (uint)Marshal.SizeOf(inputInfo);
-                WinApi.GetLastInputInfo(ref inputInfo);
-                var iddleTime = (Environment.TickCount - inputInfo.dwTime) / 1000;
-                if (iddleTime < Settings.IdleTime && _sessionStopped == false)
-                { // iddle time is less 30 sec then update process
-
-                    var currentApplication = _appUpdater.Update(process);
-                    if (currentApplication != null)
-                    {
-                        CurrentApplicationName = currentApplication.Name;
-                        CurrentApplicationTotalUsageTime = currentApplication.TotalUsageTime;
-                        CurrentApplicationPath = currentApplication.Path;
-                        CurrentApplicationIcon = currentApplication.Icon;
-                    }
-
-
-                }
-                else
-                {
-                    _appUpdater.Stop(process);
-                }
-            }
-            catch (Exception)
-            {
-
-                // todo logging
-            }
-
-            NotifyPropertyChanged("TotalTimeRunning");
-            NotifyPropertyChanged("TotalTimeSpentInApplications");
-
-            _timer.Start();
-        }
-
-
-        Applications _data;
-        public Applications Data
-        {
-            get { return _data; }
-            private set
-            {
-                _data = value;
-                SortedData = CollectionViewSource.GetDefaultView(_data);
-                SortedData.SortDescriptions.Add(new SortDescription("TotalUsageTime",ListSortDirection.Descending));
-            }
-        }
-
-
-        public ICollectionView SortedData { get; private set; }
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public string CurrentApplicationName
         {
-            get { return _currentApplicationName; }
+            get => currentApplicationName;
             private set
             {
-                if (value == null || value == _currentApplicationName) return;
-                _currentApplicationName = value;
+                if (value == currentApplicationName) return;
+                currentApplicationName = value;
                 NotifyPropertyChanged("CurrentApplicationName");
             }
         }
 
-
         public TimeSpan CurrentApplicationTotalUsageTime
         {
-            get { return _currentApplicationTotalUsageTime; }
+            get => currentApplicationTotalUsageTime;
             private set
             {
-                if (value == _currentApplicationTotalUsageTime) return;
-                _currentApplicationTotalUsageTime = value;
+                if (value == currentApplicationTotalUsageTime) return;
+                currentApplicationTotalUsageTime = value;
                 NotifyPropertyChanged("CurrentApplicationTotalUsageTime");
             }
         }
 
         public string CurrentApplicationPath
         {
-            get { return _currentApplicationPath; }
+            get => currentApplicationPath;
             private set
             {
-                if (value == _currentApplicationPath) return;
-                _currentApplicationPath = value;
+                if (value == currentApplicationPath) return;
+                currentApplicationPath = value;
                 NotifyPropertyChanged("CurrentApplicationPath");
             }
         }
 
-
-
-        public ImageSource CurrentApplicationIcon
+        public ImageSource? CurrentApplicationIcon
         {
-            get { return _currentApplicationIcon; }
+            get => currentApplicationIcon;
             private set
             {
-                if (value == _currentApplicationIcon) return;
-                _currentApplicationIcon = value;
+                if (value == currentApplicationIcon) return;
+                currentApplicationIcon = value;
                 NotifyPropertyChanged("CurrentApplicationIcon");
             }
         }
-
 
         public TimeSpan TotalTimeSpentInApplications
         {
             get
             {
-                var totalTime = Applications.Sum(s => s.TotalTimeInMunites);
+                var totalTime = Data.Sum(s => s.TotalTimeInMunites);
                 return TimeSpan.FromMinutes(totalTime);
             }
-
-
         }
 
-        public TimeSpan TotalTimeRunning
+        public TimeSpan TotalTimeRunning                   => DateTime.Now.Subtract(startTime);
+        void            NotifyPropertyChanged(string info) => PropertyChanged?.Invoke(this, new(info));
+
+        void TimerElapsed(object sender, ElapsedEventArgs e)
         {
-            get { return DateTime.Now.Subtract(_startTime); }
+            var handle = WinApi.GetForegroundWindow();
 
+            WinApi.GetWindowThreadProcessId(new(null, handle), out var processId);
+            var process   = TryGetProcessById(processId);
+            var inputInfo = WinApi.GetLastInputInfo();
+
+            var _ = from p in process
+                    from i in inputInfo
+                    select UpdateCurrentApplication(p, i);
+
+            NotifyPropertyChanged("TotalTimeRunning");
+            NotifyPropertyChanged("TotalTimeSpentInApplications");
+
+            timer.Start();
         }
 
+        Unit UpdateCurrentApplication(Process process, WinApi.LastInputInfo inputInfo)
+        {
+            // checking if the user is in idle mode - if so, don't update process
+            var idleTime = (Environment.TickCount - inputInfo.dwTime) / 1000;
+            if (idleTime < Settings.IdleTime && sessionIsActive)
+            {
+                appUpdater.Update(process)
+                          .Then(a =>
+                           {
+                               CurrentApplicationName           = a.Name;
+                               CurrentApplicationTotalUsageTime = a.TotalUsageTime;
+                               CurrentApplicationPath           = a.Path;
+                               CurrentApplicationIcon           = a.Icon;
+                           });
+            }
+            else
+                appUpdater.Stop(process);
 
+            return Unit.Default;
+        }
+
+        static Option<Process> TryGetProcessById(int processId) => Try(() => Process.GetProcessById(processId)).ToOption();
     }
 }

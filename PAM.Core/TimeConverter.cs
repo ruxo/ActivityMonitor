@@ -15,9 +15,7 @@ namespace PAM.Core
                               CultureInfo culture)
         {
 
-            var userValue = value is TimeSpan ? (TimeSpan)value : new TimeSpan();
-
-
+            var userValue = value is TimeSpan ? (TimeSpan)value : new();
 
             var result = string.Empty;
 

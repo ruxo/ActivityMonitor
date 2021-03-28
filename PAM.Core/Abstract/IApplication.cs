@@ -6,12 +6,10 @@ namespace PAM.Core.Abstract
 {
     public interface IApplication
     {
-        string Path { get; }
-        string Name { get; }
-        TimeSpan TotalUsageTime { get; }
-        ApplicationUsages Usage { get; }
-        ApplicationDetails Details { get; }
-        ImageSource Icon { get; set; }
-
+        string            Path           { get; }
+        string            Name           { get; }
+        TimeSpan          TotalUsageTime { get; }
+        ApplicationUsages Usage          { get; }
+        ImageSource?      Icon           { get; set; }
     }
 }
