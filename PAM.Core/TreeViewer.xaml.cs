@@ -23,15 +23,12 @@ namespace PAM.Core
                 _applications = value;
                 tree.ItemsSource = _applications;
             }
-            get { return _applications; }
+            get => _applications;
         }
 
         void TreeSizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
         {
             WidthCalculator.MaxControlWidth = tree.ActualWidth;
         }
-
-
-
     }
 }

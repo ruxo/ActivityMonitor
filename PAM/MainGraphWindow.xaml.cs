@@ -58,10 +58,7 @@ namespace PAM
 
         void OnNotificationAreaIconDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                Open();
-            }
+            if (e.ChangedButton == MouseButton.Left) Open();
         }
 
         void OnMenuItemOpenClick(object sender, EventArgs e)
@@ -84,8 +81,8 @@ namespace PAM
         void FormLoaded(object sender, RoutedEventArgs e)
         {
             monitor                 =  new(Dispatcher);
-            appsTree.Applications    =  monitor.SortedData as CollectionView;
-            CurrentApp.DataContext   =  monitor;
+            appsTree.Applications   =  (CollectionView) monitor.SortedData;
+            CurrentApp.DataContext  =  monitor;
             monitor.PropertyChanged += _monitor_PropertyChanged;
 
             new SettingsProvider().RunAutoExport(monitor);
@@ -98,14 +95,12 @@ namespace PAM
 
         void OnMenuItemSettingsClick(object sender, EventArgs e)
         {
-            var settingsWindow = new Settings();
-            settingsWindow.ShowDialog();
+            new Settings().ShowDialog();
         }
 
         void OnMenuItemAboutClick(object sender, EventArgs e)
         {
-            var aboutWindow = new AboutBox(null);
-            aboutWindow.Show();
+            new AboutBox(null).Show();
         }
 
         void OnMenuItemExportClick(object sender, EventArgs e)

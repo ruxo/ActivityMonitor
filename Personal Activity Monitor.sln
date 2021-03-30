@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM", "PAM\PAM.csproj", "{78A971F0-9183-4E3E-94DC-F737B58FA377}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAM", "PAM\PAM.csproj", "{78A971F0-9183-4E3E-94DC-F737B58FA377}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM.Core", "PAM.Core\PAM.Core.csproj", "{451A3C83-76A2-44DD-8F02-09735C7BB5D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAM.Core", "PAM.Core\PAM.Core.csproj", "{451A3C83-76A2-44DD-8F02-09735C7BB5D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PAM.Tests", "PAM.Tests\PAM.Tests.csproj", "{3FB63C08-8D04-45E6-813C-CBE67F132ACC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAM.Tests", "PAM.Tests\PAM.Tests.csproj", "{3FB63C08-8D04-45E6-813C-CBE67F132ACC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8E75140A-42FB-42B6-A0F2-E967D5E07DBA}"
 EndProject
@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PAM.NewCore", "PAM.NewCore\PAM.NewCore.fsproj", "{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,18 @@ Global
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3FB63C08-8D04-45E6-813C-CBE67F132ACC}.Release|x86.ActiveCfg = Release|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Debug|x86.Build.0 = Debug|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Release|x86.ActiveCfg = Release|Any CPU
+		{0A2E2FE3-4D23-492B-B4E8-5D248DD76983}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

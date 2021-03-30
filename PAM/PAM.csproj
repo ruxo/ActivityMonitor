@@ -49,5 +49,6 @@
       <Project>{451A3C83-76A2-44DD-8F02-09735C7BB5D2}</Project>
       <Name>PAM.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PAM.NewCore\PAM.NewCore.fsproj" />
   </ItemGroup>
 </Project>
