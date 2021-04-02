@@ -27,17 +27,6 @@ namespace PAM.Core.Implementation.ApplicationImp
             this.Select(app => app.TotalUsageTime)
                 .Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
 
-        public void UIRefresh()
-        {
-            TimeConverter.AppsTotalTime = TotalTime;
-
-            foreach (var application in this)
-            {
-                application.Refresh();
-            }
-        }
-
-
         #region Different views
 
         public ICollectionView FilteredItems()

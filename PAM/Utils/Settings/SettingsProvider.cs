@@ -62,8 +62,8 @@ namespace PAM.Utils.Settings
                                               }
                                               var file = File.Open(Path.Combine(AutoExportPath,
                                                                                 DateTime.Now.Date.ToString("yyyy-MM-dd") + ".xml"),FileMode.Create,FileAccess.Write);
-                                              var exporter = new DataExporter(monitor.Data);
-                                              exporter.SaveToXml(file);
+                                              //var exporter = new DataExporter(monitor.Data);
+                                              //exporter.SaveToXml(file);
                                           }
                                           Thread.Sleep(AutoExportInterval*1000);
                                       }).ContinueWith((task => RunAutoExport(monitor)));

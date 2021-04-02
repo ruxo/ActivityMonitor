@@ -7,8 +7,10 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using Microsoft.Win32;
+using PAM.Core;
 using PAM.Core.Extensions;
 using PAM.Core.Implementation.Monitor;
+using PAM.Core.Tracker;
 using PAM.Utils.Export;
 using PAM.Utils.Settings;
 using PAM.Utils.VersionChecking;
@@ -22,9 +24,10 @@ namespace PAM
     /// </summary>
     public partial class MainGraphWindow
     {
-        WindowState lastWindowState;
-        bool        shouldClose;
-        AppMonitor  monitor = null!;
+        WindowState              lastWindowState;
+        bool                     shouldClose;
+        AppMonitor               monitor = null!;
+        public AppTrackerContext UiContext { get; } = new ();
 
         public MainGraphWindow()
         {
@@ -80,10 +83,9 @@ namespace PAM
 
         void FormLoaded(object sender, RoutedEventArgs e)
         {
-            monitor                 =  new(Dispatcher);
+            monitor                 =  new(UiContext, Dispatcher);
             appsTree.Applications   =  (CollectionView) monitor.SortedData;
-            CurrentApp.DataContext  =  monitor;
-            monitor.PropertyChanged += _monitor_PropertyChanged;
+            // monitor.PropertyChanged += _monitor_PropertyChanged;
 
             new SettingsProvider().RunAutoExport(monitor);
         }
@@ -113,8 +115,8 @@ namespace PAM
             //saveWindow.FileName = "pamResult.xml";
 
             if (saveWindow.ShowDialog() != true) return;
-            var exporter = new DataExporter(monitor.Data);
-            exporter.SaveToXml(saveWindow.OpenFile());
+            //var exporter = new DataExporter(monitor.Data);
+            //exporter.SaveToXml(saveWindow.OpenFile());
         }
 
         void OnMenuItemCheckNewVersionClick(object sender, RoutedEventArgs e)

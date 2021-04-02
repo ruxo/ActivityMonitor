@@ -51,4 +51,7 @@
     </ProjectReference>
     <ProjectReference Include="..\PAM.NewCore\PAM.NewCore.fsproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
 </Project>

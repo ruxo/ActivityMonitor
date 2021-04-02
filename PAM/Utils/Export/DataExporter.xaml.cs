@@ -18,7 +18,7 @@ namespace PAM.Utils.Export
         public void SaveToXml(Stream resultFile)
         {
             var outputXml = new XDocument(
-                new XElement("Applications", new XAttribute("ApplicationVersion",  Assembly.GetExecutingAssembly().GetName().Version),
+                new XElement("Applications", new XAttribute("ApplicationVersion",  Assembly.GetExecutingAssembly().GetName().Version!),
                                              new XAttribute("ExportVersion", "1.0"),
                                              from app in _data
                                              select new XElement("Application",

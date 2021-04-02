@@ -2,6 +2,8 @@
 
 open System.Collections.Generic
 
+let sideEffect f x = f x; x
+
 let inline tryOption f =
     try
         Some <| f()

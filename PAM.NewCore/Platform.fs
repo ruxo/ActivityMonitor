@@ -44,6 +44,7 @@ let getActiveConsoleSessionId() =
     then Some id
     else None
 
+[<NoComparison>]
 type ActiveProcessState =
 | NoActive
 | Active of Process
